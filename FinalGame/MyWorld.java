@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class MyWorld extends AllWorld
 {
     private Character c;
     private Gun g;
@@ -14,6 +14,7 @@ public class MyWorld extends World
     private int randX;
     private int randY;
     private int hordeCount;
+    private int hordeLimit; // the limit of how many horde enemys can exist at once
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -21,12 +22,13 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         c = new Character();
         g = new Gun();
-        addObject(c, 300, 200);
-        addObject(g, 330, 200);
-        for(int i = 0; i < 10; i++){
+        addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
+        hordeLimit = 50;
+        for(int i = 0; i < hordeLimit; i++){
             addHorde();
         }
         speed = 2;
@@ -34,7 +36,7 @@ public class MyWorld extends World
     
     public void act(){
         ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
-        if(horde.size() < 10){
+        if(horde.size() < hordeLimit){
             addHorde();
         }
     }
@@ -45,12 +47,20 @@ public class MyWorld extends World
     
     private void addHorde(){
         if(Greenfoot.getRandomNumber(2) == 0){
-            randX = 0;
-            randY = Greenfoot.getRandomNumber(350) + 25; // based on world height, don't spawn in corners
+            if(Greenfoot.getRandomNumber(2) == 0){
+                randX = 0;
+            } else {
+                randX = AllWorld.WORLD_WIDTH;
+            }
+            randY = Greenfoot.getRandomNumber(AllWorld.WORLD_HEIGHT-50) + 25; 
             addObject(new BasicHorde(), randX, randY);
         } else {
-            randX = Greenfoot.getRandomNumber(750) + 25;
-            randY = 0;
+            randX = Greenfoot.getRandomNumber(AllWorld.WORLD_WIDTH-50) + 25;
+            if(Greenfoot.getRandomNumber(2) == 0){
+                randY = 0;
+            } else {
+                randY = AllWorld.WORLD_HEIGHT;
+            }
             addObject(new BasicHorde(), randX, randY);
         }
     }
