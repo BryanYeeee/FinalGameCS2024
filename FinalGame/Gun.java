@@ -10,12 +10,15 @@ import java.util.List;
 public class Gun extends SuperSmoothMover
 {
     private GreenfootImage gun = new GreenfootImage("gun.png");
-    private int actCount = 0;
+    private int actCount;
+    private int frequency; // this affects fire rate of the gun, a lower number = faster firing
     public Gun(){
         gun.scale(40, 40);
         gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
+        frequency = 15;
+        actCount = 0;
     }
 
     public void act()
@@ -23,7 +26,7 @@ public class Gun extends SuperSmoothMover
         Enemy closestEnemy = getNearestEnemy();
         if(closestEnemy != null){
             turnTowards(closestEnemy.getEnemyX(), closestEnemy.getEnemyY());
-            if(actCount % 30 == 0){
+            if(actCount % frequency == 0){
                 getWorld().addObject(new Bullet(closestEnemy.getEnemyX(), closestEnemy.getEnemyY()),getX(), getY());
             }
         }

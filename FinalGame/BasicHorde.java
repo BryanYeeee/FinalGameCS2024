@@ -18,12 +18,12 @@ public class BasicHorde extends Enemy
 
     private int targetX;
     private int targetY;
-    private int speed;
+    private double speed;
     private int imageDelay; // this delay prevents the continous setting/changing of images, to look less glitchy
 
     public BasicHorde(){
         hp = 100;
-        speed = 1;
+        speed = Math.random() + 1.0;
         // due to some rotation offset when getting the image, need slight rotation here
         zombie.rotate(5);
         zombieMirrored.rotate(5);
@@ -80,11 +80,11 @@ public class BasicHorde extends Enemy
             }
         }
         if(imageDelay == 0){
-            if(getX() < targetX/2){
+            if(getX() < targetX){
                 setImage(zombieMirrored);
                 imageDelay = 30;
             }
-            if(getX() >= targetX/2){
+            if(getX() >= targetX){
                 setImage(zombie);
                 imageDelay = 30;
             }
@@ -105,7 +105,7 @@ public class BasicHorde extends Enemy
 
         actorsTouching.addAll(enemiesTouching);
 
-        pushAwayFromObjects(actorsTouching, 0.5);
+        pushAwayFromObjects(actorsTouching, 0.3);
     }
 
     /**

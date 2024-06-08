@@ -27,7 +27,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 50;
+        hordeLimit = 20;
         for(int i = 0; i < hordeLimit; i++){
             addHorde();
         }
