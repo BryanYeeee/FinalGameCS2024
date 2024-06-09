@@ -51,6 +51,7 @@ public abstract class Collectible extends SuperSmoothMover
             }
             else{
                 pickupEffect();
+                ((MyWorld)getWorld()).getCharacter().increaseExp(1);
                 getWorld().removeObject(this);
             }
         }    

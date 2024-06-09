@@ -23,7 +23,8 @@ public class BasicHorde extends Enemy
 
     public BasicHorde(){
         hp = 100;
-        speed = Math.random() + 1.0;
+        //speed = Math.random() + 1.0; // varied speed
+        speed = 1; // fixed speed
         // due to some rotation offset when getting the image, need slight rotation here
         zombie.rotate(5);
         zombieMirrored.rotate(5);
@@ -63,6 +64,8 @@ public class BasicHorde extends Enemy
             imageDelay--;
         }
         if(hp <= 0){
+            XP xpOrb = new XP();
+            world.addObject(xpOrb, getX(), getY());
             world.removeObject(this);
             return;
         }

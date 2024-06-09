@@ -12,6 +12,8 @@ public class Character extends SuperSmoothMover
 {
     private int speed;
     private int pickupRange = 100;
+    private int myXP = 0;
+    private int level = 0;
     public Character(){
         speed = 2;
     }
@@ -28,14 +30,7 @@ public class Character extends SuperSmoothMover
             }
         }
         pickupItems();
-    }
-
-    public int getCharacterX(){
-        return getX();
-    }
-
-    public int getCharacterY(){
-        return getY();
+        determineLevel();
     }
 
     private void pickupItems() {
@@ -45,6 +40,23 @@ public class Character extends SuperSmoothMover
         for (Collectible c : collectibles) {
             c.pickup(this);
             // You can add additional logic here, like updating a score or inventory
+        }
+    }
+    
+    public void increaseExp(int amount){
+        myXP += amount;
+    }
+    
+    public void increaseLevel(){
+        level++;
+    }
+    
+    private void determineLevel(){
+        if(myXP == 10 && level == 0){
+            Greenfoot.setWorld(new UpgradeWorld((MyWorld)getWorld()));
+        }
+        if(myXP == 25 && level == 1){
+            Greenfoot.setWorld(new UpgradeWorld((MyWorld)getWorld()));
         }
     }
 
