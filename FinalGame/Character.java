@@ -8,12 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Character extends SuperSmoothMover
+public class Character extends Entity
 {
-    private int speed;
     private int pickupRange = 100;
+    
     public Character(){
-        speed = 2;
+        super();
     }
 
     public void act()
@@ -29,15 +29,7 @@ public class Character extends SuperSmoothMover
         }
         pickupItems();
     }
-
-    public int getCharacterX(){
-        return getX();
-    }
-
-    public int getCharacterY(){
-        return getY();
-    }
-
+    
     private void pickupItems() {
         // Get all Collectible objects within the pickupRange
         List<Collectible> collectibles = getObjectsInRange(pickupRange, Collectible.class);
@@ -46,18 +38,5 @@ public class Character extends SuperSmoothMover
             c.pickup(this);
             // You can add additional logic here, like updating a score or inventory
         }
-    }
-
-    /**
-     * Return the distance between myself and another (x,y) coordinate pair.
-     * 
-     * @param x         The other x coordinate.
-     * @param y         The other y coordinate.
-     * @return double   The distance between myself and another coordinate.
-     */
-    public double distanceFrom(int x, int y) {
-        int deltaX = getX() - x; 
-        int deltaY = getY() - y; 
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
     }
 }

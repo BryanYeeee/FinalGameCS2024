@@ -23,6 +23,6 @@ public class Gun extends SuperSmoothMover
         }
         MyWorld world = (MyWorld)getWorld();
         Character c = world.getCharacter();
-        setLocation(c.getCharacterX() -20, c.getCharacterY() -20);
+        setLocation(c.getX() -20, c.getY() -20);
     }
 }

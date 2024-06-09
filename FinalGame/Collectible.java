@@ -43,9 +43,9 @@ public abstract class Collectible extends SuperSmoothMover
             }
         }
         else{
-            if(distanceFrom(character.getCharacterX(),character.getCharacterY())>=pickupSpeed){
-                deltaY=distanceFrom(character.getCharacterX(),character.getCharacterY())/2;
-                turnTowards(character.getCharacterX(),character.getCharacterY()+(int)Math.round(deltaY));
+            if(distanceFrom(character.getX(),character.getY())>=pickupSpeed){
+                deltaY=distanceFrom(character.getX(),character.getY())/2;
+                turnTowards(character.getX(),character.getY()+(int)Math.round(deltaY));
                 move(pickupSpeed);
                 pickupSpeed+=0.5;
             }
