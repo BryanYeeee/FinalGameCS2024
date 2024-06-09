@@ -1,5 +1,5 @@
 #Greenfoot project file
-class.Bullet.image=ball.png
+class.Bullet.image=bullet.png
 class.Character.image=butterfly.png
 class.Gun.image=anchor.png
 class.XP.image=XP.png
