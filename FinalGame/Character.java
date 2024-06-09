@@ -11,6 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Character extends Entity
 {
     private int pickupRange = 100;
+    int act = 0;
     
     public Character(){
         super();
@@ -18,12 +19,16 @@ public class Character extends Entity
 
     public void act()
     {
+        act++;
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null){
             if(distanceFrom(m.getX(), m.getY())>speed){
                 turnTowards(m.getX(), m.getY());
                 if(getX() != m.getX() || getY() != m.getY()){
-                    move(speed);
+                    // move(speed);
+                    double angle = Math.toRadians(getPreciseRotation());
+                    // if(act%60==0)System.out.println(getPreciseRotation() + " " + Math.cos(angle)*speed + " " + Math.sin(angle)*speed);
+                    ((MyWorld)getWorld()).updateVP(Math.cos(angle)*speed, Math.sin(angle)*speed);
                 }
             }
         }

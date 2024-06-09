@@ -7,12 +7,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class MyWorld extends World {
-    public static final int WORLD_WIDTH = 1048;
-    public static final int WORLD_HEIGHT = 800;
+    public static final int WORLD_WIDTH = 1024;//8
+    public static final int WORLD_HEIGHT = 768;//6
     private Character c;
     private Gun g;
     private int speed;
     private int actCount = 0;
+    
+    private Map map;
+    private Viewport vp;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -23,9 +26,16 @@ public class MyWorld extends World {
         setPaintOrder(Character.class,Collectible.class);
         c = new Character();
         g = new Gun();
-        addObject(c, 300, 200);
-        addObject(g, 280, 180);
+        addObject(c, WORLD_WIDTH/2, WORLD_HEIGHT/2);
+        addObject(g, c.getX()-100, c.getY()-100);
         speed = 2;
+        
+        map = new Map();
+        vp = new Viewport(this);
+    }
+    
+    public void updateVP(double xMove, double yMove) {
+        vp.move(xMove, yMove);
     }
 
     
@@ -41,5 +51,9 @@ public class MyWorld extends World {
     
     public Character getCharacter(){
         return c;
+    }
+    
+    public Tile[][] getMap() {
+        return map.getTileMap();
     }
 }
