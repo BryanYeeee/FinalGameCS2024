@@ -24,6 +24,8 @@ public abstract class Collectible extends SuperSmoothMover
     protected double pickupSpeed = 10;
     protected double deltaY;
     
+    protected int initialX, initialY;
+    
     public Collectible() {
         this(20, -1);
     }
@@ -32,6 +34,12 @@ public abstract class Collectible extends SuperSmoothMover
         this.despawnSeconds = despawnSeconds;
         pickup = false;
     }
+    protected void addedToWorld(World world)
+    {
+        initialX = getX();
+        initialY = getY();
+    }
+    /*
     public void act()
     {
         actCount++;
@@ -54,6 +62,26 @@ public abstract class Collectible extends SuperSmoothMover
                 getWorld().removeObject(this);
             }
         }    
+    }*/
+     public void act()
+    {
+        actCount++;
+        if(!pickup) {
+            hover(actCount);
+            if(actCount/60 == despawnSeconds) {
+                getWorld().removeObject(this);
+            }
+        } else {
+            if(distanceFrom(character.getX(), character.getY()) >= pickupSpeed) {
+                deltaY = distanceFrom(character.getX(), character.getY()) / 2;
+                turnTowards(character.getX(), character.getY() + (int)Math.round(deltaY));
+                move(pickupSpeed);
+                pickupSpeed += 0.5;
+            } else {
+                pickupEffect();
+                getWorld().removeObject(this);
+            }
+        }
     }
     
     /**
@@ -98,5 +126,9 @@ public abstract class Collectible extends SuperSmoothMover
         int deltaX = getX() - x; 
         int deltaY = getY() - y; 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
+    }
+    
+    public void updatePosition(int scrollX, int scrollY) {
+        setLocation(initialX - scrollX, initialY - scrollY);
     }
 }

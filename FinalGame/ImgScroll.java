@@ -115,12 +115,14 @@ public class ImgScroll
         for (Object obj : scrollWorld.getObjects(null))
         {
             Actor actor = (Actor) obj;
-            if(actor instanceof XP) {
-                ((XP) actor).scrollPosition(dx, dy);
-                
-            } else {
+            if(!(actor instanceof Collectible)) {
                 actor.setLocation(actor.getX()+dx, actor.getY()+dy);
             }
+                
+            
+                
+            
+            
         }
     }
     

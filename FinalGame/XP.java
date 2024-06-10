@@ -7,18 +7,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class XP extends Collectible
-{
-    private int fixedX;
-    private int fixedY;
-    
+{   
     /**
      * Act - do whatever the XP wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public XP(int x, int y){
         super(20,60);
-        fixedX = x;
-        fixedY = y;
+        initialX = x;
+        initialY = y;
     }
     
     public void pickupEffect(){
@@ -27,13 +24,24 @@ public class XP extends Collectible
     
     protected void addedToWorld(World world)
     {
-        setLocation(fixedX - ((MyWorld) world).getScroller().getScrolledX(), 
-                    fixedY - ((MyWorld) world).getScroller().getScrolledY());
+        super.addedToWorld(world);
+        setLocation(initialX - ((MyWorld) world).getScroller().getScrolledX(),
+                    initialY - ((MyWorld) world).getScroller().getScrolledY());
     }
     
+    /*
     public void scrollPosition(int dx, int dy) {
         fixedX -= dx;
         fixedY -= dy;
         setLocation(getX() - dx, getY() - dy);
+    }
+    */
+    
+    public void act()
+    {
+        super.act();
+        MyWorld myWorld = (MyWorld) getWorld();
+        ImgScroll scroller = myWorld.getScroller();
+        updatePosition(scroller.getScrolledX(), scroller.getScrolledY());
     }
 }
