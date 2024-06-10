@@ -3,12 +3,12 @@ import greenfoot.*;
 /**
  * Viewport class to generate the world for the player's screen
  * 
- * @author Dawson
+ * @author 
  * @version January 2024
  */
 public class Viewport extends Actor
 {
-    private double lx, ly, rx, ry;
+    private int lx, ly, rx, ry;
     private MyWorld w;
     
     /**
@@ -32,17 +32,18 @@ public class Viewport extends Actor
      * @param addX      total movement in x direction
      * @param addY      total movement in y direction
      */
-    public void move(double xMove, double yMove){
+    public void move(int xMove, int yMove){
         lx+=xMove;
         ly+=yMove;
         rx+=xMove;
         ry+=yMove;
-        System.out.println(xMove + " " + yMove);
                 
         for(SuperSmoothMover t: w.getObjects(SuperSmoothMover.class)){
-            if(t instanceof Character || t instanceof Gun)continue;
+            if(t instanceof Character || t instanceof Gun || t instanceof EntitySprite)continue;
+            // System.out.println((t.getX()-xMove)+ " " + xMove + " | " +(t.getY()-yMove) + " " +yMove);
             t.setLocation(t.getX()-xMove, t.getY()-yMove);
         }
+            System.out.println("========");
         
         renderMap();
     }
@@ -52,14 +53,15 @@ public class Viewport extends Actor
         for(int i = 0; i < map.length; i++){
             for(int j = 0; j < map[0].length; j++){
                 double tileX = j*Tile.TILE_LENGTH, tileY = i*Tile.TILE_LENGTH;
-                if(tileX >= lx && tileX <= rx -64 && tileY >= ly && tileY <= ry-64){
+                if(tileX >= lx-128 && tileX <= rx  && tileY >= ly-128 && tileY <= ry){
                     if(!w.getObjects(Tile.class).contains(map[i][j])){
-                System.out.println((int)(tileX-lx+64.0)+" "+ (int)(tileY-ly+64.0) );
+                // System.out.println((int)(tileX-lx+64.0)+" "+ (int)(tileY-ly+64.0) );
                         w.addObject(map[i][j], (int)(tileX-lx+64.0), (int)(tileY-ly+64.0));
                     }
                 }else{
                     map[i][j].rml();
                     w.removeObject(map[i][j]);
+                    System.out.println(i + " " +j);
                 }
             }
         }

@@ -28,7 +28,7 @@ public class Character extends Entity
                     // move(speed);
                     double angle = Math.toRadians(getPreciseRotation());
                     // if(act%60==0)System.out.println(getPreciseRotation() + " " + Math.cos(angle)*speed + " " + Math.sin(angle)*speed);
-                    ((MyWorld)getWorld()).updateVP(Math.round(Math.cos(angle))*speed, Math.round(Math.sin(angle))*speed);
+                    ((MyWorld)getWorld()).updateVP((int)Math.round(Math.cos(angle))*speed, (int)Math.round(Math.sin(angle))*speed);
                 }
             }
         }

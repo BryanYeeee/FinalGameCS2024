@@ -22,8 +22,8 @@ public class MyWorld extends World {
      */
     public MyWorld() {
         // Call the superclass constructor with the constants
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1);
-        setPaintOrder(Character.class,Collectible.class);
+        super(WORLD_WIDTH, WORLD_HEIGHT, 1, false);
+        setPaintOrder(Character.class,Gun.class,Bullet.class,EntitySprite.class,Collectible.class,Label.class,Tile.class);
         c = new Character();
         g = new Gun();
         addObject(c, WORLD_WIDTH/2, WORLD_HEIGHT/2);
@@ -32,9 +32,11 @@ public class MyWorld extends World {
         
         map = new Map();
         vp = new Viewport(this);
+        // addObject(new Tile("",false,10),-55,675);
+        // addObject(new Tile("",false,10),0,500);
     }
     
-    public void updateVP(double xMove, double yMove) {
+    public void updateVP(int xMove, int yMove) {
         vp.move(xMove, yMove);
     }
 
@@ -44,9 +46,9 @@ public class MyWorld extends World {
         /**
          * Randomly spawn xp for now
          */
-        if(actCount%5==0){
-            addObject(new XP(),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
-        }
+        // if(actCount%5==0 && actCount<600){
+            // addObject(new XP(),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
+        // }
     }
     
     public Character getCharacter(){

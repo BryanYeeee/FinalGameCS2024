@@ -30,6 +30,7 @@ public class Map
                                 {"","","","","","","","","",""},
                                 {"","","","","","","","","",""},
                                 {"","","","","","","","","",""}};
+        // String[][] stringMap = {{"",""}};
         tileMap = new Tile[stringMap.length][stringMap[0].length];
         int x =0;
         for(int i = 0; i < stringMap.length; i++) {
