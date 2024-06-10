@@ -31,9 +31,11 @@ public class Map
                                 {"","","","","","","","","",""},
                                 {"","","","","","","","","",""}};
         tileMap = new Tile[stringMap.length][stringMap[0].length];
+        int x =0;
         for(int i = 0; i < stringMap.length; i++) {
             for(int j = 0; j < stringMap[0].length; j++) {
-                tileMap[i][j] = new Tile(tileHash.get(stringMap[i][j]), false);
+                tileMap[i][j] = new Tile(tileHash.get(stringMap[i][j]), false,x);
+                x++;
             }
         }
     }

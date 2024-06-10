@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Viewport extends Actor
 {
-    private int lx, ly, rx, ry;
+    private double lx, ly, rx, ry;
     private MyWorld w;
     
     /**
@@ -39,7 +39,8 @@ public class Viewport extends Actor
         ry+=yMove;
         System.out.println(xMove + " " + yMove);
                 
-        for(Tile t: w.getObjects(Tile.class)){
+        for(SuperSmoothMover t: w.getObjects(SuperSmoothMover.class)){
+            if(t instanceof Character || t instanceof Gun)continue;
             t.setLocation(t.getX()-xMove, t.getY()-yMove);
         }
         
@@ -50,16 +51,21 @@ public class Viewport extends Actor
         Tile[][] map = w.getMap();
         for(int i = 0; i < map.length; i++){
             for(int j = 0; j < map[0].length; j++){
-                int tileX = j*Tile.TILE_LENGTH, tileY = i*Tile.TILE_LENGTH;
-                if(tileX >= lx && tileX < rx && tileY >= ly && tileY < ry){
+                double tileX = j*Tile.TILE_LENGTH, tileY = i*Tile.TILE_LENGTH;
+                if(tileX >= lx && tileX <= rx -64 && tileY >= ly && tileY <= ry-64){
                     if(!w.getObjects(Tile.class).contains(map[i][j])){
-                System.out.println((tileX-lx+Tile.TILE_LENGTH/2)+" "+ (tileY-ly+Tile.TILE_LENGTH/2) );
-                        w.addObject(map[i][j], tileX-lx+Tile.TILE_LENGTH/2, tileY-ly+Tile.TILE_LENGTH/2);
+                System.out.println((int)(tileX-lx+64.0)+" "+ (int)(tileY-ly+64.0) );
+                        w.addObject(map[i][j], (int)(tileX-lx+64.0), (int)(tileY-ly+64.0));
                     }
                 }else{
+                    map[i][j].rml();
                     w.removeObject(map[i][j]);
                 }
             }
         }
     }
+    public double lx(){return lx;};
+    public double ly(){return ly;};
+    public double rx(){return rx;};
+    public double ry(){return ry;};
 }

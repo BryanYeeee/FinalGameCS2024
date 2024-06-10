@@ -56,4 +56,11 @@ public class MyWorld extends World {
     public Tile[][] getMap() {
         return map.getTileMap();
     }
+    
+    public void debug() {
+        System.out.println("lx: " + vp.lx());
+        System.out.println("ly: " + vp.ly());
+        System.out.println("rx: " + vp.rx());
+        System.out.println("ry: " + vp.ry());
+    }
 }
