@@ -100,12 +100,14 @@ public class ImgScroll
     public void scroll(int dx, int dy)
     {
         // limit change values
+        
         if (dx > 0 && xScrAmt+dx > 0) dx = -xScrAmt;
         if (dx < 0 && xScrAmt+dx <= worldWidth-scrollWidth)
             dx = (worldWidth-scrollWidth)-xScrAmt;
         if (dy > 0 && yScrAmt+dy > 0) dy = -yScrAmt;
         if (dy < 0 && yScrAmt+dy <= worldHeight-scrollHeight)
             dy = (worldHeight-scrollHeight)-yScrAmt;
+        
         // change scrolling values
         xScrAmt += dx;
         yScrAmt += dy;
@@ -114,15 +116,14 @@ public class ImgScroll
         // keep actors in place with relation to background image
         for (Object obj : scrollWorld.getObjects(null))
         {
+            /*
             Actor actor = (Actor) obj;
             if(!(actor instanceof Collectible)) {
                 actor.setLocation(actor.getX()+dx, actor.getY()+dy);
             }
-                
-            
-                
-            
-            
+            */
+            Actor actor = (Actor) obj;
+            actor.setLocation(actor.getX()+dx, actor.getY()+dy);
         }
     }
     

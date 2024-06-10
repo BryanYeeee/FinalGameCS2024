@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Character
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Character\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Character\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=Character()
 comment2.params=
@@ -13,5 +13,5 @@ comment5.params=
 comment5.target=void\ pickupItems()
 comment6.params=x\ y
 comment6.target=double\ distanceFrom(int,\ int)
-comment6.text=\r\n\ Return\ the\ distance\ between\ myself\ and\ another\ (x,y)\ coordinate\ pair.\r\n\ \r\n\ @param\ x\ \ \ \ \ \ \ \ \ The\ other\ x\ coordinate.\r\n\ @param\ y\ \ \ \ \ \ \ \ \ The\ other\ y\ coordinate.\r\n\ @return\ double\ \ \ The\ distance\ between\ myself\ and\ another\ coordinate.\r\n
+comment6.text=\n\ Return\ the\ distance\ between\ myself\ and\ another\ (x,y)\ coordinate\ pair.\n\ \n\ @param\ x\ \ \ \ \ \ \ \ \ The\ other\ x\ coordinate.\n\ @param\ y\ \ \ \ \ \ \ \ \ The\ other\ y\ coordinate.\n\ @return\ double\ \ \ The\ distance\ between\ myself\ and\ another\ coordinate.\n
 numComments=7

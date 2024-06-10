@@ -22,13 +22,15 @@ public class XP extends Collectible
         
     }
     
-    protected void addedToWorld(World world)
+    /*
+    public void addedToWorld(World world)
     {
         super.addedToWorld(world);
-        setLocation(initialX - ((MyWorld) world).getScroller().getScrolledX(),
-                    initialY - ((MyWorld) world).getScroller().getScrolledY());
+        setLocation(initialX + ((MyWorld) world).getScroller().getScrolledX(),
+                    initialY +  ((MyWorld) world).getScroller().getScrolledY());
     }
-    
+    */
+
     /*
     public void scrollPosition(int dx, int dy) {
         fixedX -= dx;
@@ -36,12 +38,4 @@ public class XP extends Collectible
         setLocation(getX() - dx, getY() - dy);
     }
     */
-    
-    public void act()
-    {
-        super.act();
-        MyWorld myWorld = (MyWorld) getWorld();
-        ImgScroll scroller = myWorld.getScroller();
-        updatePosition(scroller.getScrolledX(), scroller.getScrolledY());
-    }
 }

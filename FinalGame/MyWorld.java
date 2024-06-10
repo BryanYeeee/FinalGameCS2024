@@ -15,6 +15,7 @@ public class MyWorld extends World {
     private int actCount = 0;
     
     public ImgScroll scroller;
+    //private Scroller scroller;
     
     /**
      * Constructor for objects of class MyWorld.
@@ -38,7 +39,7 @@ public class MyWorld extends World {
          * Randomly spawn xp for now
          */
         if(actCount%5==0){
-            addObject(new XP(Greenfoot.getRandomNumber(WORLD_WIDTH), Greenfoot.getRandomNumber(WORLD_HEIGHT)), Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
+            addObject(new XP(Greenfoot.getRandomNumber(1700), Greenfoot.getRandomNumber(1500)), Greenfoot.getRandomNumber(1700),Greenfoot.getRandomNumber(1500));
         }
         
         scroller.scroll(getWidth()/2 - c.getX(), getHeight()/2 - c.getY());

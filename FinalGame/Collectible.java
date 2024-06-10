@@ -127,8 +127,4 @@ public abstract class Collectible extends SuperSmoothMover
         int deltaY = getY() - y; 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
     }
-    
-    public void updatePosition(int scrollX, int scrollY) {
-        setLocation(initialX - scrollX, initialY - scrollY);
-    }
 }
