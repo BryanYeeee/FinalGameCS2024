@@ -28,9 +28,6 @@ public class MyWorld extends AllWorld
         addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
         hordeLimit = 20;
-        for(int i = 0; i < hordeLimit; i++){
-            addHorde();
-        }
         speed = 2;
     }
     
@@ -39,10 +36,20 @@ public class MyWorld extends AllWorld
         if(horde.size() < hordeLimit){
             addHorde();
         }
+        determineLevel();
     }
     
     public Character getCharacter(){
         return c;
+    }
+    
+    private void determineLevel(){
+        if(c.getXP() == 10 && c.getLevel() == 0){
+            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        }
+        if(c.getXP() == 25 && c.getLevel() == 1){
+            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        }
     }
     
     private void addHorde(){

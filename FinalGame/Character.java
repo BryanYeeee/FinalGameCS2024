@@ -30,7 +30,6 @@ public class Character extends SuperSmoothMover
             }
         }
         pickupItems();
-        determineLevel();
     }
 
     private void pickupItems() {
@@ -47,17 +46,16 @@ public class Character extends SuperSmoothMover
         myXP += amount;
     }
     
+    public int getXP(){
+        return myXP;
+    }
+    
     public void increaseLevel(){
         level++;
     }
     
-    private void determineLevel(){
-        if(myXP == 10 && level == 0){
-            Greenfoot.setWorld(new UpgradeWorld((MyWorld)getWorld()));
-        }
-        if(myXP == 25 && level == 1){
-            Greenfoot.setWorld(new UpgradeWorld((MyWorld)getWorld()));
-        }
+    public int getLevel(){
+        return level;
     }
 
     /**
