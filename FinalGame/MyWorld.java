@@ -13,7 +13,9 @@ public class MyWorld extends World {
     private Gun g;
     private int speed;
     private int actCount = 0;
-
+    
+    public ImgScroll scroller;
+    
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -25,6 +27,7 @@ public class MyWorld extends World {
         g = new Gun();
         addObject(c, 300, 200);
         addObject(g, 280, 180);
+        scroller = new ImgScroll(this, new GreenfootImage("TestMap.jpg"), 1700, 1500);
         speed = 2;
     }
 
@@ -35,11 +38,17 @@ public class MyWorld extends World {
          * Randomly spawn xp for now
          */
         if(actCount%5==0){
-            addObject(new XP(),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
+            addObject(new XP(Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT)),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
         }
+        
+        scroller.scroll(getWidth()/2 - c.getX(), getHeight()/2 - c.getY());
     }
     
     public Character getCharacter(){
         return c;
+    }
+    
+    public ImgScroll getScroller() {
+        return scroller;
     }
 }
