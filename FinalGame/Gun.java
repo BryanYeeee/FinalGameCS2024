@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Gun here.
@@ -8,21 +9,56 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gun extends SuperSmoothMover
 {
-    /**
-     * Act - do whatever the Gun wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private GreenfootImage gun = new GreenfootImage("gun.png");
+    private int actCount;
+    private int frequency; // this affects fire rate of the gun, a lower number = faster firing
+    public Gun(){
+        gun.scale(40, 40);
+        gun.rotate(-45);
+        gun.mirrorHorizontally();
+        setImage(gun);
+        frequency = 15;
+        actCount = 0;
+    }
+
     public void act()
     {
-        MouseInfo m = Greenfoot.getMouseInfo();
-        if(m != null){
-            turnTowards(m.getX(), m.getY());
-            if(Greenfoot.mouseClicked(null)){
-                getWorld().addObject(new Bullet(m.getX(), m.getY()),getX(), getY());
+        Enemy closestEnemy = getNearestEnemy();
+        if(closestEnemy != null){
+            turnTowards(closestEnemy.getX(), closestEnemy.getY());
+            if(actCount % frequency == 0){
+                getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
             }
         }
         MyWorld world = (MyWorld)getWorld();
-        Character c = world.getCharacter();
-        setLocation(c.getCharacterX() -20, c.getCharacterY() -20);
+        Player c = world.getPlayer();
+        if(c.getWorld() != null){
+            setLocation(c.getX() +30, c.getY());
+        }
+        actCount++;
+    }
+
+    //add this code to your player class;
+    public double getDistance(Actor actor) {
+        return Math.hypot(actor.getX() - getX(), actor.getY() - getY());
+    }
+
+    /**
+     * Code from Gevater_Tod4711 in forum page:
+     * https://www.greenfoot.org/topics/4911
+     */
+    public Enemy getNearestEnemy() {
+        List<Enemy> nearEnemies = getObjectsInRange(400, Enemy.class);//here you can use the radius you want and maybe another class;
+        Enemy nearestEnemy = null;
+        double nearestDistance = 2000;// some high number
+        double distance;
+        for (int i = 0; i < nearEnemies.size(); i++) {
+            distance = getDistance(nearEnemies.get(i));
+            if (distance < nearestDistance) {
+                nearestEnemy = nearEnemies.get(i);
+                nearestDistance = distance;
+            }
+        }
+        return nearestEnemy;
     }
 }

@@ -1,55 +1,114 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * Write a description of class MyWorld here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World {
-    public static final int WORLD_WIDTH = 1048;
-    public static final int WORLD_HEIGHT = 800;
-    private Character c;
+public class MyWorld extends AllWorld
+{
+    private Player p;
     private Gun g;
     private int speed;
+    private int randX;
+    private int randY;
+    private int hordeCount;
+    private int hordeLimit; // the limit of how many horde enemys can exist at once
     private int actCount = 0;
     
-    public ImgScroll scroller;
-    //private Scroller scroller;
-    
+    private Map map;
+    private Viewport vp;
+
     /**
      * Constructor for objects of class MyWorld.
+     * 
      */
-    public MyWorld() {
+    public MyWorld()
+    {    
         // Call the superclass constructor with the constants
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1);
-        setPaintOrder(Character.class,Collectible.class);
-        c = new Character();
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
+        SimulationFont.initalizeFont("BigSpace.ttf");
+        setPaintOrder(SuperTextBox.class,TempBox.class,Player.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
+        p = new Player();
         g = new Gun();
-        addObject(c, 300, 200);
-        addObject(g, 280, 180);
-        scroller = new ImgScroll(this, new GreenfootImage("TestMap.jpg"), 1700, 1500);
+        addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
+        hordeLimit = 20;
         speed = 2;
+        Sprite.init();
+        map = new Map();
+        vp = new Viewport(this);
+        // addObject(new Tile("",false,10),-55,675);
+        // addObject(new Tile("",false,10),0,500);
     }
-
+    
+    public void updateVP(int xMove, int yMove) {
+        vp.move(xMove, yMove);
+        
+    }
     
     public void act(){
-        actCount++;
-        /**
-         * Randomly spawn xp for now
-         */
-        if(actCount%5==0){
-            addObject(new XP(Greenfoot.getRandomNumber(1700), Greenfoot.getRandomNumber(1500)), Greenfoot.getRandomNumber(1700),Greenfoot.getRandomNumber(1500));
+        ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
+        if(horde.size() < hordeLimit){
+            addHorde();
         }
-        
-        scroller.scroll(getWidth()/2 - c.getX(), getHeight()/2 - c.getY());
+        if(p.getHP() <= 0){
+            removeObject(p);
+            addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        }
+        determineLevel();
     }
     
-    public Character getCharacter(){
-        return c;
+    public Player getPlayer(){
+        return p;
     }
     
-    public ImgScroll getScroller() {
-        return scroller;
+    private void determineLevel(){
+        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
+        if(p.getXP() == 10 && p.getLevel() == 0){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 25 && p.getLevel() == 1){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 40 && p.getLevel() == 2){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 70 && p.getLevel() == 3){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+    }
+    
+    private void addHorde(){
+        if(Greenfoot.getRandomNumber(2) == 0){
+            if(Greenfoot.getRandomNumber(2) == 0){
+                randX = 0;
+            } else {
+                randX = AllWorld.WORLD_WIDTH;
+            }
+            randY = Greenfoot.getRandomNumber(AllWorld.WORLD_HEIGHT-50) + 25; 
+            addObject(new BasicHorde(), randX, randY);
+        } else {
+            randX = Greenfoot.getRandomNumber(AllWorld.WORLD_WIDTH-50) + 25;
+            if(Greenfoot.getRandomNumber(2) == 0){
+                randY = 0;
+            } else {
+                randY = AllWorld.WORLD_HEIGHT;
+            }
+            addObject(new BasicHorde(), randX, randY);
+        }
+    }
+    
+    public Tile[][] getMap() {
+        return map.getTileMap();
+    }
+    
+    public void debug() {
+        System.out.println("lx: " + vp.lx());
+        System.out.println("ly: " + vp.ly());
+        System.out.println("rx: " + vp.rx());
+        System.out.println("ry: " + vp.ry());
     }
 }
