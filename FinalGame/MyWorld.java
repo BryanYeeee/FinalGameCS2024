@@ -46,9 +46,9 @@ public class MyWorld extends World {
         /**
          * Randomly spawn xp for now
          */
-        // if(actCount%5==0 && actCount<600){
-            // addObject(new XP(),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
-        // }
+        if(actCount%5==0 && actCount<600){
+            addObject(new XP(),Greenfoot.getRandomNumber(WORLD_WIDTH),Greenfoot.getRandomNumber(WORLD_HEIGHT));
+        }
     }
     
     public Character getCharacter(){

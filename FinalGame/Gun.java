@@ -8,21 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gun extends SuperSmoothMover
 {
-    /**
-     * Act - do whatever the Gun wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private boolean pressed;
+    public void addedToWorld(World w) {
+        Character c = ((MyWorld)w).getCharacter();
+        setLocation(c.getX() -20, c.getY() -20);
+    }
+    
     public void act()
     {
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null){
             turnTowards(m.getX(), m.getY());
-            if(Greenfoot.mouseClicked(null)){
+            if(Greenfoot.mousePressed(null)) pressed = true;
+            else if(Greenfoot.mouseClicked(null)) pressed = false;
+            if(pressed){
                 getWorld().addObject(new Bullet(m.getX(), m.getY()),getX(), getY());
             }
         }
-        MyWorld world = (MyWorld)getWorld();
-        Character c = world.getCharacter();
-        setLocation(c.getX() -20, c.getY() -20);
     }
 }

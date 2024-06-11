@@ -10,6 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Character extends Entity
 {
+    private final static int MOVEMENT_RANGE = 96; // Distance that mouse needs to be from the character in order to move
     private int pickupRange = 100;
     int act = 0;
     
@@ -22,7 +23,7 @@ public class Character extends Entity
         act++;
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null){
-            if(distanceFrom(m.getX(), m.getY())>speed){
+            if(distanceFrom(m.getX(), m.getY())>MOVEMENT_RANGE){
                 turnTowards(m.getX(), m.getY());
                 if(getX() != m.getX() || getY() != m.getY()){
                     // move(speed);
