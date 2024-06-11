@@ -46,7 +46,7 @@ public class UpgradeWorld extends AllWorld
         character.increaseLevel();
         // add blur
         blur = new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor);
-        blur.setTransparency(200);
+        blur.getImage().setTransparency(200);
         addObject(blur, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         // add notice text 
         addObject(upgradeNotice, AllWorld.WORLD_WIDTH/2, 100);

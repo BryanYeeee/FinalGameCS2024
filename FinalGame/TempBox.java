@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Jamison H
  * @version April 2024
  */
-public class TempBox extends Entity
+public class TempBox extends SuperSmoothMover
 {
     /**
      * Constructor of TempBox without a border.

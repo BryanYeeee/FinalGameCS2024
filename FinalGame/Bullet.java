@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bullet extends Entity
+public class Bullet extends SuperSmoothMover
 {
     private GreenfootImage bullet = new GreenfootImage("bullet.png");
     

@@ -7,7 +7,7 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Gun extends Entity
+public class Gun extends SuperSmoothMover
 {
     private GreenfootImage gun = new GreenfootImage("gun.png");
     private int actCount;
