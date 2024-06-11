@@ -3,24 +3,42 @@ import java.util.List;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Character here.
+ * Write a description of class Player here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Character extends Entity
+public class Player extends Entity
 {
-    private final static int MOVEMENT_RANGE = 96; // Distance that mouse needs to be from the character in order to move
+    private final static int MOVEMENT_RANGE = 96; // Distance that mouse needs to be from the player in order to move
     private int pickupRange = 100;
     private int myXP = 0;
     private int level = 0;
+    private int speed;
+
+    private int actCount = 0;
+
+    private String action = "run";
+
+    //Animation Variables
+    private int animationDelay = 30;
+    private int animationLength = 8;
+    private int imageIndex;
+    protected String entityName = "player";
+    protected char dirChar = 'L';
     
-    public Character(){
-        super(100,2,45,"person.png");
+    public Player(){
+        
+        super(100,2,45);
+        setEntityName("player");
+        setAction("run");
+        
+        speed = 2;
     }
 
     public void act()
     {
+        super.act();
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null){
             if(distanceFrom(m.getX(), m.getY())>MOVEMENT_RANGE){
@@ -31,9 +49,19 @@ public class Character extends Entity
                 }
             }
         }
+        
         pickupItems();
     }
+
     
+    public int getPlayerX(){
+        return getX();
+    }
+
+    public int getPlayerY(){
+        return getY();
+    }
+
     private void pickupItems() {
         // Get all Collectible objects within the pickupRange
         List<Collectible> collectibles = getObjectsInRange(pickupRange, Collectible.class);
@@ -43,22 +71,21 @@ public class Character extends Entity
             // You can add additional logic here, like updating a score or inventory
         }
     }
-    
+
     public void increaseExp(int amount){
         myXP += amount;
     }
-    
+
     public int getXP(){
         return myXP;
     }
-    
+
     public void increaseLevel(){
         level++;
     }
-    
+
     public int getLevel(){
         return level;
     }
-    
-    
+
 }

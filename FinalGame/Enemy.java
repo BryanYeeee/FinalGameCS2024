@@ -10,11 +10,16 @@ public class Enemy extends Entity
 {
     protected int atkCooldown; // so character doesn't insta die when hit
     
-    public Enemy(int hp, int speed, int atk, String imgURL){
-        super(hp, speed, atk, imgURL);
+    public Enemy(int hp, int speed, int atk){
+        super(hp, speed, atk);
+        setEntityName("player");
+        setAction("run");
     }
     
+    
+    
     protected void takeDamage(int damage){
+        
         hp -= damage;
     }
 }

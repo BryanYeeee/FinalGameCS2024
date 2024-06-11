@@ -8,7 +8,7 @@ public class UpgradeWorld extends AllWorld
 {
     private MyWorld mainWorld;
     private int currLevel;
-    private Character character;
+    private Player player;
 
     // Background
     private GreenfootImage background;
@@ -30,7 +30,7 @@ public class UpgradeWorld extends AllWorld
      *
      * @param world the given world whose visual state is to be duplicated in the background of this world
      */
-    public UpgradeWorld(MyWorld world, int level, Character c){    
+    public UpgradeWorld(MyWorld world, int level, Player p){    
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
         SimulationFont.initalizeFont("BigSpace.ttf");
         // copies the background of the previous world
@@ -41,8 +41,8 @@ public class UpgradeWorld extends AllWorld
         }
         mainWorld = world;
         currLevel = level;
-        character = c;
-        character.increaseLevel();
+        player = p;
+        player.increaseLevel();
         // add blur
         blur = new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor);
         blur.getImage().setTransparency(100);
@@ -121,7 +121,7 @@ public class UpgradeWorld extends AllWorld
             currUpgrades[i] = upgrades.get(i);
         }
     }
-    // depending on the character's level, give different upgrades?
+    // depending on the player's level, give different upgrades?
     private void displayUpgrades(){
         addObject(border0, 180, 500);
         addObject(currUpgrades[0], 180, 500);
@@ -134,11 +134,11 @@ public class UpgradeWorld extends AllWorld
     private void buff(UpgradeBox u){
         switch(u.getName()){
             case "ATK":
-                mainWorld.getCharacter().increaseATK(5);
+                mainWorld.getPlayer().increaseATK(5);
             case "SPD":
-                mainWorld.getCharacter().increaseSPD(1);
+                mainWorld.getPlayer().increaseSPD(1);
             case "HP":
-                mainWorld.getCharacter().increaseHP(20);
+                mainWorld.getPlayer().increaseHP(20);
         }
     }
 }

@@ -34,7 +34,7 @@ public class Bullet extends SuperSmoothMover
         
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         if(enemy != null){
-            enemy.takeDamage(world.getCharacter().getATK());
+            enemy.takeDamage(world.getPlayer().getATK());
             getWorld().removeObject(this);
             return;
         }

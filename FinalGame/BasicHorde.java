@@ -9,27 +9,28 @@ import java.util.ArrayList;
  */
 public class BasicHorde extends Enemy
 {
-    private Character target;
+    private Player target;
 
     private int targetX;
     private int targetY;
     
     public BasicHorde(){
-        super(100,1, 20,"zombie.png");
+        super(100,1, 20);
         //speed = Math.random() + 1.0; // varied speed
     }
 
     public void act(){
+        super.act();
         repel();
         if(target != null && target.getWorld() != null){
             turnTowards(target.getX(), target.getY());
             move(speed);
         } else {
-            target = world.getCharacter();
+            target = world.getPlayer();
         }
         
         if(atkCooldown == 0){
-            Character c = (Character)getOneIntersectingObject(Character.class);
+            Player c = (Player)getOneIntersectingObject(Player.class);
             if(c != null && c.getWorld() != null){
                 c.decreaseHP(atk);
                 atkCooldown = 30;
@@ -82,8 +83,8 @@ public class BasicHorde extends Enemy
             // Get the position and bounding box of the nearby object
             int objectX = object.getX();
             int objectY = object.getY();
-            int objectWidth = object.getImage().getWidth();
-            int objectHeight = object.getImage().getHeight();
+            int objectWidth = object.getImage().getWidth()/4;
+            int objectHeight = object.getImage().getHeight()/4;
 
             // Calculate the distance between this actor and the nearby object's bounding oval
             double distance = Math.sqrt(Math.pow(currentX - objectX, 2) + Math.pow(currentY - objectY, 2));
