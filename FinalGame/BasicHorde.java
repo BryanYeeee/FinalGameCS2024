@@ -13,20 +13,32 @@ public class BasicHorde extends Enemy
 
     private int targetX;
     private int targetY;
-
+    
     public BasicHorde(){
-        super(100,1,"zombie.png");
+        super(100,1, 20,"zombie.png");
         //speed = Math.random() + 1.0; // varied speed
     }
 
     public void act(){
         repel();
-        if(target != null){
+        if(target != null && target.getWorld() != null){
             turnTowards(target.getX(), target.getY());
             move(speed);
         } else {
             target = world.getCharacter();
         }
+        
+        if(atkCooldown == 0){
+            Character c = (Character)getOneIntersectingObject(Character.class);
+            if(c != null && c.getWorld() != null){
+                c.decreaseHP(atk);
+                atkCooldown = 30;
+            }
+        }
+        if(atkCooldown > 0){
+            atkCooldown--;
+        }
+        
         
         if(hp <= 0){
             world.addObject(new XP(), getX(), getY());

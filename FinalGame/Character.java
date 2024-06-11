@@ -16,7 +16,7 @@ public class Character extends Entity
     private int level = 0;
     
     public Character(){
-        super(100,2,"person.png");
+        super(100,2,45,"person.png");
     }
 
     public void act()

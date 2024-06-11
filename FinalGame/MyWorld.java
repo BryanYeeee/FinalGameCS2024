@@ -28,7 +28,8 @@ public class MyWorld extends AllWorld
     {    
         // Call the superclass constructor with the constants
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
-        setPaintOrder(EntitySprite.class,Character.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
+        SimulationFont.initalizeFont("BigSpace.ttf");
+        setPaintOrder(SuperTextBox.class,TempBox.class,EntitySprite.class,Character.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
         c = new Character();
         g = new Gun();
         addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
@@ -51,6 +52,11 @@ public class MyWorld extends AllWorld
         if(horde.size() < hordeLimit){
             addHorde();
         }
+        if(c.getHP() <= 0){
+            removeObject(c);
+            addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        }
         determineLevel();
     }
     
@@ -60,7 +66,7 @@ public class MyWorld extends AllWorld
     
     private void determineLevel(){
         // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
-        if(c.getXP() == 1 && c.getLevel() == 0){
+        if(c.getXP() == 10 && c.getLevel() == 0){
             Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
         }
         if(c.getXP() == 25 && c.getLevel() == 1){

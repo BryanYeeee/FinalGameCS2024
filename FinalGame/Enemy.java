@@ -8,8 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends Entity
 {
-    public Enemy(int hp, int speed, String imgURL){
-        super(hp, speed, imgURL);
+    protected int atkCooldown; // so character doesn't insta die when hit
+    
+    public Enemy(int hp, int speed, int atk, String imgURL){
+        super(hp, speed, atk, imgURL);
     }
     
     protected void takeDamage(int damage){

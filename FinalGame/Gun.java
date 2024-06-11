@@ -32,7 +32,9 @@ public class Gun extends SuperSmoothMover
         }
         MyWorld world = (MyWorld)getWorld();
         Character c = world.getCharacter();
-        setLocation(c.getX() +30, c.getY());
+        if(c.getWorld() != null){
+            setLocation(c.getX() +30, c.getY());
+        }
         actCount++;
     }
 

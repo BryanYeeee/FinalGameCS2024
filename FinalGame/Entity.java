@@ -14,9 +14,10 @@ public abstract class Entity extends SuperSmoothMover
     protected int atk;
     protected MyWorld world;
 
-    public Entity(int hp, int speed, String imgURL){
+    public Entity(int hp, int speed, int atk, String imgURL){
         this.hp = hp;
         this.speed = speed;
+        this.atk = atk;
         sprite = new EntitySprite(this, imgURL);
     }
 
@@ -40,5 +41,33 @@ public abstract class Entity extends SuperSmoothMover
         int deltaX = getX() - x; 
         int deltaY = getY() - y; 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
+    }
+    
+    public int getSPD(){
+        return speed;
+    }
+    
+    public void increaseSPD(int amount){
+        speed += amount;
+    }
+    
+    public int getHP(){
+        return hp;
+    }
+    
+    public void increaseHP(int amount){
+        hp += amount;
+    }
+    
+    public void decreaseHP(int amount){
+        hp -= amount;
+    }
+    
+    public int getATK(){
+        return atk;
+    }
+    
+    public void increaseATK(int amount){
+        atk += amount;
     }
 }

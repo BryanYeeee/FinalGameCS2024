@@ -13,6 +13,8 @@ public class Bullet extends SuperSmoothMover
     
     private int x;
     private int y;
+    
+    MyWorld world;
 
     public Bullet(int x, int y){
         this.x = x;
@@ -23,6 +25,7 @@ public class Bullet extends SuperSmoothMover
 
     public void addedToWorld(World w){
         turnTowards(x,y);  
+        world = (MyWorld)w;
     }
 
     public void act()
@@ -31,7 +34,7 @@ public class Bullet extends SuperSmoothMover
         
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         if(enemy != null){
-            enemy.takeDamage(100);
+            enemy.takeDamage(world.getCharacter().getATK());
             getWorld().removeObject(this);
             return;
         }
