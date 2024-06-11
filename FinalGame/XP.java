@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class XP extends Collectible
 {
-    /**
-     * Act - do whatever the XP wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public XP(){
+    private int myType; // green, yellow, 
+    public XP(int type){
         super(20,60);
+        myType = type;
+        if(myType == 0){
+            
+        }
     }
     
     public void pickupEffect(){
