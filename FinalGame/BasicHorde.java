@@ -9,88 +9,29 @@ import java.util.ArrayList;
  */
 public class BasicHorde extends Enemy
 {
-    // Initally faces left
-    private GreenfootImage zombie = new GreenfootImage("zombie.png");
-    private GreenfootImage zombieMirrored = new GreenfootImage("zombie.png");
-
     private Character target;
-    private MyWorld world;
 
     private int targetX;
     private int targetY;
-    private double speed;
-    private int imageDelay; // this delay prevents the continous setting/changing of images, to look less glitchy
 
     public BasicHorde(){
-        hp = 100;
+        super(100,1,"zombie.png");
         //speed = Math.random() + 1.0; // varied speed
-        speed = 1; // fixed speed
-        // due to some rotation offset when getting the image, need slight rotation here
-        zombie.rotate(5);
-        zombieMirrored.rotate(5);
-        zombieMirrored.mirrorHorizontally();
-    }
-    
-    public void addedToWorld(World w){
-        setOrientation(true);
     }
 
     public void act(){
         repel();
         if(target != null){
-            targetX = target.getX();
-            targetY = target.getY();
-            setOrientation(false);
-            // x component will always be in direction of the image
-            if (getX() < targetX){
-                move(speed);
-            }
-            if (getX() > targetX){
-                move(-speed);
-            }
-            // y component needs some decision making depending on position
-            if(getY() != targetY){
-                if(getY() < targetY){
-                    setLocation(getX(), getY() + speed);
-                } else {
-                    setLocation(getX(), getY() - speed);
-                }
-            }
+            turnTowards(target.getX(), target.getY());
+            move(speed);
         } else {
-            world = (MyWorld)getWorld();
             target = world.getCharacter();
         }
-        if(imageDelay > 0){
-            imageDelay--;
-        }
+        
         if(hp <= 0){
-            XP xpOrb = new XP();
-            world.addObject(xpOrb, getX(), getY());
+            world.addObject(new XP(), getX(), getY());
             world.removeObject(this);
             return;
-        }
-    }
-
-    private void setOrientation(boolean inital){
-        if(inital){
-            if(getX() < AllWorld.WORLD_HEIGHT/2){
-                setImage(zombieMirrored);
-                imageDelay = 30;
-            }
-            if(getX() >= AllWorld.WORLD_HEIGHT/2){
-                setImage(zombie);
-                imageDelay = 30;
-            }
-        }
-        if(imageDelay == 0){
-            if(getX() < targetX){
-                setImage(zombieMirrored);
-                imageDelay = 30;
-            }
-            if(getX() >= targetX){
-                setImage(zombie);
-                imageDelay = 30;
-            }
         }
     }
     

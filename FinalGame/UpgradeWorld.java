@@ -30,7 +30,7 @@ public class UpgradeWorld extends AllWorld
      * @param paintOrder an array of actor classes specifying the paint order in the given world
      */
     public UpgradeWorld(MyWorld world, int level, Character c){    
-        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
         // copies the background of the previous world
         // draw the images of all non-paint order objects on the background of the new world
         for(Entity e: world.getObjects(Entity.class))

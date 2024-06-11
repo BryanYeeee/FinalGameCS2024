@@ -15,20 +15,35 @@ public class MyWorld extends AllWorld
     private int randY;
     private int hordeCount;
     private int hordeLimit; // the limit of how many horde enemys can exist at once
+    private int actCount = 0;
+    
+    private Map map;
+    private Viewport vp;
+
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
+        // Call the superclass constructor with the constants
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
+        setPaintOrder(EntitySprite.class,Character.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
         c = new Character();
         g = new Gun();
         addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
         hordeLimit = 20;
         speed = 2;
+        
+        map = new Map();
+        vp = new Viewport(this);
+        // addObject(new Tile("",false,10),-55,675);
+        // addObject(new Tile("",false,10),0,500);
+    }
+    
+    public void updateVP(int xMove, int yMove) {
+        vp.move(xMove, yMove);
     }
     
     public void act(){
@@ -70,5 +85,16 @@ public class MyWorld extends AllWorld
             }
             addObject(new BasicHorde(), randX, randY);
         }
+    }
+    
+    public Tile[][] getMap() {
+        return map.getTileMap();
+    }
+    
+    public void debug() {
+        System.out.println("lx: " + vp.lx());
+        System.out.println("ly: " + vp.ly());
+        System.out.println("rx: " + vp.rx());
+        System.out.println("ry: " + vp.ry());
     }
 }

@@ -8,30 +8,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Character extends SuperSmoothMover
+public class Character extends Entity
 {
-    private int speed;
+    private final static int MOVEMENT_RANGE = 96; // Distance that mouse needs to be from the character in order to move
     private int pickupRange = 100;
     private int myXP = 0;
     private int level = 0;
+    
     public Character(){
-        speed = 2;
+        super(100,2,"person.png");
     }
 
     public void act()
     {
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null){
-            if(distanceFrom(m.getX(), m.getY())>speed){
+            if(distanceFrom(m.getX(), m.getY())>MOVEMENT_RANGE){
                 turnTowards(m.getX(), m.getY());
                 if(getX() != m.getX() || getY() != m.getY()){
-                    move(speed);
+                    double angle = Math.toRadians(getPreciseRotation());
+                    ((MyWorld)getWorld()).updateVP((int)Math.round(Math.cos(angle))*speed, (int)Math.round(Math.sin(angle))*speed);
                 }
             }
         }
         pickupItems();
     }
-
+    
     private void pickupItems() {
         // Get all Collectible objects within the pickupRange
         List<Collectible> collectibles = getObjectsInRange(pickupRange, Collectible.class);
@@ -56,18 +58,5 @@ public class Character extends SuperSmoothMover
     
     public int getLevel(){
         return level;
-    }
-
-    /**
-     * Return the distance between myself and another (x,y) coordinate pair.
-     * 
-     * @param x         The other x coordinate.
-     * @param y         The other y coordinate.
-     * @return double   The distance between myself and another coordinate.
-     */
-    public double distanceFrom(int x, int y) {
-        int deltaX = getX() - x; 
-        int deltaY = getY() - y; 
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
     }
 }

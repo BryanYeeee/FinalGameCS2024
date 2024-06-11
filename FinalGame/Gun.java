@@ -25,9 +25,9 @@ public class Gun extends SuperSmoothMover
     {
         Enemy closestEnemy = getNearestEnemy();
         if(closestEnemy != null){
-            turnTowards(closestEnemy.getEnemyX(), closestEnemy.getEnemyY());
+            turnTowards(closestEnemy.getX(), closestEnemy.getY());
             if(actCount % frequency == 0){
-                getWorld().addObject(new Bullet(closestEnemy.getEnemyX(), closestEnemy.getEnemyY()),getX(), getY());
+                getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
             }
         }
         MyWorld world = (MyWorld)getWorld();
