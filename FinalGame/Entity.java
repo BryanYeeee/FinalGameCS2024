@@ -6,10 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Entity extends Actor
+public abstract class Entity extends SuperSmoothMover
 {
-    public void fade(){
-        getImage().setTransparency(130);
+    public void setTransparency(int amount){
+        getImage().setTransparency(amount);
     }
     public void act()
     {

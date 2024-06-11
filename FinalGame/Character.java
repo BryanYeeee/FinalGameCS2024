@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Character extends SuperSmoothMover
+public class Character extends Entity
 {
     private int speed;
     private int pickupRange = 100;

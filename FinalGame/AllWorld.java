@@ -12,6 +12,12 @@ public class AllWorld extends World
     public static final int WORLD_HEIGHT = 850;
     public static final int WORLD_WIDTH = 1200;
     
+    // Color 
+    protected Color bgColor = new Color(119, 136, 153);
+    protected Color borderColor = new Color(192, 192, 192);
+    protected Color transparentColor = new Color(0, 0, 0, 0);
+    protected Color textColor = new Color(250, 249, 246);
+    
     /**
      * Constructor for AllWorld, simliar to a normal world constructor but without the boolean bounded. 
      * This constructor will initalize sounds and values for fading between worlds.
