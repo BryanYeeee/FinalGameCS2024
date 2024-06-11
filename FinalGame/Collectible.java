@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Collectible extends SuperSmoothMover
+public abstract class Collectible extends Entity
 {
     /**
      * Act - do whatever the Collectible wants to do. This method is called whenever

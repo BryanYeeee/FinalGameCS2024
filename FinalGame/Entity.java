@@ -19,8 +19,8 @@ public abstract class Entity extends SuperSmoothMover
         sprite = new EntitySprite(this, imgURL);
     }
 
-    public void fade(){
-        getImage().setTransparency(130);
+    public void setTransparency(int amount){
+        getImage().setTransparency(amount);
     }
     
     public void addedToWorld(World w) {

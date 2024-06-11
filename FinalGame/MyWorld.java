@@ -59,7 +59,8 @@ public class MyWorld extends AllWorld
     }
     
     private void determineLevel(){
-        if(c.getXP() == 10 && c.getLevel() == 0){
+        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
+        if(c.getXP() == 1 && c.getLevel() == 0){
             Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
         }
         if(c.getXP() == 25 && c.getLevel() == 1){

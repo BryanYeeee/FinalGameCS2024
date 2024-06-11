@@ -1,62 +1,71 @@
 import greenfoot.*;
+import java.util.ArrayList;
 
 /**
-  * Base code of copying prev. world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314
-  */
+ * Base code of copying prev. world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314
+ */
 public class UpgradeWorld extends AllWorld
 {
     private MyWorld mainWorld;
     private int currLevel;
     private Character character;
-    
+
     // Background
-    private GreenfootImage background; //new GreenfootImage("upgrade-world-background.jpg");
+    private GreenfootImage background;
     // Font
     //private greenfoot.Font gameFont;
-    
-    // Color 
-    private Color bgColor = new Color(119, 136, 153);
-    private Color borderColor = new Color(192, 192, 192);
-    private Color transparentColor = new Color(0, 0, 0, 0);
-    private Color textColor = new Color(250, 249, 246);
-    
     // Text
-    private SuperTextBox bruteInfo = new SuperTextBox("Choose an upgrade:", bgColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox upgradeNotice = new SuperTextBox("CHOOSE AN UPGRADE", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
+    // Temp Boxes
+    TempBox blur;
+    TempBox border0 = new TempBox(350, 450, transparentColor, borderColor, 10);
+    TempBox border1 = new TempBox(350, 450, transparentColor, borderColor, 10);
+    TempBox border2 = new TempBox(350, 450, transparentColor, borderColor, 10);
+    
+    // Upgrades
+    ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
+    UpgradeBox[] currUpgrades = new UpgradeBox[3];
     /**
      * Creates a background image of the current visual state of the given world.
      *
      * @param world the given world whose visual state is to be duplicated in the background of this world
-     * @param actorClasses an array of all actor classes in the given world
-     * @param paintOrder an array of actor classes specifying the paint order in the given world
      */
     public UpgradeWorld(MyWorld world, int level, Character c){    
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
+        SimulationFont.initalizeFont("BigSpace.ttf");
         // copies the background of the previous world
         // draw the images of all non-paint order objects on the background of the new world
         for(Entity e: world.getObjects(Entity.class))
         {
-            e.fade();
+            e.setTransparency(130);
             drawActorImage(e);
         }
         mainWorld = world;
         currLevel = level;
         character = c;
         character.increaseLevel();
-        /*
-        background = new GreenfootImage(world.getBackground());
-        background.setTransparency(200);
-        setBackground(background); 
-        */
-        //background.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
-        //setBackground(background);
-        SimulationFont.initalizeFont("BigSpace.ttf");
+        // add blur
+        blur = new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor);
+        blur.setTransparency(200);
+        addObject(blur, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        // add notice text 
+        addObject(upgradeNotice, AllWorld.WORLD_WIDTH/2, 100);
+        // do upgrade things
+        addUpgrades();
+        determineUpgrades();
     }
-     
+
     public void act(){
-        if (Greenfoot.mouseClicked(this)) Greenfoot.setWorld(mainWorld);
-        //displayUpgrades();
+        if(Greenfoot.mouseClicked(currUpgrades[0]) || Greenfoot.mouseClicked(currUpgrades[1]) || Greenfoot.mouseClicked(currUpgrades[2])){
+            for(Entity e: mainWorld.getObjects(Entity.class))
+            {
+                e.setTransparency(255);
+            }
+            Greenfoot.setWorld(mainWorld);  
+        }
+        displayUpgrades();
     }
-    
+
     /**
      * Draws the image of the given actor onto the background image of this world at the same location as it appears in its world
      * 
@@ -70,7 +79,7 @@ public class UpgradeWorld extends AllWorld
         int w=img.getWidth(), h=img.getHeight(); // the world dimensions
         getBackground().drawImage(img, x-w/2, y-h/2); // properly draws the image onto the given world's background image
     }
-    
+
     /**
      * Gets an image that represents the current visual state of the image of an actor
      *
@@ -88,11 +97,25 @@ public class UpgradeWorld extends AllWorld
         image.rotate(actor.getRotation());
         return image;
     }
+    
+    private void addUpgrades(){
+        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
+        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
+        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
+    }
+    // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
+    private void determineUpgrades(){
+        for(int i = 0; i < 3; i++){
+            currUpgrades[i] = upgrades.get(i);
+        }
+    }
     // depending on the character's level, give different upgrades?
     private void displayUpgrades(){
-        switch(currLevel){
-            case 0:
-                
-        }
+        addObject(currUpgrades[0], 225, 500);
+        addObject(border0, 225, 500);
+        addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
+        addObject(border1, AllWorld.WORLD_WIDTH/2, 500);
+        addObject(currUpgrades[2], 975, 500);
+        addObject(border2, 975, 500);
     }
 }
