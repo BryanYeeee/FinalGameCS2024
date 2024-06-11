@@ -88,7 +88,11 @@ public class MyWorld extends AllWorld
                 randX = AllWorld.WORLD_WIDTH;
             }
             randY = Greenfoot.getRandomNumber(AllWorld.WORLD_HEIGHT-50) + 25; 
-            addObject(new BasicHorde(), randX, randY);
+            if(Greenfoot.getRandomNumber(2) == 0){
+                addObject(new BasicHorde(), randX, randY);
+            } else {
+                addObject(new ConstructionEnemy(), randX, randY);
+            }
         } else {
             randX = Greenfoot.getRandomNumber(AllWorld.WORLD_WIDTH-50) + 25;
             if(Greenfoot.getRandomNumber(2) == 0){
@@ -96,7 +100,11 @@ public class MyWorld extends AllWorld
             } else {
                 randY = AllWorld.WORLD_HEIGHT;
             }
-            addObject(new BasicHorde(), randX, randY);
+            if(Greenfoot.getRandomNumber(2) == 0){
+                addObject(new BasicHorde(), randX, randY);
+            } else {
+                addObject(new ConstructionEnemy(), randX, randY);
+            }
         }
     }
     

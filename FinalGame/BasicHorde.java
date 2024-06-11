@@ -8,12 +8,7 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class BasicHorde extends Enemy
-{
-    private Character target;
-
-    private int targetX;
-    private int targetY;
-    
+{   
     public BasicHorde(){
         super(100,1, 20,"zombie.png");
         //speed = Math.random() + 1.0; // varied speed
@@ -38,10 +33,8 @@ public class BasicHorde extends Enemy
         if(atkCooldown > 0){
             atkCooldown--;
         }
-        
-        
         if(hp <= 0){
-            world.addObject(new XP(), getX(), getY());
+            world.addObject(new XP(0), getX(), getY());
             world.removeObject(this);
             return;
         }

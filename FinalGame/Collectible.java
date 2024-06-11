@@ -23,11 +23,22 @@ public abstract class Collectible extends SuperSmoothMover
     protected Character character;
     protected double pickupSpeed = 10;
     protected double deltaY;
+    protected int myType; // green, yellow, 
     
     public Collectible() {
-        this(20, -1);
+        this(20, -1, -1);
     }
-    public Collectible(int size, int despawnSeconds) {
+    public Collectible(int size, int despawnSeconds, int type) {
+        myType = type;
+        if(myType == 0){
+            setImage("greenXP.png");
+        } else if (myType == 1){
+            setImage("yellowXP.png");
+            getImage().setTransparency(125);
+        } else if (myType == 2){
+            setImage("redXP.png");
+            getImage().setTransparency(125);
+        }
         setSize(size);
         this.despawnSeconds = despawnSeconds;
         pickup = false;
