@@ -55,14 +55,27 @@ public class UpgradeWorld extends AllWorld
     }
 
     public void act(){
-        if(Greenfoot.mouseClicked(currUpgrades[0]) || Greenfoot.mouseClicked(currUpgrades[1]) || Greenfoot.mouseClicked(currUpgrades[2])){
-            for(SuperSmoothMover s: mainWorld.getObjects(SuperSmoothMover.class))
-            {
-                drawActorImage(s);
-            }
-            Greenfoot.setWorld(mainWorld);  
+        if(Greenfoot.mouseClicked(currUpgrades[0])){
+            buff(currUpgrades[0]);
+            switchWorld();
+        }
+        if(Greenfoot.mouseClicked(currUpgrades[1])){
+            buff(currUpgrades[1]);
+            switchWorld();
+        }
+        if(Greenfoot.mouseClicked(currUpgrades[2])){
+            buff(currUpgrades[2]);
+            switchWorld();
         }
         displayUpgrades();
+    }
+
+    private void switchWorld(){
+        for(SuperSmoothMover s: mainWorld.getObjects(SuperSmoothMover.class))
+        {
+            drawActorImage(s);
+        }
+        Greenfoot.setWorld(mainWorld);  
     }
 
     /**
@@ -116,5 +129,16 @@ public class UpgradeWorld extends AllWorld
         addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
         addObject(border2, AllWorld.WORLD_WIDTH-180, 500);
         addObject(currUpgrades[2], AllWorld.WORLD_WIDTH-180, 500);
+    }
+    // actually buff stats here
+    private void buff(UpgradeBox u){
+        switch(u.getName()){
+            case "ATK":
+                mainWorld.getCharacter().increaseATK(5);
+            case "SPD":
+                mainWorld.getCharacter().increaseSPD(1);
+            case "HP":
+                mainWorld.getCharacter().increaseHP(20);
+        }
     }
 }

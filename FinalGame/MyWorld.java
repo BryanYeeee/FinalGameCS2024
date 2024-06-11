@@ -72,6 +72,12 @@ public class MyWorld extends AllWorld
         if(c.getXP() == 25 && c.getLevel() == 1){
             Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
         }
+        if(c.getXP() == 40 && c.getLevel() == 2){
+            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        }
+        if(c.getXP() == 70 && c.getLevel() == 3){
+            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        }
     }
     
     private void addHorde(){

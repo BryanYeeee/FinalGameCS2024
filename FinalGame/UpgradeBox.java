@@ -11,8 +11,11 @@ public class UpgradeBox extends Actor
 {
     private GreenfootImage background = new GreenfootImage("upgrade-box.jpg");
     private GreenfootImage upgradeImage;
-    private SuperTextBox upgradeName;
-    private SuperTextBox upgradeDescription;
+    
+    private SuperTextBox upgradeNameBox;
+    private SuperTextBox upgradeDescriptionBox;
+    
+    private String upgradeName;
     
     // Color 
     private Color bgColor = new Color(119, 136, 153);
@@ -36,8 +39,9 @@ public class UpgradeBox extends Actor
      */
     public UpgradeBox(String imagePath, String name, String description, int x, int y){
         //upgradeImage = new GreenfootImage(imagePath);
-        upgradeName = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 0, borderColor);
-        upgradeDescription = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 0, borderColor);
+        upgradeName = name;
+        upgradeNameBox = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 0, borderColor);
+        upgradeDescriptionBox = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 0, borderColor);
         xCoord = x;
         yCoord = y;
         background.scale(300, 400);
@@ -46,7 +50,11 @@ public class UpgradeBox extends Actor
     
     public void addedToWorld(World w){
         // Add text to the world depending on my x and y coords
-        w.addObject(upgradeName, xCoord, yCoord-150);
-        w.addObject(upgradeDescription, xCoord, yCoord);
+        w.addObject(upgradeNameBox, xCoord, yCoord-150);
+        w.addObject(upgradeDescriptionBox, xCoord, yCoord);
+    }
+    
+    public String getName(){
+        return upgradeName;
     }
 }
