@@ -18,10 +18,10 @@ public class UpgradeWorld extends AllWorld
     private SuperTextBox upgradeNotice = new SuperTextBox("CHOOSE AN UPGRADE", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
     // Temp Boxes
     TempBox blur;
-    TempBox border0 = new TempBox(350, 450, transparentColor, borderColor, 10);
-    TempBox border1 = new TempBox(350, 450, transparentColor, borderColor, 10);
-    TempBox border2 = new TempBox(350, 450, transparentColor, borderColor, 10);
-    
+    TempBox border0 = new TempBox(300, 400, transparentColor, borderColor, 10);
+    TempBox border1 = new TempBox(300, 400, transparentColor, borderColor, 10);
+    TempBox border2 = new TempBox(300, 400, transparentColor, borderColor, 10);
+
     // Upgrades
     ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
     UpgradeBox[] currUpgrades = new UpgradeBox[3];
@@ -35,10 +35,9 @@ public class UpgradeWorld extends AllWorld
         SimulationFont.initalizeFont("BigSpace.ttf");
         // copies the background of the previous world
         // draw the images of all non-paint order objects on the background of the new world
-        for(Entity e: world.getObjects(Entity.class))
+        for(SuperSmoothMover s: world.getObjects(SuperSmoothMover.class))
         {
-            e.setTransparency(130);
-            drawActorImage(e);
+            drawActorImage(s);
         }
         mainWorld = world;
         currLevel = level;
@@ -46,7 +45,7 @@ public class UpgradeWorld extends AllWorld
         character.increaseLevel();
         // add blur
         blur = new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor);
-        blur.getImage().setTransparency(200);
+        blur.getImage().setTransparency(100);
         addObject(blur, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         // add notice text 
         addObject(upgradeNotice, AllWorld.WORLD_WIDTH/2, 100);
@@ -57,9 +56,9 @@ public class UpgradeWorld extends AllWorld
 
     public void act(){
         if(Greenfoot.mouseClicked(currUpgrades[0]) || Greenfoot.mouseClicked(currUpgrades[1]) || Greenfoot.mouseClicked(currUpgrades[2])){
-            for(Entity e: mainWorld.getObjects(Entity.class))
+            for(SuperSmoothMover s: mainWorld.getObjects(SuperSmoothMover.class))
             {
-                e.setTransparency(255);
+                drawActorImage(s);
             }
             Greenfoot.setWorld(mainWorld);  
         }
@@ -71,7 +70,7 @@ public class UpgradeWorld extends AllWorld
      * 
      * @param actor the actor whose image is to be drawn
      */
-    private void drawActorImage(Entity actor)
+    private void drawActorImage(SuperSmoothMover actor)
     {
         int x=actor.getX()*actor.getWorld().getCellSize()+actor.getWorld().getCellSize()/2;
         int y=actor.getY()*actor.getWorld().getCellSize()+actor.getWorld().getCellSize()/2; // the location of the actor in this world
@@ -97,11 +96,11 @@ public class UpgradeWorld extends AllWorld
         image.rotate(actor.getRotation());
         return image;
     }
-    
+
     private void addUpgrades(){
-        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
-        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
-        upgrades.add(new UpgradeBox("a", "a", "a", 1, 1));
+        upgrades.add(new UpgradeBox("a", "ATK", "Increases ATK by 5", 180, 500));
+        upgrades.add(new UpgradeBox("a", "SPD", "Increases SPD by 1", AllWorld.WORLD_WIDTH/2, 500));
+        upgrades.add(new UpgradeBox("a", "HP", "Increases HP by 20", AllWorld.WORLD_WIDTH-180, 500));
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
@@ -111,11 +110,11 @@ public class UpgradeWorld extends AllWorld
     }
     // depending on the character's level, give different upgrades?
     private void displayUpgrades(){
-        addObject(currUpgrades[0], 225, 500);
-        addObject(border0, 225, 500);
-        addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
+        addObject(border0, 180, 500);
+        addObject(currUpgrades[0], 180, 500);
         addObject(border1, AllWorld.WORLD_WIDTH/2, 500);
-        addObject(currUpgrades[2], 975, 500);
-        addObject(border2, 975, 500);
+        addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
+        addObject(border2, AllWorld.WORLD_WIDTH-180, 500);
+        addObject(currUpgrades[2], AllWorld.WORLD_WIDTH-180, 500);
     }
 }

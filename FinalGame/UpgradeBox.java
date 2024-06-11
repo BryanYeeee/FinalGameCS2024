@@ -23,6 +23,7 @@ public class UpgradeBox extends Actor
     // Coordinates
     private int xCoord;
     private int yCoord;
+    
     /**
      * Constructor for Upgrade Box
      * Gets a desired location to place texts and images
@@ -35,15 +36,17 @@ public class UpgradeBox extends Actor
      */
     public UpgradeBox(String imagePath, String name, String description, int x, int y){
         //upgradeImage = new GreenfootImage(imagePath);
-        //upgradeName = new SuperTextBox(name, bgColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 20), true, 150, 5, borderColor);
-        //upgradeDescription = new SuperTextBox(description, bgColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 20), true, 150, 5, borderColor);
-        //xCoord = x;
-        //yCoord = y;
-        background.scale(350, 450);
+        upgradeName = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 0, borderColor);
+        upgradeDescription = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 0, borderColor);
+        xCoord = x;
+        yCoord = y;
+        background.scale(300, 400);
         setImage(background);
     }
-    public void act()
-    {
-        // Add your action code here.
+    
+    public void addedToWorld(World w){
+        // Add text to the world depending on my x and y coords
+        w.addObject(upgradeName, xCoord, yCoord-150);
+        w.addObject(upgradeDescription, xCoord, yCoord);
     }
 }

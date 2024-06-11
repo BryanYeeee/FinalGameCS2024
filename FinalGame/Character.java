@@ -59,4 +59,6 @@ public class Character extends Entity
     public int getLevel(){
         return level;
     }
+    
+    
 }

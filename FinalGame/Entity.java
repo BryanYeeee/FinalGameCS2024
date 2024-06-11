@@ -11,6 +11,7 @@ public abstract class Entity extends SuperSmoothMover
     protected EntitySprite sprite;
     protected int speed;
     protected int hp;
+    protected int atk;
     protected MyWorld world;
 
     public Entity(int hp, int speed, String imgURL){
