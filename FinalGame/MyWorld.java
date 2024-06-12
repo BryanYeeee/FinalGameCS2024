@@ -29,7 +29,7 @@ public class MyWorld extends AllWorld
         // Call the superclass constructor with the constants
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
         SimulationFont.initalizeFont("BigSpace.ttf");
-        setPaintOrder(SuperTextBox.class,TempBox.class,Player.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
+        setPaintOrder(SuperTextBox.class,TempBox.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
         p = new Player();
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
