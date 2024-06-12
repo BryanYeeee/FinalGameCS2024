@@ -14,9 +14,6 @@ public abstract class Attack extends SuperSmoothMover
     protected int actCount;
     protected GreenfootImage imageOne;
     protected boolean notImageOne;
-
-    protected int animationDelay = 1;
-    protected int animationLength = 7;
     protected int imageIndex;
 
     /**
@@ -36,30 +33,16 @@ public abstract class Attack extends SuperSmoothMover
         }
         setImage(animations[imageIndex]);
         imageIndex = (imageIndex + 1) % animations.length;
-
+        actCount = 0;
     }
-
-    /* 
-     public void animate() {
-        //how fast the animation plays
-        if(animationTimer.millisElapsed() < (60)) {
-            return;
-        }
-        animationTimer.mark();
-        
-        setImage(animations[imageIndex]);
-        imageIndex = (imageIndex + 1) % animations.length;
-    } */
-
+    
     /**
      * Makes sure animation plays once and then removes the instance of a itself
      * 
      * might want to make an effect so other classes can use this
      * 
-     * 
      * Borrowed
      * @Author(Recorsi)
-     * 
      */
     public void finishAnimation () {
         if((getImage() != imageOne) != notImageOne) {
