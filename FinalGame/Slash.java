@@ -12,31 +12,16 @@ public class Slash extends Attack
         super(x, y);
         //this.size = size;
         //this.speed = speed;
+        
         animations = new GreenfootImage[6];
-        /*
         for(int i = 0; i < animations.length; i++) {
             animations[i] = new GreenfootImage("images/Attacks/Slash/Slash" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width*3/2, height*3/2);
+            animations[i].scale(width, height);
         }
         setImage(animations[0]);
         imageOne = animations[0];
-        */
-        for (int i = 0; i < animations.length; i++) {
-            animations[i] = new GreenfootImage("images/Attacks/Slash/Slash" + i + ".png");
-            if (animations[i] != null) {
-                int width = animations[i].getWidth();
-                int height = animations[i].getHeight();
-                animations[i].scale(width, height);
-            } else {
-                System.out.println("Error loading image: images/Attacks/Slash/Slash" + i + ".png");
-            }
-        }
-        if (animations.length > 0) {
-            setImage(animations[0]);
-            imageOne = animations[0];
-        }
     }
 
     public void act() {

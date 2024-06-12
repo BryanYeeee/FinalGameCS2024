@@ -23,8 +23,8 @@ public abstract class Attack extends SuperSmoothMover
     
     public Attack(int x, int y) {
         actCount = 0;
-        this.x = x + 100;
-        this.y = y + 100;
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -39,10 +39,9 @@ public abstract class Attack extends SuperSmoothMover
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         if(enemy != null){
             enemy.takeDamage(world.getPlayer().getATK());
-            //getWorld().removeObject(this);
         }
         
-        //finishAnimation();
+        finishAnimation();
     }
     
     public void addedToWorld(World w){
@@ -51,21 +50,10 @@ public abstract class Attack extends SuperSmoothMover
     }
 
     public void animate() {
-        /*
-        if(actCount < 10) {
-            return;
-        }
-        if (animations != null && animations.length > 0) {
+        if (actCount >= 4) { // Adjust timing as needed
             setImage(animations[imageIndex]);
+            System.out.println("Animating: " + imageIndex); // Debugging line
             imageIndex = (imageIndex + 1) % animations.length;
-        }
-        */
-        if (actCount >= 120) { // Adjust timing as needed
-            if (animations != null && animations.length > 0) {
-                setImage(animations[imageIndex]);
-                System.out.println("Animating: " + imageIndex); // Debugging line
-                imageIndex = (imageIndex + 1) % animations.length;
-            }
             actCount = 0;
         }   
     }
@@ -79,20 +67,11 @@ public abstract class Attack extends SuperSmoothMover
      * @Author(Recorsi)
      */
     public void finishAnimation () {
-        /*
         if((getImage() != imageOne) != notImageOne) {
             notImageOne = !notImageOne;
             if(!notImageOne) {
                 getWorld().removeObject(this);
             }
         }
-        */
-        if (imageOne != null && (getImage() != imageOne) != notImageOne) {
-            notImageOne = !notImageOne;
-            if (!notImageOne) {
-                getWorld().removeObject(this);
-            }
-        }
-
     }
 }

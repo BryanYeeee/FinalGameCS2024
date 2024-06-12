@@ -28,7 +28,8 @@ public class Gun extends SuperSmoothMover
             turnTowards(closestEnemy.getX(), closestEnemy.getY());
             if(actCount % frequency == 0){
                 //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
-                getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()),getX() + 50, getY() + 50);
+                //getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()),getX() + , getY() + );
+                getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
             }
         }
         MyWorld world = (MyWorld)getWorld();
