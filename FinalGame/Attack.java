@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class Attack here.
@@ -15,6 +16,20 @@ public abstract class Attack extends SuperSmoothMover
     protected GreenfootImage imageOne;
     protected boolean notImageOne;
     protected int imageIndex;
+    
+    protected int cooldownCount;
+    protected int cooldown = 60;
+
+    protected int x;
+    protected int y;
+    
+    protected MyWorld world;
+    
+    public Attack(int x, int y) {
+        actCount = 0;
+        this.x = x;
+        this.y = y;
+    }
 
     /**
      * Act - do whatever the Attack wants to do. This method is called whenever
@@ -24,16 +39,39 @@ public abstract class Attack extends SuperSmoothMover
     {
         actCount++;
         animate();
+        
+        if(cooldown == 60) {
+            /*
+            Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+            if(enemy != null){
+                enemy.takeDamage(world.getPlayer().getATK());
+                
+                cooldown = 0;
+            }
+            */
+            
+            ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
+            for(Enemy e : enemies) {
+                e.takeDamage(world.getPlayer().getATK());
+                cooldown = 0;
+            }
+        }
+        cooldown++;
         finishAnimation();
+    }
+    
+    public void addedToWorld(World w){
+        turnTowards(x,y);  
+        world = (MyWorld)w;
     }
 
     public void animate() {
-        if(actCount < 60) {
-            return;
-        }
-        setImage(animations[imageIndex]);
-        imageIndex = (imageIndex + 1) % animations.length;
-        actCount = 0;
+        if (actCount >= 4) { // Adjust timing as needed
+            setImage(animations[imageIndex]);
+            System.out.println("Animating: " + imageIndex); // Debugging line
+            imageIndex = (imageIndex + 1) % animations.length;
+            actCount = 0;
+        }   
     }
     
     /**
