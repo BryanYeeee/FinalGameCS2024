@@ -16,6 +16,16 @@ public abstract class Attack extends SuperSmoothMover
     protected boolean notImageOne;
     protected int imageIndex;
 
+    protected int x;
+    protected int y;
+    
+    protected MyWorld world;
+    
+    public Attack(int x, int y) {
+        this.x = x + 20;
+        this.y = y + 20;
+    }
+
     /**
      * Act - do whatever the Attack wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -24,15 +34,34 @@ public abstract class Attack extends SuperSmoothMover
     {
         actCount++;
         animate();
+        /*
+        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        if(enemy != null){
+            enemy.takeDamage(world.getPlayer().getATK());
+            getWorld().removeObject(this);
+            return;
+        }
+        */
         finishAnimation();
+    }
+    
+    public void addedToWorld(World w){
+        turnTowards(x,y);  
+        world = (MyWorld)w;
     }
 
     public void animate() {
-        if(actCount < 60) {
+        if(actCount < 120) {
             return;
         }
+        /*
         setImage(animations[imageIndex]);
         imageIndex = (imageIndex + 1) % animations.length;
+        */
+        if (animations != null && animations.length > 0) {
+            setImage(animations[imageIndex]);
+            imageIndex = (imageIndex + 1) % animations.length;
+        }
         actCount = 0;
     }
     
@@ -45,11 +74,20 @@ public abstract class Attack extends SuperSmoothMover
      * @Author(Recorsi)
      */
     public void finishAnimation () {
+        /*
         if((getImage() != imageOne) != notImageOne) {
             notImageOne = !notImageOne;
             if(!notImageOne) {
                 getWorld().removeObject(this);
             }
         }
+        */
+        if (imageOne != null && (getImage() != imageOne) != notImageOne) {
+            notImageOne = !notImageOne;
+            if (!notImageOne) {
+                getWorld().removeObject(this);
+            }
+        }
+
     }
 }
