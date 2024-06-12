@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class Attack here.
@@ -15,6 +16,9 @@ public abstract class Attack extends SuperSmoothMover
     protected GreenfootImage imageOne;
     protected boolean notImageOne;
     protected int imageIndex;
+    
+    protected int cooldownCount;
+    protected int cooldown = 60;
 
     protected int x;
     protected int y;
@@ -36,11 +40,23 @@ public abstract class Attack extends SuperSmoothMover
         actCount++;
         animate();
         
-        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-        if(enemy != null){
-            enemy.takeDamage(world.getPlayer().getATK());
+        if(cooldown == 60) {
+            /*
+            Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+            if(enemy != null){
+                enemy.takeDamage(world.getPlayer().getATK());
+                
+                cooldown = 0;
+            }
+            */
+            
+            ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
+            for(Enemy e : enemies) {
+                e.takeDamage(world.getPlayer().getATK());
+                cooldown = 0;
+            }
         }
-        
+        cooldown++;
         finishAnimation();
     }
     
