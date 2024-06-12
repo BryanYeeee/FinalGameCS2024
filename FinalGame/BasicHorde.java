@@ -35,6 +35,7 @@ public class BasicHorde extends Enemy
         }
         if(hp <= 0){
             world.addObject(new XP(0), getX(), getY());
+            ScoreTracker.increaseScore(10);
             world.removeObject(this);
             return;
         }

@@ -18,9 +18,9 @@ public class UpgradeWorld extends AllWorld
     private SuperTextBox upgradeNotice = new SuperTextBox("CHOOSE AN UPGRADE", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
     // Temp Boxes
     TempBox blur;
-    TempBox border0 = new TempBox(300, 400, transparentColor, borderColor, 10);
-    TempBox border1 = new TempBox(300, 400, transparentColor, borderColor, 10);
-    TempBox border2 = new TempBox(300, 400, transparentColor, borderColor, 10);
+    TempBox border0 = new TempBox(310, 410, transparentColor, borderColor, 10);
+    TempBox border1 = new TempBox(310, 410, transparentColor, borderColor, 10);
+    TempBox border2 = new TempBox(310, 410, transparentColor, borderColor, 10);
 
     // Upgrades
     ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();

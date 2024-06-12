@@ -20,7 +20,7 @@ public class ScoreTracker extends Actor
     public static void readScore(){
         try{
             readScan = new Scanner (new File(saveFile));
-            highScore = Integer.valueOf(readScan.nextLine());
+            highScore = readScan.nextInt();
         } catch (FileNotFoundException e){
             System.out.println("File Not Found");
         }

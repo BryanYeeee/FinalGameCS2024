@@ -40,8 +40,8 @@ public class UpgradeBox extends Actor
     public UpgradeBox(String imagePath, String name, String description, int x, int y){
         //upgradeImage = new GreenfootImage(imagePath);
         upgradeName = name;
-        upgradeNameBox = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 0, borderColor);
-        upgradeDescriptionBox = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 0, borderColor);
+        upgradeNameBox = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 5, borderColor);
+        upgradeDescriptionBox = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 5, borderColor);
         xCoord = x;
         yCoord = y;
         background.scale(300, 400);
