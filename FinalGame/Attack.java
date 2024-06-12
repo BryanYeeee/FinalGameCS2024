@@ -14,7 +14,7 @@ public abstract class Attack extends SuperSmoothMover
     protected int actCount;
     protected GreenfootImage imageOne;
     protected boolean notImageOne;
-    protected int imageIndex = 0;
+    protected int imageIndex;
 
     protected int x;
     protected int y;
@@ -23,8 +23,8 @@ public abstract class Attack extends SuperSmoothMover
     
     public Attack(int x, int y) {
         actCount = 0;
-        this.x = x + 20;
-        this.y = y + 20;
+        this.x = x + 100;
+        this.y = y + 100;
     }
 
     /**
@@ -35,15 +35,14 @@ public abstract class Attack extends SuperSmoothMover
     {
         actCount++;
         animate();
-        /*
+        
         Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
         if(enemy != null){
             enemy.takeDamage(world.getPlayer().getATK());
-            getWorld().removeObject(this);
-            return;
+            //getWorld().removeObject(this);
         }
-        */
-        finishAnimation();
+        
+        //finishAnimation();
     }
     
     public void addedToWorld(World w){
@@ -52,17 +51,23 @@ public abstract class Attack extends SuperSmoothMover
     }
 
     public void animate() {
+        /*
         if(actCount < 10) {
             return;
         }
-        /*
-        setImage(animations[imageIndex]);
-        imageIndex = (imageIndex + 1) % animations.length;
-        */
         if (animations != null && animations.length > 0) {
             setImage(animations[imageIndex]);
             imageIndex = (imageIndex + 1) % animations.length;
         }
+        */
+        if (actCount >= 120) { // Adjust timing as needed
+            if (animations != null && animations.length > 0) {
+                setImage(animations[imageIndex]);
+                System.out.println("Animating: " + imageIndex); // Debugging line
+                imageIndex = (imageIndex + 1) % animations.length;
+            }
+            actCount = 0;
+        }   
     }
     
     /**
