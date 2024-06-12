@@ -13,7 +13,7 @@ public class SlashSpecial extends Attack
         //this.size = size;
         //this.speed = speed;
         
-        animations = new GreenfootImage[6];
+        animations = new GreenfootImage[9];
         for(int i = 0; i < animations.length; i++) {
             animations[i] = new GreenfootImage("images/Attacks/Slash/SlashSpecial" + i + ".png");
             int width = animations[i].getWidth();
