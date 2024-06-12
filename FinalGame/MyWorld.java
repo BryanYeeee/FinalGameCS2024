@@ -57,7 +57,12 @@ public class MyWorld extends AllWorld
                 addHorde();
             }
             int currScore = ScoreTracker.getScore();
-            addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK), 900, 100);
+            // size of the box that hold the score depends on the # of digits
+            if(currScore < 1000){
+                addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK), 900, 100);
+            } else if(currScore >= 1000){
+                addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 140, 5, Color.BLACK), 900, 100);
+            }
             if(c.getHP() <= 0){ // GAME OVER
                 gameState = 1;
                 return;
