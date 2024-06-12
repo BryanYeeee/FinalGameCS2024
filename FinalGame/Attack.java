@@ -14,7 +14,7 @@ public abstract class Attack extends SuperSmoothMover
     protected int actCount;
     protected GreenfootImage imageOne;
     protected boolean notImageOne;
-    protected int imageIndex;
+    protected int imageIndex = 0;
 
     protected int x;
     protected int y;
@@ -22,6 +22,7 @@ public abstract class Attack extends SuperSmoothMover
     protected MyWorld world;
     
     public Attack(int x, int y) {
+        actCount = 0;
         this.x = x + 20;
         this.y = y + 20;
     }
@@ -51,7 +52,7 @@ public abstract class Attack extends SuperSmoothMover
     }
 
     public void animate() {
-        if(actCount < 120) {
+        if(actCount < 10) {
             return;
         }
         /*
@@ -62,7 +63,6 @@ public abstract class Attack extends SuperSmoothMover
             setImage(animations[imageIndex]);
             imageIndex = (imageIndex + 1) % animations.length;
         }
-        actCount = 0;
     }
     
     /**

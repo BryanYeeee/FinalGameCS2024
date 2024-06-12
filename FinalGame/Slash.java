@@ -28,7 +28,7 @@ public class Slash extends Attack
             if (animations[i] != null) {
                 int width = animations[i].getWidth();
                 int height = animations[i].getHeight();
-                animations[i].scale(width * 3 / 2, height * 3 / 2);
+                animations[i].scale(width, height);
             } else {
                 System.out.println("Error loading image: images/Attacks/Slash/Slash" + i + ".png");
             }

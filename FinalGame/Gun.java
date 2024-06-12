@@ -17,7 +17,7 @@ public class Gun extends SuperSmoothMover
         gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
-        frequency = 15;
+        frequency = 10;
         actCount = 0;
     }
 
