@@ -64,15 +64,18 @@ public abstract class Attack extends SuperSmoothMover
         turnTowards(x,y);  
         world = (MyWorld)w;
     }
-
+    
+    
     public void animate() {
-        if (actCount >= 4) { // Adjust timing as needed
+        if (actCount >= 3) { // Adjust timing as needed
             setImage(animations[imageIndex]);
-            System.out.println("Animating: " + imageIndex); // Debugging line
             imageIndex = (imageIndex + 1) % animations.length;
             actCount = 0;
         }   
     }
+    
+   
+    //public abstract void animate();
     
     /**
      * Makes sure animation plays once and then removes the instance of a itself
