@@ -101,10 +101,10 @@ public class MyWorld extends AllWorld
     private void determineLevel(){
         // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
  
-        if(p.getXP() == 10 && p.getLevel() == 0){
+        if(p.getXP() == 2 && p.getLevel() == 0){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(p.getXP() == 25 && p.getLevel() == 1){
+        if(p.getXP() == 10 && p.getLevel() == 1){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
         if(p.getXP() == 40 && p.getLevel() == 2){
@@ -123,11 +123,7 @@ public class MyWorld extends AllWorld
                 randX = AllWorld.WORLD_WIDTH;
             }
             randY = Greenfoot.getRandomNumber(AllWorld.WORLD_HEIGHT-50) + 25; 
-            if(Greenfoot.getRandomNumber(2) == 0){
-                addObject(new BasicHorde(), randX, randY);
-            } else {
-                addObject(new ConstructionEnemy(), randX, randY);
-            }
+            addObject(new BasicHorde(), randX, randY);
         } else {
             randX = Greenfoot.getRandomNumber(AllWorld.WORLD_WIDTH-50) + 25;
             if(Greenfoot.getRandomNumber(2) == 0){
@@ -135,11 +131,7 @@ public class MyWorld extends AllWorld
             } else {
                 randY = AllWorld.WORLD_HEIGHT;
             }
-            if(Greenfoot.getRandomNumber(2) == 0){
-                addObject(new BasicHorde(), randX, randY);
-            } else {
-                addObject(new ConstructionEnemy(), randX, randY);
-            }
+            addObject(new BasicHorde(), randX, randY);
         }
     }
 

@@ -72,8 +72,6 @@ public abstract class Collectible extends SuperSmoothMover
                         ((MyWorld)getWorld()).getPlayer().increaseExp(5);
                         break;
                 }
-                
-                ((MyWorld)getWorld()).getPlayer().increaseExp(1);
                 /* debug
                 int xp = ((MyWorld)getWorld()).getPlayer().getXP();
                 System.out.println(xp);

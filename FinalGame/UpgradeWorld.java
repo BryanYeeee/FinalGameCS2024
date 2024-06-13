@@ -50,8 +50,9 @@ public class UpgradeWorld extends AllWorld
         // add notice text 
         addObject(upgradeNotice, AllWorld.WORLD_WIDTH/2, 100);
         // do upgrade things
-        addUpgrades();
+        initalizeUpgrades();
         determineUpgrades();
+        displayUpgrades();
     }
 
     public void act(){
@@ -67,7 +68,6 @@ public class UpgradeWorld extends AllWorld
             buff(currUpgrades[2]);
             switchWorld();
         }
-        displayUpgrades();
     }
 
     private void switchWorld(){
@@ -110,26 +110,41 @@ public class UpgradeWorld extends AllWorld
         return image;
     }
 
-    private void addUpgrades(){
-        upgrades.add(new UpgradeBox("magnet.png", "MAGNET", "Increases EXP pickup range by 1"));
-        upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", "Increases EXP gain by 30%"));
-        upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", "Increases HP by 20"));
-        upgrades.add(new UpgradeBox("a", "TRIDENT", "Obtain the trident weapon."));
+    private void initalizeUpgrades(){
+        upgrades.add(new UpgradeBox("magnet.png", "MAGNET", new String[] {"Increases EXP", "pickup range by 1."}));
+        upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", new String[] {"Increases EXP", "gain by 30%."}));
+        upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", new String[] {"Increases HP by 20"}));
+        upgrades.add(new UpgradeBox("images/Attacks/Trident/Trident1", "TRIDENT", new String[] {"Obtain the weapon", "of Poseidon."}));
+        upgrades.add(new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1", "FLAME", new String[] {"Obtain the power", "of the blue flame."}));
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
         for(int i = 0; i < 3; i++){
             currUpgrades[i] = upgrades.get(i);
+            switch (i){
+                case 0:
+                    currUpgrades[i].giveCoords(180, 500);
+                    break;
+                case 1:
+                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
+                    break;
+                case 2:
+                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
+                    break;
+            }
         }
     }
     // depending on the player's level, give different upgrades?
     private void displayUpgrades(){
         addObject(border0, 180, 500);
         addObject(currUpgrades[0], 180, 500);
+        currUpgrades[0].addToWorld(this);
         addObject(border1, AllWorld.WORLD_WIDTH/2, 500);
         addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
+        currUpgrades[1].addToWorld(this);
         addObject(border2, AllWorld.WORLD_WIDTH-180, 500);
         addObject(currUpgrades[2], AllWorld.WORLD_WIDTH-180, 500);
+        currUpgrades[2].addToWorld(this);
     }
     // actually buff stats here
     private void buff(UpgradeBox u){

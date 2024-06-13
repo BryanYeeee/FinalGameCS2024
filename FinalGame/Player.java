@@ -29,7 +29,7 @@ public class Player extends Entity
     
     public Player(){
         
-        super(100,2,45);
+        super(200,2,45);
         setEntityName("player");
         setAction("run");
         
