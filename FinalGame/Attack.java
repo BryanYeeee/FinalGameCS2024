@@ -52,7 +52,7 @@ public abstract class Attack extends SuperSmoothMover
             
             ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
             for(Enemy e : enemies) {
-                if(this instanceof SlashSpecial || this instanceof WaterSplash) {
+                if(this instanceof SlashSpecial || this instanceof WaterSplash || this instanceof Lightning) {
                     e.takeDamage(world.getPlayer().getATK() + 6);
                 } else {
                     e.takeDamage(world.getPlayer().getATK());
@@ -65,7 +65,9 @@ public abstract class Attack extends SuperSmoothMover
     }
     
     public void addedToWorld(World w){
-        turnTowards(x,y);  
+        if(!(this instanceof Lightning)) {
+            turnTowards(x,y);
+        }  
         world = (MyWorld)w;
     }
    

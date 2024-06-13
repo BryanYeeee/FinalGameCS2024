@@ -19,14 +19,14 @@ public class Lightning extends Attack
             animations[i] = new GreenfootImage("images/Attacks/Lightning/Lightning" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 4, height * 4);
+            animations[i].scale(width * 10, height * 10);
         }
         setImage(animations[0]);
         imageOne = animations[0];
     }
     
     public void animate() {
-        if (actCount >= 7) { // Adjust timing as needed
+        if (actCount >= 5) { // Adjust timing as needed
             setImage(animations[imageIndex]);
             imageIndex = (imageIndex + 1) % animations.length;
             actCount = 0;
