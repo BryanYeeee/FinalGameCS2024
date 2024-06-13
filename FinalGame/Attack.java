@@ -65,19 +65,9 @@ public abstract class Attack extends SuperSmoothMover
     }
     
     public void addedToWorld(World w){
-        if((this instanceof Slash) || (this instanceof SlashSpecial) || (this instanceof Trident) || (this instanceof WaterSplash)) {
+        if((this instanceof Slash) || (this instanceof SlashSpecial) || (this instanceof Trident) || (this instanceof WaterSplash) || (this instanceof ChargeShot) || (this instanceof BasicSlash) || (this instanceof FireSlash)) {
             turnTowards(x, y);
         }
-        
-        /*
-        if(!(this instanceof Lightning)) {
-            turnTowards(x,y);
-        }  
-        
-        if(!(this instanceof SharkSpecial)) {
-            turnTowards(x, y);
-        }
-        */
         world = (MyWorld)w;
     }
    
