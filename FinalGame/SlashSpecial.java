@@ -15,15 +15,22 @@ public class SlashSpecial extends Attack
         
         animations = new GreenfootImage[9];
         for(int i = 0; i < animations.length; i++) {
-            animations[i] = new GreenfootImage("images/Attacks/Slash/SlashSpecial" + i + ".png");
+            animations[i] = new GreenfootImage("images/Attacks/SlashSpecial/SlashSpecial" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width, height);
+            animations[i].scale(width * 4, height * 4);
         }
         setImage(animations[0]);
         imageOne = animations[0];
     }
-
+    
+    public void animate() {
+        if (actCount >= 4) { // Adjust timing as needed
+            setImage(animations[imageIndex]);
+            imageIndex = (imageIndex + 1) % animations.length;
+            actCount = 0;
+        }   
+    }
     
     /**
      * Act - do whatever the SlashSpecial wants to do. This method is called whenever
