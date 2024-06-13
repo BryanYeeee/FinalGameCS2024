@@ -111,9 +111,10 @@ public class UpgradeWorld extends AllWorld
     }
 
     private void addUpgrades(){
-        upgrades.add(new UpgradeBox("a", "ATK", "Increases ATK by 5", 180, 500));
-        upgrades.add(new UpgradeBox("a", "SPD", "Increases SPD by 1", AllWorld.WORLD_WIDTH/2, 500));
-        upgrades.add(new UpgradeBox("a", "HP", "Increases HP by 20", AllWorld.WORLD_WIDTH-180, 500));
+        upgrades.add(new UpgradeBox("magnet.png", "MAGNET", "Increases EXP pickup range by 1"));
+        upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", "Increases EXP gain by 30%"));
+        upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", "Increases HP by 20"));
+        upgrades.add(new UpgradeBox("a", "TRIDENT", "Obtain the trident weapon."));
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){

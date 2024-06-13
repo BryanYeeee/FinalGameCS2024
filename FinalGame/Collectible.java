@@ -23,7 +23,7 @@ public abstract class Collectible extends SuperSmoothMover
     protected Character character;
     protected double pickupSpeed = 10;
     protected double deltaY;
-    protected int myType; // green, yellow, 
+    protected int myType; // 0=green, 1=yellow, 2=red
     
     public Collectible() {
         this(20, -1, -1);
@@ -62,7 +62,18 @@ public abstract class Collectible extends SuperSmoothMover
             }
             else{
                 pickupEffect();
-                ((MyWorld)getWorld()).getCharacter().increaseExp(1);
+                switch (myType){
+                    case 0:
+                        ((MyWorld)getWorld()).getCharacter().increaseExp(1);
+                        break;
+                    case 1:
+                        ((MyWorld)getWorld()).getCharacter().increaseExp(2);
+                        break;
+                    case 2:
+                        ((MyWorld)getWorld()).getCharacter().increaseExp(5);
+                        break;
+                }
+                
                 /* debug
                 int xp = ((MyWorld)getWorld()).getCharacter().getXP();
                 System.out.println(xp);
