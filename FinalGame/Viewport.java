@@ -39,7 +39,7 @@ public class Viewport extends Actor
         ry+=yMove;
                 
         for(SuperSmoothMover t: w.getObjects(SuperSmoothMover.class)){
-            if(t instanceof Character || t instanceof Gun || t instanceof EntitySprite)continue;
+            if(t instanceof Player || t instanceof Gun)continue;
             // System.out.println((t.getX()-xMove)+ " " + xMove + " | " +(t.getY()-yMove) + " " +yMove);
             t.setLocation(t.getX()-xMove, t.getY()-yMove);
         }

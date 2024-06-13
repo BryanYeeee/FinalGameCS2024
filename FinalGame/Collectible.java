@@ -20,8 +20,8 @@ public abstract class Collectible extends SuperSmoothMover
                                   // -1 means collectible does not despawn
     
     protected boolean pickup;
-    protected Character character;
-    protected double pickupSpeed = 10;
+    protected Player player;
+    protected double pickupSpeed = -10;
     protected double deltaY;
     protected int myType; // 0=green, 1=yellow, 2=red
     
@@ -49,16 +49,15 @@ public abstract class Collectible extends SuperSmoothMover
         if(!pickup){
             hover(actCount);
             if(actCount/60==despawnSeconds){
-                System.out.println(despawnSeconds);
                 getWorld().removeObject(this);
             }
         }
         else{
-            if(distanceFrom(character.getX(),character.getY())>=pickupSpeed){
-                deltaY=distanceFrom(character.getX(),character.getY())/2;
-                turnTowards(character.getX(),character.getY()+(int)Math.round(deltaY));
+            if(distanceFrom(player.getX(),player.getY())>=pickupSpeed){
+                
+                turnTowards(player.getX(),player.getY());
                 move(pickupSpeed);
-                pickupSpeed+=0.5;
+                pickupSpeed+=2;
             }
             else{
                 pickupEffect();
@@ -74,10 +73,11 @@ public abstract class Collectible extends SuperSmoothMover
                         break;
                 }
                 
+                ((MyWorld)getWorld()).getPlayer().increaseExp(1);
                 /* debug
-                int xp = ((MyWorld)getWorld()).getCharacter().getXP();
+                int xp = ((MyWorld)getWorld()).getPlayer().getXP();
                 System.out.println(xp);
-                int level = ((MyWorld)getWorld()).getCharacter().getLevel();
+                int level = ((MyWorld)getWorld()).getPlayer().getLevel();
                 System.out.println(level);
                 */
                 getWorld().removeObject(this);
@@ -109,8 +109,8 @@ public abstract class Collectible extends SuperSmoothMover
             hoverSpeed=hoverSpeed*-1;
         }
     }
-    public void pickup(Character character) {
-        this.character = character;
+    public void pickup(Player player) {
+        this.player = player;
         pickup = true;
     }
     

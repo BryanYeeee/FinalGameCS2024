@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class MyWorld extends AllWorld
 {
-    private Character c;
+    private Player p;
     private Gun g;
     private int speed;
     private int randX;
@@ -31,15 +31,16 @@ public class MyWorld extends AllWorld
         // Call the superclass constructor with the constants
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
         SimulationFont.initalizeFont("BigSpace.ttf");
-        setPaintOrder(SuperTextBox.class,TempBox.class,EntitySprite.class,Character.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
-        c = new Character();
+        setPaintOrder(SuperTextBox.class,TempBox.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
+        p = new Player();
         g = new Gun();
-        addObject(c, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+        addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
         hordeLimit = 20;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
+        Sprite.init();
         map = new Map();
         vp = new Viewport(this);
         // addObject(new Tile("",false,10),-55,675);
@@ -48,6 +49,7 @@ public class MyWorld extends AllWorld
 
     public void updateVP(int xMove, int yMove) {
         vp.move(xMove, yMove);
+        
     }
 
     public void act(){
@@ -73,6 +75,12 @@ public class MyWorld extends AllWorld
             for(Actor a : actors){
                 removeObject(a);
             }
+        ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
+        if(horde.size() < hordeLimit){
+            addHorde();
+        }
+        if(p.getHP() <= 0){
+            removeObject(p);
             addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
             addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
             ScoreTracker.readScore();
@@ -87,21 +95,25 @@ public class MyWorld extends AllWorld
 
     public Character getCharacter(){
         return c;
+    
+    public Player getPlayer(){
+        return p;
     }
 
     private void determineLevel(){
         // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
-        if(c.getXP() == 1 && c.getLevel() == 0){
-            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+ 
+        if(p.getXP() == 10 && p.getLevel() == 0){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(c.getXP() == 25 && c.getLevel() == 1){
-            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        if(p.getXP() == 25 && p.getLevel() == 1){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(c.getXP() == 40 && c.getLevel() == 2){
-            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        if(p.getXP() == 40 && p.getLevel() == 2){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(c.getXP() == 70 && c.getLevel() == 3){
-            Greenfoot.setWorld(new UpgradeWorld(this, c.getLevel(), c));
+        if(p.getXP() == 70 && p.getLevel() == 3){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
 
