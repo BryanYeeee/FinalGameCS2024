@@ -57,7 +57,7 @@ public abstract class Attack extends SuperSmoothMover
                 } else {
                     e.takeDamage(world.getPlayer().getATK());
                 }
-                cooldown = 15;
+                cooldown = 20;
             }
         }
         cooldown++;
