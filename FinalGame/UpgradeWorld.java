@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Base code of copying prev. world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314
@@ -17,14 +18,16 @@ public class UpgradeWorld extends AllWorld
     // Text
     private SuperTextBox upgradeNotice = new SuperTextBox("CHOOSE AN UPGRADE", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
     // Temp Boxes
-    TempBox blur;
-    TempBox border0 = new TempBox(310, 410, transparentColor, borderColor, 10);
-    TempBox border1 = new TempBox(310, 410, transparentColor, borderColor, 10);
-    TempBox border2 = new TempBox(310, 410, transparentColor, borderColor, 10);
+    private TempBox blur;
+    private TempBox border0 = new TempBox(310, 410, transparentColor, borderColor, 10);
+    private TempBox border1 = new TempBox(310, 410, transparentColor, borderColor, 10);
+    private TempBox border2 = new TempBox(310, 410, transparentColor, borderColor, 10);
 
     // Upgrades
-    ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
-    UpgradeBox[] currUpgrades = new UpgradeBox[3];
+    private ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
+    private ArrayList<String> repeatUpgrades = new ArrayList<>(Arrays.asList("HP BUFF", "ATK BUFF", "SPD BUFF", "MAGNET", "EXP MASTERY"));
+    private UpgradeBox[] currUpgrades = new UpgradeBox[3];
+    private static ArrayList<String> removedUpgrades = new ArrayList<String>();
     /**
      * Creates a background image of the current visual state of the given world.
      *
@@ -34,10 +37,13 @@ public class UpgradeWorld extends AllWorld
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
         SimulationFont.initalizeFont("BigSpace.ttf");
         // copies the background of the previous world
-        // draw the images of all non-paint order objects on the background of the new world
         for(SuperSmoothMover s: world.getObjects(SuperSmoothMover.class))
         {
-            drawActorImage(s);
+            if(s instanceof EntitySprite){
+                break;
+            } else {
+                drawActorImage(s);
+            }
         }
         mainWorld = world;
         currLevel = level;
@@ -100,6 +106,11 @@ public class UpgradeWorld extends AllWorld
      */
     private GreenfootImage getActorImage(Actor actor)
     {
+        if(actor.getX() < AllWorld.WORLD_WIDTH/2){
+            actor.setRotation(0);
+        } else {
+            actor.setRotation(180);
+        }
         GreenfootImage actorImg = actor.getImage();
         int w = actorImg.getWidth();
         int h = actorImg.getHeight();
@@ -114,13 +125,35 @@ public class UpgradeWorld extends AllWorld
         upgrades.add(new UpgradeBox("magnet.png", "MAGNET", new String[] {"Increases EXP", "pickup range by 1."}));
         upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", new String[] {"Increases EXP", "gain by 30%."}));
         upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", new String[] {"Increases HP by 20"}));
-        upgrades.add(new UpgradeBox("images/Attacks/Trident/Trident1", "TRIDENT", new String[] {"Obtain the weapon", "of Poseidon."}));
-        upgrades.add(new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1", "FLAME", new String[] {"Obtain the power", "of the blue flame."}));
+        upgrades.add(new UpgradeBox("ATKBoost.png", "ATK BUFF", new String[] {"Increases ATK by 5"}));
+        upgrades.add(new UpgradeBox("SPDBoost.png", "SPD BUFF", new String[] {"Increases SPD by 1"}));
+        upgrades.add(new UpgradeBox("images/Attacks/Trident/Trident1.png", "TRIDENT", new String[] {"Obtain the weapon", "of Poseidon."}));
+        upgrades.add(new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "FLAME", new String[] {"Obtain the power", "of the blue flame."}));
+        ArrayList<UpgradeBox> removeableUpgrades = new ArrayList<UpgradeBox>();
+        System.out.println(removedUpgrades);
+        for(String s : removedUpgrades){
+            for(UpgradeBox u : upgrades){
+                if(u.getName() == s){
+                    removeableUpgrades.add(u);
+                }
+            }
+        }
+        upgrades.removeAll(removeableUpgrades);
+        for(int j = 0; j < upgrades.size(); j++){
+            System.out.println(upgrades.get(j));
+        }
+        System.out.println("=====");
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
         for(int i = 0; i < 3; i++){
-            currUpgrades[i] = upgrades.get(i);
+            for(int j = 0; j < upgrades.size(); j++){
+                System.out.println(upgrades.get(j));
+            }
+            System.out.println(upgrades.size());
+            int randNum =  Greenfoot.getRandomNumber(upgrades.size());
+            currUpgrades[i] = upgrades.get(randNum);
+            upgrades.remove(randNum); // remove the upgrade from the list so there isn't a duplicate
             switch (i){
                 case 0:
                     currUpgrades[i].giveCoords(180, 500);
@@ -133,8 +166,16 @@ public class UpgradeWorld extends AllWorld
                     break;
             }
         }
+        // For non-one time upgrades, add them back in the upgrades list
+        for(UpgradeBox u : currUpgrades){
+            removedUpgrades.add(u.getName());
+            if(repeatUpgrades.contains(u.getName())){
+                upgrades.add(u);
+                removedUpgrades.remove(u.getName());
+            }
+        }
     }
-    // depending on the player's level, give different upgrades?
+
     private void displayUpgrades(){
         addObject(border0, 180, 500);
         addObject(currUpgrades[0], 180, 500);
@@ -149,12 +190,20 @@ public class UpgradeWorld extends AllWorld
     // actually buff stats here
     private void buff(UpgradeBox u){
         switch(u.getName()){
-            case "ATK":
+            case "ATK BUFF":
                 mainWorld.getPlayer().increaseATK(5);
-            case "SPD":
+                break;
+            case "SPD BUFF":
                 mainWorld.getPlayer().increaseSPD(1);
-            case "HP":
+                break;
+            case "HP BUFF":
                 mainWorld.getPlayer().increaseHP(20);
+                break;
+            case "MAGNET":
+                break;
+            case "EXP MASTERY":
+                break;
+
         }
     }
 }

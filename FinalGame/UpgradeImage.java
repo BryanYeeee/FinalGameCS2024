@@ -8,10 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UpgradeImage extends Actor
 {
-    private GreenfootImage myImage;
-    public UpgradeImage(String imagePath){
-        myImage = new GreenfootImage(imagePath);
-        myImage.scale(40,40);
-        setImage(myImage);
+    public UpgradeImage(GreenfootImage image){
+        image.scale(60,60);
+        setImage(image);
     }
 }

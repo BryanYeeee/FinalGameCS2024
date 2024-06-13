@@ -49,7 +49,7 @@ public class MyWorld extends AllWorld
 
     public void updateVP(int xMove, int yMove) {
         vp.move(xMove, yMove);
-        
+
     }
 
     public void act(){
@@ -104,13 +104,22 @@ public class MyWorld extends AllWorld
         if(p.getXP() == 2 && p.getLevel() == 0){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(p.getXP() == 10 && p.getLevel() == 1){
+        if(p.getXP() == 5 && p.getLevel() == 1){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(p.getXP() == 40 && p.getLevel() == 2){
+        if(p.getXP() == 10 && p.getLevel() == 2){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
-        if(p.getXP() == 70 && p.getLevel() == 3){
+        if(p.getXP() == 13 && p.getLevel() == 3){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 15 && p.getLevel() == 4){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 18 && p.getLevel() == 5){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 20 && p.getLevel() == 6){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
