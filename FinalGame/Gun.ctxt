@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Gun
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Gun\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Gun\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=Gun()
 comment2.params=
@@ -9,5 +9,5 @@ comment3.params=actor
 comment3.target=double\ getDistance(greenfoot.Actor)
 comment4.params=
 comment4.target=Enemy\ getNearestEnemy()
-comment4.text=\r\n\ Code\ from\ Gevater_Tod4711\ in\ forum\ page\:\r\n\ https\://www.greenfoot.org/topics/4911\r\n
+comment4.text=\n\ Code\ from\ Gevater_Tod4711\ in\ forum\ page\:\n\ https\://www.greenfoot.org/topics/4911\n
 numComments=5
