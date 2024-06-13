@@ -9,21 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ConstructionEnemy extends Enemy
 {
     public ConstructionEnemy(){
-        super(200,1, 20,"construction-enemy.png");
+        super(200,1, 20);
     }
     public void act()
     {
         if(target != null && target.getWorld() != null){
-            turnTowards(target.getX(), target.getY());
+            turnTowards(target.getPlayerX(), target.getPlayerY());
             move(speed);
         } else {
-            target = world.getCharacter();
+            target = world.getPlayer();
         }
         
         if(atkCooldown == 0){
-            Character c = (Character)getOneIntersectingObject(Character.class);
-            if(c != null && c.getWorld() != null){
-                c.decreaseHP(atk);
+            Player p = (Player)getOneIntersectingObject(Player.class);
+            if(p != null && p.getWorld() != null){
+                p.decreaseHP(atk);
                 atkCooldown = 30;
             }
         }

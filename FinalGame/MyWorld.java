@@ -65,7 +65,7 @@ public class MyWorld extends AllWorld
             } else if(currScore >= 1000){
                 addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 140, 5, Color.BLACK), 900, 100);
             }
-            if(c.getHP() <= 0){ // GAME OVER
+            if(p.getHP() <= 0){ // GAME OVER
                 gameState = 1;
                 return;
             }
@@ -75,26 +75,24 @@ public class MyWorld extends AllWorld
             for(Actor a : actors){
                 removeObject(a);
             }
-        ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
-        if(horde.size() < hordeLimit){
-            addHorde();
-        }
-        if(p.getHP() <= 0){
-            removeObject(p);
-            addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
-            addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
-            ScoreTracker.readScore();
-            System.out.println(ScoreTracker.getScore());
-            System.out.println(ScoreTracker.getHighScore());
-            ScoreTracker.determineHigh();
-            ScoreTracker.writeScore();
-            gameState = 2;
-            return;
+            ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
+            if(horde.size() < hordeLimit){
+                addHorde();
+            }
+            if(p.getHP() <= 0){
+                removeObject(p);
+                addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+                addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+                ScoreTracker.readScore();
+                System.out.println(ScoreTracker.getScore());
+                System.out.println(ScoreTracker.getHighScore());
+                ScoreTracker.determineHigh();
+                ScoreTracker.writeScore();
+                gameState = 2;
+                return;
+            }
         }
     }
-
-    public Character getCharacter(){
-        return c;
     
     public Player getPlayer(){
         return p;

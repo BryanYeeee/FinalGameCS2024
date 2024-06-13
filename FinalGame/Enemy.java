@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends Entity
 {
-    protected Character target;
+    protected Player target;
 
     protected int targetX;
     protected int targetY;

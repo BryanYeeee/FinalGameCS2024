@@ -63,13 +63,13 @@ public abstract class Collectible extends SuperSmoothMover
                 pickupEffect();
                 switch (myType){
                     case 0:
-                        ((MyWorld)getWorld()).getCharacter().increaseExp(1);
+                        ((MyWorld)getWorld()).getPlayer().increaseExp(1);
                         break;
                     case 1:
-                        ((MyWorld)getWorld()).getCharacter().increaseExp(2);
+                        ((MyWorld)getWorld()).getPlayer().increaseExp(2);
                         break;
                     case 2:
-                        ((MyWorld)getWorld()).getCharacter().increaseExp(5);
+                        ((MyWorld)getWorld()).getPlayer().increaseExp(5);
                         break;
                 }
                 
