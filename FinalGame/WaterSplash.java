@@ -19,7 +19,7 @@ public class WaterSplash extends Attack
             animations[i] = new GreenfootImage("images/Attacks/WaterSplash/WaterSplash" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 3, height * 3);
+            animations[i].scale(width * 4, height * 4);
         }
         setImage(animations[0]);
         imageOne = animations[0];
