@@ -18,7 +18,7 @@ public abstract class Attack extends SuperSmoothMover
     protected int imageIndex;
     
     protected int cooldownCount;
-    protected int cooldown = 60;
+    protected int cooldown = 50;
 
     protected int x;
     protected int y;
@@ -40,7 +40,7 @@ public abstract class Attack extends SuperSmoothMover
         actCount++;
         animate();
         
-        if(cooldown == 60) {
+        if(cooldown >= 60) {
             /*
             Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
             if(enemy != null){
@@ -52,8 +52,12 @@ public abstract class Attack extends SuperSmoothMover
             
             ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
             for(Enemy e : enemies) {
-                e.takeDamage(world.getPlayer().getATK());
-                cooldown = 0;
+                if(this instanceof SlashSpecial || this instanceof WaterSplash) {
+                    e.takeDamage(world.getPlayer().getATK() + 6);
+                } else {
+                    e.takeDamage(world.getPlayer().getATK());
+                }
+                cooldown = 15;
             }
         }
         cooldown++;
@@ -64,18 +68,8 @@ public abstract class Attack extends SuperSmoothMover
         turnTowards(x,y);  
         world = (MyWorld)w;
     }
-    
-    
-    public void animate() {
-        if (actCount >= 3) { // Adjust timing as needed
-            setImage(animations[imageIndex]);
-            imageIndex = (imageIndex + 1) % animations.length;
-            actCount = 0;
-        }   
-    }
-    
    
-    //public abstract void animate();
+    public abstract void animate();
     
     /**
      * Makes sure animation plays once and then removes the instance of a itself

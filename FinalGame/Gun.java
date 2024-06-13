@@ -17,7 +17,7 @@ public class Gun extends SuperSmoothMover
         gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
-        frequency = 50;
+        frequency = 40;
         actCount = 0;
     }
 
@@ -28,7 +28,7 @@ public class Gun extends SuperSmoothMover
             turnTowards(closestEnemy.getX(), closestEnemy.getY());
             if(actCount % frequency == 0){
                 //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
-                getWorld().addObject(new SlashSpecial(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
+                getWorld().addObject(new WaterSplash(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
             }
         }
         MyWorld world = (MyWorld)getWorld();
