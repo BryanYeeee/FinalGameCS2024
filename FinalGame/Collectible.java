@@ -61,23 +61,18 @@ public abstract class Collectible extends SuperSmoothMover
             }
             else{
                 pickupEffect();
+                Player p = ((MyWorld)getWorld()).getPlayer();
                 switch (myType){
                     case 0:
-                        ((MyWorld)getWorld()).getPlayer().increaseExp(1);
+                        p.increaseExp(1 + p.getEXPBuff());
                         break;
                     case 1:
-                        ((MyWorld)getWorld()).getPlayer().increaseExp(2);
+                        p.increaseExp(2 + p.getEXPBuff());
                         break;
                     case 2:
-                        ((MyWorld)getWorld()).getPlayer().increaseExp(5);
+                        p.increaseExp(5 + p.getEXPBuff());
                         break;
                 }
-                /* debug
-                int xp = ((MyWorld)getWorld()).getPlayer().getXP();
-                System.out.println(xp);
-                int level = ((MyWorld)getWorld()).getPlayer().getLevel();
-                System.out.println(level);
-                */
                 getWorld().removeObject(this);
             }
         }    

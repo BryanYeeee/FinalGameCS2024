@@ -17,6 +17,11 @@ public class UpgradeWorld extends AllWorld
     //private greenfoot.Font gameFont;
     // Text
     private SuperTextBox upgradeNotice = new SuperTextBox("CHOOSE AN UPGRADE", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
+    private SuperTextBox select0 = new SuperTextBox("SELECT", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
+    private SuperTextBox select1 = new SuperTextBox("SELECT", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
+    private SuperTextBox select2 = new SuperTextBox("SELECT", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 75), true, 750, 10, Color.BLACK);
+
+    
     // Temp Boxes
     private TempBox blur;
     private TempBox border0 = new TempBox(310, 410, transparentColor, borderColor, 10);
@@ -28,6 +33,7 @@ public class UpgradeWorld extends AllWorld
     private ArrayList<String> repeatUpgrades = new ArrayList<>(Arrays.asList("HP BUFF", "ATK BUFF", "SPD BUFF", "MAGNET", "EXP MASTERY"));
     private UpgradeBox[] currUpgrades = new UpgradeBox[3];
     private static ArrayList<String> removedUpgrades = new ArrayList<String>();
+    
     /**
      * Creates a background image of the current visual state of the given world.
      *
@@ -62,15 +68,15 @@ public class UpgradeWorld extends AllWorld
     }
 
     public void act(){
-        if(Greenfoot.mouseClicked(currUpgrades[0])){
+        if(Greenfoot.mouseClicked(border0)){
             buff(currUpgrades[0]);
             switchWorld();
         }
-        if(Greenfoot.mouseClicked(currUpgrades[1])){
+        if(Greenfoot.mouseClicked(border1)){
             buff(currUpgrades[1]);
             switchWorld();
         }
-        if(Greenfoot.mouseClicked(currUpgrades[2])){
+        if(Greenfoot.mouseClicked(border2)){
             buff(currUpgrades[2]);
             switchWorld();
         }
@@ -129,6 +135,8 @@ public class UpgradeWorld extends AllWorld
         upgrades.add(new UpgradeBox("SPDBoost.png", "SPD BUFF", new String[] {"Increases SPD by 1"}));
         upgrades.add(new UpgradeBox("images/Attacks/Trident/Trident1.png", "TRIDENT", new String[] {"Obtain the weapon", "of Poseidon."}));
         upgrades.add(new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "FLAME", new String[] {"Obtain the power", "of the blue flame."}));
+        upgrades.add(new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "WATER", new String[] {"Harness the power", "of the seas."}));
+
         ArrayList<UpgradeBox> removeableUpgrades = new ArrayList<UpgradeBox>();
         System.out.println(removedUpgrades);
         for(String s : removedUpgrades){
@@ -140,17 +148,13 @@ public class UpgradeWorld extends AllWorld
         }
         upgrades.removeAll(removeableUpgrades);
         for(int j = 0; j < upgrades.size(); j++){
-            System.out.println(upgrades.get(j));
+            System.out.println(upgrades.get(j).getName());
         }
         System.out.println("=====");
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
         for(int i = 0; i < 3; i++){
-            for(int j = 0; j < upgrades.size(); j++){
-                System.out.println(upgrades.get(j));
-            }
-            System.out.println(upgrades.size());
             int randNum =  Greenfoot.getRandomNumber(upgrades.size());
             currUpgrades[i] = upgrades.get(randNum);
             upgrades.remove(randNum); // remove the upgrade from the list so there isn't a duplicate
@@ -177,15 +181,16 @@ public class UpgradeWorld extends AllWorld
     }
 
     private void displayUpgrades(){
-        addObject(border0, 180, 500);
+        // add the border last so anywhere in the box the user clicks, it will register
         addObject(currUpgrades[0], 180, 500);
         currUpgrades[0].addToWorld(this);
-        addObject(border1, AllWorld.WORLD_WIDTH/2, 500);
+        addObject(border0, 180, 500);
         addObject(currUpgrades[1], AllWorld.WORLD_WIDTH/2, 500);
         currUpgrades[1].addToWorld(this);
-        addObject(border2, AllWorld.WORLD_WIDTH-180, 500);
+        addObject(border1, AllWorld.WORLD_WIDTH/2, 500);
         addObject(currUpgrades[2], AllWorld.WORLD_WIDTH-180, 500);
         currUpgrades[2].addToWorld(this);
+        addObject(border2, AllWorld.WORLD_WIDTH-180, 500);
     }
     // actually buff stats here
     private void buff(UpgradeBox u){
@@ -200,10 +205,24 @@ public class UpgradeWorld extends AllWorld
                 mainWorld.getPlayer().increaseHP(20);
                 break;
             case "MAGNET":
+                mainWorld.getPlayer().increasePickUpRange(20);
                 break;
             case "EXP MASTERY":
+                mainWorld.getPlayer().increaseEXPBuff(1);
                 break;
-
+            case "TRIDENT":
+                mainWorld.getGun().addAttack("Trident");
+                break;
+            case "FLAME":
+                mainWorld.getGun().addAttack("Flame");
+                break;
+            case "WATER":
+                mainWorld.getGun().addAttack("Water");
+                break;
         }
+    }
+    
+    public static void resetUpgrades(){
+        removedUpgrades = new ArrayList<String>();
     }
 }

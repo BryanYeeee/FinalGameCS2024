@@ -12,6 +12,7 @@ public class Player extends Entity
 {
     private final static int MOVEMENT_RANGE = 96; // Distance that mouse needs to be from the player in order to move
     private int pickupRange = 100;
+    private int EXPBuff = 0;
     private int myXP = 0;
     private int level = 0;
     private int speed;
@@ -86,6 +87,18 @@ public class Player extends Entity
 
     public int getLevel(){
         return level;
+    }
+    
+    public void increasePickUpRange(int amount){
+        pickupRange += amount;
+    }
+    
+    public void increaseEXPBuff(int amount){
+        EXPBuff += amount;
+    }
+    
+    public int getEXPBuff(){
+        return EXPBuff;
     }
 
 }

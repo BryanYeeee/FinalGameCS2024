@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -21,6 +22,8 @@ public class MyWorld extends AllWorld
 
     private Map map;
     private Viewport vp;
+    // key = level, returns upgrade req
+    private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
 
     /**
      * Constructor for objects of class MyWorld.
@@ -43,6 +46,18 @@ public class MyWorld extends AllWorld
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
+        
+        upgradeReq.put(0, 5);
+        upgradeReq.put(1, 10);
+        upgradeReq.put(2, 15);
+        upgradeReq.put(3, 20);
+        upgradeReq.put(4, 30);
+        upgradeReq.put(5, 40);
+        upgradeReq.put(6, 50);
+        upgradeReq.put(7, 60);
+        upgradeReq.put(8, 70);
+        upgradeReq.put(9, 80);
+        
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
     }
@@ -75,51 +90,30 @@ public class MyWorld extends AllWorld
             for(Actor a : actors){
                 removeObject(a);
             }
-            ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
-            if(horde.size() < hordeLimit){
-                addHorde();
-            }
-            if(p.getHP() <= 0){
-                removeObject(p);
-                addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
-                addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
-                ScoreTracker.readScore();
-                System.out.println(ScoreTracker.getScore());
-                System.out.println(ScoreTracker.getHighScore());
-                ScoreTracker.determineHigh();
-                ScoreTracker.writeScore();
-                gameState = 2;
-                return;
-            }
+            removeObject(p);
+            addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            ScoreTracker.readScore();
+            System.out.println(ScoreTracker.getScore());
+            System.out.println(ScoreTracker.getHighScore());
+            ScoreTracker.determineHigh();
+            ScoreTracker.writeScore();
+            UpgradeWorld.resetUpgrades();
+            gameState = 2;
+            return;
         }
     }
     
     public Player getPlayer(){
         return p;
     }
+    
+    public Gun getGun(){
+        return g;
+    }
 
     private void determineLevel(){
-        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
- 
-        if(p.getXP() == 2 && p.getLevel() == 0){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 5 && p.getLevel() == 1){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 10 && p.getLevel() == 2){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 13 && p.getLevel() == 3){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 15 && p.getLevel() == 4){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 18 && p.getLevel() == 5){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 20 && p.getLevel() == 6){
+        if(p.getXP() >= upgradeReq.get(p.getLevel())){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
