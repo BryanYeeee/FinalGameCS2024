@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Gun extends SuperSmoothMover
 {
-    private GreenfootImage gun = new GreenfootImage("gun.png");
+    private GreenfootImage gun = new GreenfootImage("TwinSwords.png");
     private int actCount;
     private int frequency; // this affects fire rate of the gun, a lower number = faster firing
     
@@ -22,6 +22,7 @@ public class Gun extends SuperSmoothMover
         setImage(gun);
         myAttacks.add("Slash");
         frequency = 40;
+        frequency = 100;
         actCount = 0;
     }
 
@@ -48,6 +49,8 @@ public class Gun extends SuperSmoothMover
                             break;
                     }
                 }
+                //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
+                getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
             }
         }
         MyWorld world = (MyWorld)getWorld();
