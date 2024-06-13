@@ -14,12 +14,12 @@ public class SharkBite extends Attack
         //this.size = size;
         //this.speed = speed;
         
-        animations = new GreenfootImage[9];
+        animations = new GreenfootImage[7];
         for(int i = 0; i < animations.length; i++) {
             animations[i] = new GreenfootImage("images/Attacks/SharkBite/SharkBite" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 10, height * 10);
+            animations[i].scale(width * 3, height * 3);
         }
         setImage(animations[0]);
         imageOne = animations[0];
