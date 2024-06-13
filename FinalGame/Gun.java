@@ -20,7 +20,7 @@ public class Gun extends SuperSmoothMover
         gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
-        myAttacks.add("Trident");
+        myAttacks.add("Slash");
         frequency = 40;
         actCount = 0;
     }

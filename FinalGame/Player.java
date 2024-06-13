@@ -15,6 +15,7 @@ public class Player extends Entity
     private int EXPBuff = 0;
     private int myXP = 0;
     private int level = 0;
+    private int weaponLevel = 0;
     private int speed;
 
     private int actCount = 0;
@@ -100,5 +101,12 @@ public class Player extends Entity
     public int getEXPBuff(){
         return EXPBuff;
     }
-
+    
+    public void increaseWeaponLevel(){
+        weaponLevel++;
+    }
+    
+    public int getWeaponLevel(){
+        return weaponLevel;
+    }
 }

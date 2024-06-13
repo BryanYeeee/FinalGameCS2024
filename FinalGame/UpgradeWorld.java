@@ -1,6 +1,7 @@
 import greenfoot.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Base code of copying prev. world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314
@@ -30,9 +31,12 @@ public class UpgradeWorld extends AllWorld
 
     // Upgrades
     private ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
-    private ArrayList<String> repeatUpgrades = new ArrayList<>(Arrays.asList("HP BUFF", "ATK BUFF", "SPD BUFF", "MAGNET", "EXP MASTERY"));
     private UpgradeBox[] currUpgrades = new UpgradeBox[3];
     private static ArrayList<String> removedUpgrades = new ArrayList<String>();
+    HashMap<Integer, UpgradeBox> swords = new HashMap<Integer, UpgradeBox>();
+    HashMap<Integer, UpgradeBox> tridents = new HashMap<Integer, UpgradeBox>();
+    HashMap<Integer, UpgradeBox> guns = new HashMap<Integer, UpgradeBox>();
+
     
     /**
      * Creates a background image of the current visual state of the given world.
@@ -128,15 +132,21 @@ public class UpgradeWorld extends AllWorld
     }
 
     private void initalizeUpgrades(){
+        // non-weapon
         upgrades.add(new UpgradeBox("magnet.png", "MAGNET", new String[] {"Increases EXP", "pickup range by 1."}));
         upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", new String[] {"Increases EXP", "gain by 30%."}));
         upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", new String[] {"Increases HP by 20"}));
         upgrades.add(new UpgradeBox("ATKBoost.png", "ATK BUFF", new String[] {"Increases ATK by 5"}));
         upgrades.add(new UpgradeBox("SPDBoost.png", "SPD BUFF", new String[] {"Increases SPD by 1"}));
-        upgrades.add(new UpgradeBox("images/Attacks/Trident/Trident1.png", "TRIDENT", new String[] {"Obtain the weapon", "of Poseidon."}));
-        upgrades.add(new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "FLAME", new String[] {"Obtain the power", "of the blue flame."}));
-        upgrades.add(new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "WATER", new String[] {"Harness the power", "of the seas."}));
 
+        //weapon
+        swords.put(0, new UpgradeBox("images/Attacks/Slash/Slash0.png", "SLASH", new String[] {"Obtain a sword."}));
+        swords.put(1, new UpgradeBox("images/Attacks/Slash/Slash1.png", "SLASH", new String[] {"Obtain a sword."}));
+
+        
+        
+        
+        
         ArrayList<UpgradeBox> removeableUpgrades = new ArrayList<UpgradeBox>();
         System.out.println(removedUpgrades);
         for(String s : removedUpgrades){
@@ -154,30 +164,41 @@ public class UpgradeWorld extends AllWorld
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
-        for(int i = 0; i < 3; i++){
-            int randNum =  Greenfoot.getRandomNumber(upgrades.size());
-            currUpgrades[i] = upgrades.get(randNum);
-            upgrades.remove(randNum); // remove the upgrade from the list so there isn't a duplicate
-            switch (i){
-                case 0:
-                    currUpgrades[i].giveCoords(180, 500);
-                    break;
-                case 1:
-                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
-                    break;
-                case 2:
-                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
-                    break;
+        if(Greenfoot.getRandomNumber(4) == 1){ // 2 non-weapon, 1 weapon
+            for(int i = 0; i < 2; i++){
+                int randNum =  Greenfoot.getRandomNumber(upgrades.size());
+                currUpgrades[i] = upgrades.get(randNum);
+                switch (i){
+                    case 0:
+                        currUpgrades[i].giveCoords(180, 500);
+                        break;
+                    case 1:
+                        currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
+                        break;
+                    case 2:
+                        currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
+                        break;
+                }
+            }
+            
+        } else { // 3 non-weapon
+            for(int i = 0; i < 3; i++){
+                int randNum =  Greenfoot.getRandomNumber(upgrades.size());
+                currUpgrades[i] = upgrades.get(randNum);
+                switch (i){
+                    case 0:
+                        currUpgrades[i].giveCoords(180, 500);
+                        break;
+                    case 1:
+                        currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
+                        break;
+                    case 2:
+                        currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
+                        break;
+                }
             }
         }
-        // For non-one time upgrades, add them back in the upgrades list
-        for(UpgradeBox u : currUpgrades){
-            removedUpgrades.add(u.getName());
-            if(repeatUpgrades.contains(u.getName())){
-                upgrades.add(u);
-                removedUpgrades.remove(u.getName());
-            }
-        }
+        
     }
 
     private void displayUpgrades(){
