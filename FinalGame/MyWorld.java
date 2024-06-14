@@ -153,7 +153,7 @@ public class MyWorld extends AllWorld
     }
 
     private void determineLevel(){
-        if(p.getXP() >= upgradeReq.get(p.getLevel())){
+        if(p.getXP() >= p.getRequiredXPForNextLevel()){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }

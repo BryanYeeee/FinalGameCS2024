@@ -16,7 +16,7 @@ public class BasicHorde extends Enemy
     private boolean isAlive = true;
     public BasicHorde(){
 
-        super(100,1, 20);
+        super(50,1, 20);
         setEntityName("basicEnemy");
         setAction("run");
         setAnimationLength(4);

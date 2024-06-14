@@ -67,50 +67,33 @@ public class UpgradeWorld extends AllWorld
 
     public void act(){
         if(Greenfoot.mouseClicked(border0)){
-            switch (currUpgrades[0].getName()){
-                case "SLASH":
-                    player.setWeapon("sword");
-                    break;
-                case "TRIDENT":
-                    player.setWeapon("trident");
-                    break;
-                case "GUN":
-                    player.setWeapon("gun");
-                    break;
-            }
-            buff(currUpgrades[0]);
-            switchWorld();
+            actLogic(currUpgrades[0]);
         }
         if(Greenfoot.mouseClicked(border1)){
-            switch (currUpgrades[0].getName()){
-                case "SLASH":
-                    player.setWeapon("sword");
-                    break;
-                case "TRIDENT":
-                    player.setWeapon("trident");
-                    break;
-                case "GUN":
-                    player.setWeapon("gun");
-                    break;
-            }
-            buff(currUpgrades[1]);
-            switchWorld();
+            actLogic(currUpgrades[1]);
         }
         if(Greenfoot.mouseClicked(border2)){
-            switch (currUpgrades[0].getName()){
-                case "SLASH":
-                    player.setWeapon("sword");
-                    break;
-                case "TRIDENT":
-                    player.setWeapon("trident");
-                    break;
-                case "GUN":
-                    player.setWeapon("gun");
-                    break;
-            }
-            buff(currUpgrades[2]);
-            switchWorld();
+            actLogic(currUpgrades[2]);
         }
+    }
+
+    private void actLogic(UpgradeBox u){
+        switch (u.getName()){
+            case "SLASH":
+                player.setWeapon("sword");
+                break;
+            case "TRIDENT":
+                player.setWeapon("trident");
+                break;
+            case "GUN":
+                player.setWeapon("gun");
+                break;
+            case "TRIDENT1": case"TRIDENT2": case "TRIDENT3": case "SLASH1": case"SLASH2": case "SLASH3": case "GUN1": case"GUN2": case "GUN3":
+                player.increaseWeaponLevel();
+                break;
+        }
+        buff(u);
+        switchWorld();
     }
 
     private void switchWorld(){
@@ -149,7 +132,7 @@ public class UpgradeWorld extends AllWorld
             actor.setRotation(0);
             actor.getImage().mirrorHorizontally();
         }
-        
+
         GreenfootImage actorImg = actor.getImage();
         int w = actorImg.getWidth();
         int h = actorImg.getHeight();
@@ -175,8 +158,8 @@ public class UpgradeWorld extends AllWorld
         swords.put(3, new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "SLASH3", new String[] {"Mastery of the", "blue flames."}));
 
         tridents.put(0, new UpgradeBox("images/Attacks/Trident/Trident0.png", "TRIDENT", new String[] {"Obtain a trident."}));
-        tridents.put(1, new UpgradeBox("images/Attacks/SharkBite/SharkBite3.png", "TRIDENT1", new String[] {"Obtain the double", "swords upgrade."}));
-        tridents.put(2, new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "TRIDENT2", new String[] {"Obtain a flame", " sword upgrade."}));
+        tridents.put(1, new UpgradeBox("images/Attacks/SharkBite/SharkBite3.png", "TRIDENT1", new String[] {"Obtain the biting", "shark upgrade."}));
+        tridents.put(2, new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "TRIDENT2", new String[] {"Obtain water", " splash upgrade."}));
         tridents.put(3, new UpgradeBox("images/Attacks/SharkSpecial/SharkSpecial3.png", "TRIDENT3", new String[] {"Predator of", "the seas."}));
 
         guns.put(0, new UpgradeBox("images/Attacks/BasicSlash/BasicSlash0.png", "GUN", new String[] {"Obtain a sword."}));
@@ -194,27 +177,9 @@ public class UpgradeWorld extends AllWorld
             currUpgrades[2] = guns.get(0);
             currUpgrades[2].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
             player.increaseWeaponLevel();
-        } else { 
+        } else if (player.getWeaponLevel() <= 3){ 
             if(Greenfoot.getRandomNumber(2) == 1){ // 50% chance to include a weapon upgrade
-                for(int i = 0; i < 2; i++){
-                    int randNum =  Greenfoot.getRandomNumber(upgrades.size());
-                    currUpgrades[i] = upgrades.get(randNum);
-                    upgrades.remove(randNum); //prevent duplicates
-                    switch (i){
-                        case 0:
-                            currUpgrades[i].giveCoords(180, 500);
-                            break;
-                        case 1:
-                            currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
-                            break;
-                        case 2:
-                            currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
-                            break;
-                    }
-                }
-                for(UpgradeBox u : currUpgrades){
-                    upgrades.add(u);
-                }
+                upgradeHelper(2);
                 // weapon
                 switch (player.getWeapon()){
                     case "sword":
@@ -228,28 +193,33 @@ public class UpgradeWorld extends AllWorld
                         break;
                 }
                 currUpgrades[2].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
-                player.increaseWeaponLevel();
             } else {
-                for(int i = 0; i < 3; i++){
-                    int randNum =  Greenfoot.getRandomNumber(upgrades.size());
-                    currUpgrades[i] = upgrades.get(randNum);
-                    upgrades.remove(randNum); //prevent duplicates
-                    switch (i){
-                        case 0:
-                            currUpgrades[i].giveCoords(180, 500);
-                            break;
-                        case 1:
-                            currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
-                            break;
-                        case 2:
-                            currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
-                            break;
-                    }
-                }
-                for(UpgradeBox u : currUpgrades){
-                    upgrades.add(u);
-                }
+                upgradeHelper(3);
             }
+        } else {
+            upgradeHelper(3);
+        }
+    }
+
+    private void upgradeHelper(int numUpgrades){
+        for(int i = 0; i < numUpgrades; i++){
+            int randNum =  Greenfoot.getRandomNumber(upgrades.size());
+            currUpgrades[i] = upgrades.get(randNum);
+            upgrades.remove(randNum); //prevent duplicates
+            switch (i){
+                case 0:
+                    currUpgrades[i].giveCoords(180, 500);
+                    break;
+                case 1:
+                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH/2, 500);
+                    break;
+                case 2:
+                    currUpgrades[i].giveCoords(AllWorld.WORLD_WIDTH-180, 500);
+                    break;
+            }
+        }
+        for(UpgradeBox u : currUpgrades){
+            upgrades.add(u);
         }
     }
 
