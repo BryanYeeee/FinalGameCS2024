@@ -66,10 +66,7 @@ public class Gun extends SuperSmoothMover
                         break;
                 }
                 //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
-<<<<<<< origin-jamison
-=======
-                getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
->>>>>>> master
+                //().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
             }
         }
         MyWorld world = (MyWorld)getWorld();

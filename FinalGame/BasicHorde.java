@@ -15,43 +15,16 @@ public class BasicHorde extends Enemy
     private int targetY;
     private boolean isAlive = true;
     public BasicHorde(){
-<<<<<<< origin-jamison
-        super(50,1, 20); // was 100
-=======
+
         super(100,1, 20);
         setEntityName("basicEnemy");
         setAction("run");
         setAnimationLength(4);
 
->>>>>>> master
         //speed = Math.random() + 1.0; // varied speed
     }
 
     public void act(){
-<<<<<<< origin-jamison
-        super.act();
-        repel();
-        if(target != null && target.getWorld() != null){
-            turnTowards(target.getX(), target.getY());
-            move(speed);
-        } else {
-            target = world.getPlayer();
-        }
-        
-        if(atkCooldown == 0){
-            Player c = (Player)getOneIntersectingObject(Player.class);
-            if(c != null && c.getWorld() != null){
-                c.decreaseHP(atk);
-                atkCooldown = 60;
-            }
-        }
-        if(atkCooldown > 0){
-            atkCooldown--;
-        }
-        if(hp <= 0){
-            world.addObject(new XP(0), getX(), getY());
-            ScoreTracker.increaseScore(10);
-=======
         if(isAlive){
             super.act();
             repel();
@@ -84,9 +57,9 @@ public class BasicHorde extends Enemy
             super.act();
             if(imageIndex==7){
                 world.addObject(new XP(), getX(), getY());
->>>>>>> master
-            world.removeObject(this);
-            return;
+                ScoreTracker.increaseScore(10);
+                getWorld().removeObject(this);
+                return;
             }
             
         }
