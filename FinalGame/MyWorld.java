@@ -41,7 +41,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 20;
+        hordeLimit = 200;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
