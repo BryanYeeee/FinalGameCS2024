@@ -40,7 +40,7 @@ public class MyWorld extends AllWorld
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
-        xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.RED);
+        xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         addObject(xp, 200, 25);
         
         // addObject(new Tile("",false,10),-55,675);
