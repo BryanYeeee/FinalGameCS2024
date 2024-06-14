@@ -27,6 +27,8 @@ public class MyWorld extends AllWorld
     // key = level, returns upgrade req
     private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
 
+    private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
+
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -79,11 +81,19 @@ public class MyWorld extends AllWorld
                 addHorde();
             }
             int currScore = ScoreTracker.getScore();
+            if(score.getWorld() != null){
+                removeObject(score);
+            }
             // size of the box that hold the score depends on the # of digits
             if(currScore < 1000){
-                addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK), 900, 100);
+                score = new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
+                addObject(score, 900, 100);
             } else if(currScore >= 1000){
-                addObject(new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 140, 5, Color.BLACK), 900, 100);
+                score = new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 140, 5, Color.BLACK);
+                addObject(score, 900, 100);
+            } else if (currScore >= 10000){
+                score = new SuperTextBox(Integer.toString(currScore), bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 180, 5, Color.BLACK);
+                addObject(score, 900, 100);            
             }
             if(p.getHP() <= 0){ // GAME OVER
                 gameState = 1;
