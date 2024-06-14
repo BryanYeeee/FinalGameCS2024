@@ -30,12 +30,14 @@ public class Player extends Entity
     private int imageIndex;
     protected String entityName = "player";
     protected char dirChar = 'L';
+    private MyWorld world;
     
-    public Player(){
+    public Player(MyWorld world){
         
         super(300000,2,45);
         setEntityName("player");
         setAction("run");
+        this.world = world;
 
         speed = 2;
     }
@@ -88,6 +90,7 @@ public class Player extends Entity
         }
     }
     
+    /*
     public int getMaxXPForLevel() {
         // Return the max XP required for the current level
         switch(level) {
@@ -98,12 +101,12 @@ public class Player extends Entity
             default: return 100; // Default value for higher levels
         }
     }
-
+    */
     
     public void increaseExp(int amount){
         myXP += amount;
-        //world.updateXPBar();
-        //world.determineLevel(); //was private before
+        world.updateXPBar();
+        world.determineLevel();
     }
     
     
@@ -114,14 +117,18 @@ public class Player extends Entity
     
     public void increaseLevel(){
         level++;
-        //myXP = 0;
-        //world.updateXPBar();
+        myXP = 0;
+        world.updateXPBar();
     }
     
     
     public int getRequiredXPForNextLevel() {
+        if(level == 0) {
+            return 0;
+        }
         // Define the logic to calculate required XP for the next level
-        return 10 + level * 15;  // Example logic, modify as needed
+        return 5 + level * 10;
+        //return 5 + level * 15;  // Example logic, modify as needed
     }
 
     public int getLevel(){

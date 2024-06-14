@@ -39,31 +39,32 @@ public class MyWorld extends AllWorld
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
         SimulationFont.initalizeFont("BigSpace.ttf");
         setPaintOrder(SuperTextBox.class,TempBox.class,SuperStatBar.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
-        p = new Player();
+        p = new Player(this);
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 200;
+        hordeLimit = 20;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
-        //xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
-        //addObject(xp, 200, 25);
+        xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
+        addObject(xp, 200, 25);
         
+        //Change values for actual game
         upgradeReq.put(0, 0);
-        upgradeReq.put(1, 5);
-        upgradeReq.put(2, 10);
-        upgradeReq.put(3, 15);
-        upgradeReq.put(4, 20);
-        upgradeReq.put(5, 30);
-        upgradeReq.put(6, 40);
-        upgradeReq.put(7, 50);
-        upgradeReq.put(8, 60);
-        upgradeReq.put(9, 70);
-        upgradeReq.put(10, 80);
+        upgradeReq.put(1, 15);
+        upgradeReq.put(2, 25);
+        upgradeReq.put(3, 35);
+        upgradeReq.put(4, 45);
+        upgradeReq.put(5, 55);
+        upgradeReq.put(6, 65);
+        upgradeReq.put(7, 75);
+        upgradeReq.put(8, 85);
+        upgradeReq.put(9, 95);
+        upgradeReq.put(10, 105);
         
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
@@ -140,23 +141,26 @@ public class MyWorld extends AllWorld
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
+    */
     
     public void updateXPBar() {
         int maxXP = p.getRequiredXPForNextLevel();
         xp.setMaxVal(maxXP);
         xp.update(p.getXP());
     }
-    */
+    
     
     public Gun getGun(){
         return g;
     }
 
-    private void determineLevel(){
+    
+    public void determineLevel(){
         if(p.getXP() >= upgradeReq.get(p.getLevel())){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
+    
 
     private void addHorde(){
         if(Greenfoot.getRandomNumber(2) == 0){
@@ -182,10 +186,12 @@ public class MyWorld extends AllWorld
         return map.getTileMap();
     }
 
+    /*
     public void debug() {
         System.out.println("lx: " + vp.lx());
         System.out.println("ly: " + vp.ly());
         System.out.println("rx: " + vp.rx());
         System.out.println("ry: " + vp.ry());
     }
+    */
 }

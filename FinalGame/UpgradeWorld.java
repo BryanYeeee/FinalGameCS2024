@@ -82,7 +82,7 @@ public class UpgradeWorld extends AllWorld
             switchWorld();
         }
         if(Greenfoot.mouseClicked(border1)){
-            switch (currUpgrades[0].getName()){
+            switch (currUpgrades[1].getName()){
                 case "SLASH":
                     player.setWeapon("sword");
                     break;
@@ -97,7 +97,7 @@ public class UpgradeWorld extends AllWorld
             switchWorld();
         }
         if(Greenfoot.mouseClicked(border2)){
-            switch (currUpgrades[0].getName()){
+            switch (currUpgrades[2].getName()){
                 case "SLASH":
                     player.setWeapon("sword");
                     break;
@@ -175,8 +175,8 @@ public class UpgradeWorld extends AllWorld
         swords.put(3, new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "SLASH3", new String[] {"Mastery of the", "blue flames."}));
 
         tridents.put(0, new UpgradeBox("images/Attacks/Trident/Trident0.png", "TRIDENT", new String[] {"Obtain a trident."}));
-        tridents.put(1, new UpgradeBox("images/Attacks/SharkBite/SharkBite3.png", "TRIDENT1", new String[] {"Obtain the double", "swords upgrade."}));
-        tridents.put(2, new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "TRIDENT2", new String[] {"Obtain a flame", " sword upgrade."}));
+        tridents.put(1, new UpgradeBox("images/Attacks/SharkBite/SharkBite3.png", "TRIDENT1", new String[] {"Obtain the shark", "bite upgrade."}));
+        tridents.put(2, new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "TRIDENT2", new String[] {"Obtain a powerful", " splash upgrade."}));
         tridents.put(3, new UpgradeBox("images/Attacks/SharkSpecial/SharkSpecial3.png", "TRIDENT3", new String[] {"Predator of", "the seas."}));
 
         guns.put(0, new UpgradeBox("images/Attacks/BasicSlash/BasicSlash0.png", "GUN", new String[] {"Obtain a sword."}));
