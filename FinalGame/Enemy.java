@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends Entity
 {
+    protected Player target;
+
+    protected int targetX;
+    protected int targetY;
     protected int atkCooldown; // so character doesn't insta die when hit
     
     public Enemy(int hp, int speed, int atk){

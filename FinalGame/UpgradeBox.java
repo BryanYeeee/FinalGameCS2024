@@ -24,8 +24,8 @@ public class UpgradeBox extends Actor
     private Color textColor = new Color(250, 249, 246);
     
     // Coordinates
-    private int xCoord;
-    private int yCoord;
+    private int xCoord = 0;
+    private int yCoord = 0;
     
     /**
      * Constructor for Upgrade Box
@@ -37,21 +37,26 @@ public class UpgradeBox extends Actor
      * @param x             The x-coordinate of the box
      * @param y             The y-coordinate of the box
      */
-    public UpgradeBox(String imagePath, String name, String description, int x, int y){
-        //upgradeImage = new GreenfootImage(imagePath);
+    public UpgradeBox(String imagePath, String name, String[] description){
+        upgradeImage = new GreenfootImage(imagePath);
         upgradeName = name;
-        upgradeNameBox = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 150, 0, borderColor);
-        upgradeDescriptionBox = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 0, borderColor);
-        xCoord = x;
-        yCoord = y;
+        upgradeNameBox = new SuperTextBox(name, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 30), true, 200, 5, borderColor);
+        upgradeDescriptionBox = new SuperTextBox(description, transparentColor, textColor, SimulationFont.loadCustomFont("BigSpace.ttf", 22), true, 200, 5, borderColor);
         background.scale(300, 400);
         setImage(background);
     }
     
-    public void addedToWorld(World w){
+    public void giveCoords(int x, int y){
+        xCoord = x;
+        yCoord = y;
+    }
+    
+    public void addToWorld(UpgradeWorld w){
         // Add text to the world depending on my x and y coords
         w.addObject(upgradeNameBox, xCoord, yCoord-150);
-        w.addObject(upgradeDescriptionBox, xCoord, yCoord);
+        w.addObject(upgradeDescriptionBox, xCoord, yCoord + 40);
+        w.addObject(new TempBox(70, 70, transparentColor,borderColor,5), xCoord, yCoord-50);
+        w.addObject(new UpgradeImage(upgradeImage), xCoord, yCoord - 50);
     }
     
     public String getName(){
