@@ -14,7 +14,7 @@ public class Gun extends SuperSmoothMover
     private int actCount;
     private int frequency; // this affects fire rate of the gun, a lower number = faster firing
 
-    private String myAttack = "";
+    private String myAttack = "SLASH";
     public Gun(){
         gun.scale(40, 40);
         gun.rotate(-45);

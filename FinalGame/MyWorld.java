@@ -22,6 +22,8 @@ public class MyWorld extends AllWorld
 
     private Map map;
     private Viewport vp;
+    private SuperStatBar xp;
+
     // key = level, returns upgrade req
     private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
 
@@ -36,18 +38,20 @@ public class MyWorld extends AllWorld
         // Call the superclass constructor with the constants
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
         SimulationFont.initalizeFont("BigSpace.ttf");
-        setPaintOrder(SuperTextBox.class,TempBox.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
+        setPaintOrder(SuperTextBox.class,TempBox.class,SuperStatBar.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
         p = new Player();
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 20;
+        hordeLimit = 200;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
+        //xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
+        //addObject(xp, 200, 25);
         
         upgradeReq.put(0, 0);
         upgradeReq.put(1, 5);
@@ -118,6 +122,31 @@ public class MyWorld extends AllWorld
     public Player getPlayer(){
         return p;
     }
+    
+    /*
+    //was private before
+    public void determineLevel(){
+        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
+        if(p.getXP() == 10 && p.getLevel() == 0){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 25 && p.getLevel() == 1){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 40 && p.getLevel() == 2){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+        if(p.getXP() == 70 && p.getLevel() == 3){
+            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
+        }
+    }
+    
+    public void updateXPBar() {
+        int maxXP = p.getRequiredXPForNextLevel();
+        xp.setMaxVal(maxXP);
+        xp.update(p.getXP());
+    }
+    */
     
     public Gun getGun(){
         return g;

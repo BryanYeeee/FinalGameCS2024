@@ -15,7 +15,8 @@ public class BasicHorde extends Enemy
     private int targetY;
     private boolean isAlive = true;
     public BasicHorde(){
-        super(50,1, 20);
+
+        super(100,1, 20);
         setEntityName("basicEnemy");
         setAction("run");
         setAnimationLength(4);
@@ -56,8 +57,8 @@ public class BasicHorde extends Enemy
             super.act();
             if(imageIndex==7){
                 world.addObject(new XP(0), getX(), getY());
-                world.removeObject(this);
                 ScoreTracker.increaseScore(10);
+                getWorld().removeObject(this);
                 return;
             }
             
