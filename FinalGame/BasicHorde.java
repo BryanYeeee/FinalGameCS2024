@@ -56,7 +56,7 @@ public class BasicHorde extends Enemy
             action="death";
             super.act();
             if(imageIndex==7){
-                world.addObject(new XP(), getX(), getY());
+                world.addObject(new XP(0), getX(), getY());
                 ScoreTracker.increaseScore(10);
                 getWorld().removeObject(this);
                 return;
