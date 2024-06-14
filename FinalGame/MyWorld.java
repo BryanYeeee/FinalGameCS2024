@@ -47,16 +47,17 @@ public class MyWorld extends AllWorld
         map = new Map();
         vp = new Viewport(this);
         
-        upgradeReq.put(0, 5);
-        upgradeReq.put(1, 10);
-        upgradeReq.put(2, 15);
-        upgradeReq.put(3, 20);
-        upgradeReq.put(4, 30);
-        upgradeReq.put(5, 40);
-        upgradeReq.put(6, 50);
-        upgradeReq.put(7, 60);
-        upgradeReq.put(8, 70);
-        upgradeReq.put(9, 80);
+        upgradeReq.put(0, 0);
+        upgradeReq.put(1, 5);
+        upgradeReq.put(2, 10);
+        upgradeReq.put(3, 15);
+        upgradeReq.put(4, 20);
+        upgradeReq.put(5, 30);
+        upgradeReq.put(6, 40);
+        upgradeReq.put(7, 50);
+        upgradeReq.put(8, 60);
+        upgradeReq.put(9, 70);
+        upgradeReq.put(10, 80);
         
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);

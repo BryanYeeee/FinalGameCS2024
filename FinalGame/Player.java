@@ -17,10 +17,12 @@ public class Player extends Entity
     private int level = 0;
     private int weaponLevel = 0;
     private int speed;
+    
 
     private int actCount = 0;
 
     private String action = "run";
+    private String myWeapon = "";
 
     //Animation Variables
     private int animationDelay = 30;
@@ -31,7 +33,7 @@ public class Player extends Entity
     
     public Player(){
         
-        super(200,2,45);
+        super(300,2,45);
         setEntityName("player");
         setAction("run");
         
@@ -108,5 +110,13 @@ public class Player extends Entity
     
     public int getWeaponLevel(){
         return weaponLevel;
+    }
+    
+    public void setWeapon(String weapon){
+        myWeapon = weapon;
+    }
+    
+    public String getWeapon(){
+        return myWeapon;
     }
 }

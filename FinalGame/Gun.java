@@ -13,14 +13,13 @@ public class Gun extends SuperSmoothMover
     private GreenfootImage gun = new GreenfootImage("TwinSwords.png");
     private int actCount;
     private int frequency; // this affects fire rate of the gun, a lower number = faster firing
-    
-    private ArrayList<String> myAttacks = new ArrayList<String>();
+
+    private String myAttack = "";
     public Gun(){
         gun.scale(40, 40);
         gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
-        myAttacks.add("Slash");
         frequency = 40;
         frequency = 100;
         actCount = 0;
@@ -32,25 +31,41 @@ public class Gun extends SuperSmoothMover
         if(closestEnemy != null){
             turnTowards(closestEnemy.getX(), closestEnemy.getY());
             if(actCount % frequency == 0){
-                for(String s : myAttacks){
-                    System.out.println(s);
-                    switch (s){
-                        case "Slash":
-                            getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
-                            break;
-                        case "Flame":
-                            getWorld().addObject(new SlashSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
-                            break;
-                        case "Trident":
-                            getWorld().addObject(new Trident(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
-                            break;
-                        case "Water":
-                            getWorld().addObject(new WaterSplash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
-                            break;
-                    }
+                switch (myAttack){
+                    case "TRIDENT":
+                        getWorld().addObject(new Trident(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "TRIDENT1":
+                        getWorld().addObject(new SharkBite(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "TRIDENT2":
+                        getWorld().addObject(new WaterSplash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "TRIDENT3":
+                        getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "SLASH":
+                        getWorld().addObject(new BasicSlash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "SLASH1":
+                        getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "SLASH2":
+                        getWorld().addObject(new FireSlash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "SLASH3":
+                        getWorld().addObject(new SlashSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+                        break;
+                    case "GUN":
+                        break;
+                    case "GUN1":
+                        break;
+                    case "GUN2":
+                        break;
+                    case "GUN3":
+                        break;
                 }
                 //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
-                getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
             }
         }
         MyWorld world = (MyWorld)getWorld();
@@ -84,8 +99,8 @@ public class Gun extends SuperSmoothMover
         }
         return nearestEnemy;
     }
-    
-    public void addAttack(String attack){
-        myAttacks.add(attack);
+
+    public void setAttack(String attack){
+        myAttack = attack;
     }
 }

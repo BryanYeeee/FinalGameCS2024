@@ -15,7 +15,7 @@ public class BasicHorde extends Enemy
     private int targetY;
     
     public BasicHorde(){
-        super(100,1, 20);
+        super(50,1, 20); // was 100
         //speed = Math.random() + 1.0; // varied speed
     }
 
@@ -33,7 +33,7 @@ public class BasicHorde extends Enemy
             Player c = (Player)getOneIntersectingObject(Player.class);
             if(c != null && c.getWorld() != null){
                 c.decreaseHP(atk);
-                atkCooldown = 30;
+                atkCooldown = 60;
             }
         }
         if(atkCooldown > 0){
