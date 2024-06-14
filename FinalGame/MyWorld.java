@@ -19,6 +19,7 @@ public class MyWorld extends AllWorld
     
     private Map map;
     private Viewport vp;
+    private SuperStatBar xp;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -39,6 +40,9 @@ public class MyWorld extends AllWorld
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
+        xp = new SuperStatBar();
+        
+        
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
     }
