@@ -38,6 +38,33 @@ public class Sprite
                 frames.put(key, new GreenfootImage("images/" + entityName +  "/" + action + "/" + dirChar + imageIndex + ".png"));
             }
         }
+        entityName = "basicEnemy";
+        for(int dirIndex = 0; dirIndex < 2; dirIndex++){ 
+            if(dirIndex == 0){
+                dirChar = 'L';
+            }
+            else if(dirIndex == 1){
+                dirChar = 'R';
+            }
+            for(int imageIndex = 0; imageIndex < 4; imageIndex++){
+                action="run";
+                String key = entityName + "_" + action + "_" + dirChar + "_" + imageIndex;
+                //System.out.println(key);
+                frames.put(key, new GreenfootImage("images/" + entityName +  "/" + action + "/" + dirChar + imageIndex + ".png"));
+            }
+            for(int imageIndex = 0; imageIndex < 1; imageIndex++){
+                action="hit";
+                String key = entityName + "_" + action + "_" + dirChar + "_" + imageIndex;
+                //System.out.println(key);
+                frames.put(key, new GreenfootImage("images/" + entityName +  "/" + action + "/" + dirChar + imageIndex + ".png"));
+            }
+            for(int imageIndex = 0; imageIndex < 8; imageIndex++){
+                action="death";
+                String key = entityName + "_" + action + "_" + dirChar + "_" + imageIndex;
+                //System.out.println(key);
+                frames.put(key, new GreenfootImage("images/" + entityName +  "/" + action + "/" + dirChar + imageIndex + ".png"));
+            }
+        }
     }
 
     public static GreenfootImage getFrame(String key){

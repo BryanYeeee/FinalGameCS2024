@@ -19,7 +19,7 @@ public abstract class Entity extends SuperSmoothMover
 
     //Animation Variables
     protected int animationDelay=1;
-    protected int animationLength;
+    protected int animationLength=1;
     protected int imageIndex;
     protected String entityName;
     protected char dirChar;
@@ -48,23 +48,14 @@ public abstract class Entity extends SuperSmoothMover
     }
     
     public void animate() {
+        calculateAnimationTimes();
         //frames only change at intervals of animationDelay
         if (actCount % animationDelay != 0) {
             return;
         }
         
         //Preset animationLengths per action, and delay
-        if (action.equals("run")) {
-            animationDelay = 7;
-            animationLength = 8;
-        } else if (action.equals("idle")) {
-            animationDelay = 50;
-            animationLength = 2;
-        }
-        else if(action.equals("attack")){
-            animationLength = 4;
-        }
-
+        
         
         imageIndex = (imageIndex + 1) % animationLength;
         String key = entityName + "_" + action + "_" + dirChar + "_" + imageIndex;
@@ -80,6 +71,8 @@ public abstract class Entity extends SuperSmoothMover
         setImage(currentImage);
 
     }
+    
+    public abstract void calculateAnimationTimes();
     
     public void setTransparency(int amount){
         getImage().setTransparency(amount);
@@ -97,6 +90,10 @@ public abstract class Entity extends SuperSmoothMover
     
     public void setDirChar(char dirChar){
         this.dirChar = dirChar;
+    }
+    
+    public void setAnimationLength (int animationLength){
+        this.animationLength = animationLength;
     }
     
     /**
