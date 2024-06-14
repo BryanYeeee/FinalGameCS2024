@@ -99,21 +99,25 @@ public class Player extends Entity
         }
     }
 
+    
     public void increaseExp(int amount){
         myXP += amount;
-        world.updateXPBar();
-        world.determineLevel(); //was private before
+        //world.updateXPBar();
+        //world.determineLevel(); //was private before
     }
+    
     
     public int getXP(){
         return myXP;
     }
 
+    
     public void increaseLevel(){
         level++;
-        myXP = 0;
-        world.updateXPBar();
+        //myXP = 0;
+        //world.updateXPBar();
     }
+    
     
     public int getRequiredXPForNextLevel() {
         // Define the logic to calculate required XP for the next level
