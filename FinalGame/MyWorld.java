@@ -154,9 +154,15 @@ public class MyWorld extends AllWorld
         return g;
     }
 
+
     
     public void determineLevel(){
         if(p.getXP() >= upgradeReq.get(p.getLevel())){
+
+/*
+    private void determineLevel(){
+        if(p.getXP() >= p.getRequiredXPForNextLevel()){
+*/
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }

@@ -123,7 +123,7 @@ public class Player extends Entity
     
     
     public int getRequiredXPForNextLevel() {
-        if(level == 0) {
+        if(level == 0){
             return 0;
         }
         // Define the logic to calculate required XP for the next level
