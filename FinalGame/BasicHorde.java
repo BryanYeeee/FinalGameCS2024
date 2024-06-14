@@ -13,41 +13,56 @@ public class BasicHorde extends Enemy
 
     private int targetX;
     private int targetY;
-    
+    private boolean isAlive = true;
     public BasicHorde(){
         super(100,1, 20);
+        setEntityName("basicEnemy");
+        setAction("run");
+        setAnimationLength(4);
+
         //speed = Math.random() + 1.0; // varied speed
     }
 
     public void act(){
-        super.act();
-        repel();
-        if(target != null && target.getWorld() != null){
-            turnTowards(target.getX(), target.getY());
-            move(speed);
-        } else {
-            target = world.getPlayer();
-        }
-        
-        if(atkCooldown == 0){
-            Player c = (Player)getOneIntersectingObject(Player.class);
-            if(c != null && c.getWorld() != null){
-                c.decreaseHP(atk);
-                atkCooldown = 30;
+        if(isAlive){
+            super.act();
+            repel();
+            if(target != null && target.getWorld() != null){
+                turnTowards(target.getX(), target.getY());
+                move(speed);            
+            } else {
+                target = world.getPlayer();
+            }
+
+            if(atkCooldown == 0){
+                Player c = (Player)getOneIntersectingObject(Player.class);
+                if(c != null && c.getWorld() != null){
+                    c.decreaseHP(atk);
+                    atkCooldown = 30;
+                }
+            }
+            if(atkCooldown > 0){
+                atkCooldown--;
+            }
+
+            if(hp <= 0){
+                isAlive=false;
+                imageIndex=2;
             }
         }
-        if(atkCooldown > 0){
-            atkCooldown--;
-        }
-        
-        
-        if(hp <= 0){
-            world.addObject(new XP(), getX(), getY());
+        else{
+            
+            action="death";
+            super.act();
+            if(imageIndex==7){
+                world.addObject(new XP(), getX(), getY());
             world.removeObject(this);
             return;
+            }
+            
         }
     }
-    
+
     /**
      * Modifed from the "work in progress" - Repel Pedestrian Experiment.
      * Gathers all enemies that are close and repels to prevent stacking.

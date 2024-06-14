@@ -16,9 +16,9 @@ public class Tile extends SuperSmoothMover
         this.passable = passable;
         
         getImage().scale(TILE_LENGTH,TILE_LENGTH);
-        // GreenfootImage image = new GreenfootImage(imgURL);
-        // image.scale(TILE_WIDTH, TILE_HEIGHT);
-        // setImage(image);
+         GreenfootImage image = new GreenfootImage(imgURL);
+         image.scale(TILE_LENGTH, TILE_LENGTH);
+         setImage(image);
         l = new Label(i,50);
     }
     

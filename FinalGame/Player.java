@@ -32,7 +32,7 @@ public class Player extends Entity
         super(100,2,45);
         setEntityName("player");
         setAction("run");
-        
+
         speed = 2;
     }
 
@@ -53,6 +53,18 @@ public class Player extends Entity
         pickupItems();
     }
 
+    public void calculateAnimationTimes(){
+        if (action.equals("run")) {
+            animationDelay = 7;
+            animationLength = 8;
+        } else if (action.equals("idle")) {
+            animationDelay = 50;
+            animationLength = 2;
+        }
+        else if(action.equals("attack")){
+            animationLength = 4;
+        } 
+    }
     
     public int getPlayerX(){
         return getX();
