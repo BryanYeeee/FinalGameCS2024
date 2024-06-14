@@ -67,6 +67,7 @@ public class Gun extends SuperSmoothMover
                 }
                 //getWorld().addObject(new Bullet(closestEnemy.getX(), closestEnemy.getY()),getX(), getY());
                 //().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
+
             }
         }
         MyWorld world = (MyWorld)getWorld();
