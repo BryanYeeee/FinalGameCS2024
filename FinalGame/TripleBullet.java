@@ -1,4 +1,4 @@
-/*
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -7,6 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
+
 public class TripleBullet extends Attack
 {
     
@@ -26,6 +27,10 @@ public class TripleBullet extends Attack
         imageOne = animations[0];
     }
     
+    public void animate() {
+        
+    }
+    
     /**
      * Act - do whatever the TripleBullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -33,6 +38,7 @@ public class TripleBullet extends Attack
     public void act()
     {
         // Add your action code here.
+
     }
+    
 }
-*/
