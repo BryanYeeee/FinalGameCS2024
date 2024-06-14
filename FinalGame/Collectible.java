@@ -23,11 +23,22 @@ public abstract class Collectible extends SuperSmoothMover
     protected Player player;
     protected double pickupSpeed = -10;
     protected double deltaY;
+    protected int myType; // 0=green, 1=yellow, 2=red
     
     public Collectible() {
-        this(20, -1);
+        this(20, -1, -1);
     }
-    public Collectible(int size, int despawnSeconds) {
+    public Collectible(int size, int despawnSeconds, int type) {
+        myType = type;
+        if(myType == 0){
+            setImage("greenXP.png");
+        } else if (myType == 1){
+            setImage("yellowXP.png");
+            getImage().setTransparency(125);
+        } else if (myType == 2){
+            setImage("redXP.png");
+            getImage().setTransparency(125);
+        }
         setSize(size);
         this.despawnSeconds = despawnSeconds;
         pickup = false;
@@ -50,13 +61,18 @@ public abstract class Collectible extends SuperSmoothMover
             }
             else{
                 pickupEffect();
-                ((MyWorld)getWorld()).getPlayer().increaseExp(1);
-                /* debug
-                int xp = ((MyWorld)getWorld()).getPlayer().getXP();
-                System.out.println(xp);
-                int level = ((MyWorld)getWorld()).getPlayer().getLevel();
-                System.out.println(level);
-                */
+                Player p = ((MyWorld)getWorld()).getPlayer();
+                switch (myType){
+                    case 0:
+                        p.increaseExp(1 + p.getEXPBuff());
+                        break;
+                    case 1:
+                        p.increaseExp(2 + p.getEXPBuff());
+                        break;
+                    case 2:
+                        p.increaseExp(5 + p.getEXPBuff());
+                        break;
+                }
                 getWorld().removeObject(this);
             }
         }    
