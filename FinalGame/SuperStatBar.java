@@ -322,6 +322,8 @@ public class SuperStatBar extends Actor
             }
         }
     }
+    
+    
 
     /**
      * Set the maximum value - for StatBar objects with a single bar only.

@@ -91,6 +91,7 @@ public class UpgradeWorld extends AllWorld
             case "TRIDENT1": case"TRIDENT2": case "TRIDENT3": case "SLASH1": case"SLASH2": case "SLASH3": case "GUN1": case"GUN2": case "GUN3":
                 player.increaseWeaponLevel();
                 break;
+
         }
         buff(u);
         switchWorld();
