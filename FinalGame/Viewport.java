@@ -43,7 +43,7 @@ public class Viewport extends Actor
             // System.out.println((t.getX()-xMove)+ " " + xMove + " | " +(t.getY()-yMove) + " " +yMove);
             t.setLocation(t.getX()-xMove, t.getY()-yMove);
         }
-            System.out.println("========");
+            //System.out.println("========");
         
         renderMap();
     }
@@ -61,7 +61,7 @@ public class Viewport extends Actor
                 }else{
                     map[i][j].rml();
                     w.removeObject(map[i][j]);
-                    System.out.println(i + " " +j);
+                    //System.out.println(i + " " +j);
                 }
             }
         }

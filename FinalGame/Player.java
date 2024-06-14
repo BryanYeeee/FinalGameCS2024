@@ -120,6 +120,9 @@ public class Player extends Entity
     
     
     public int getRequiredXPForNextLevel() {
+        if(level == 0){
+            return 0;
+        }
         // Define the logic to calculate required XP for the next level
         return 10 + level * 15;  // Example logic, modify as needed
     }
