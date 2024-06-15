@@ -30,6 +30,16 @@ public class BasicBullet extends Attack
     public void act()
     {
         move(6);
-        super.act();
+        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        if(enemy != null && enemy.getAlive() == true){
+            enemy.takeDamage(world.getPlayer().getATK());
+            getWorld().removeObject(this);
+            return;
+        }
+
+        if(isAtEdge()){
+            getWorld().removeObject(this);
+            return;
+        }
     }
 }

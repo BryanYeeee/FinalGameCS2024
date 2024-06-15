@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class ChargeShot here.
@@ -40,6 +41,15 @@ public class ChargeShot extends Attack
     public void act()
     {
         move(6);
-        super.act();
+        animate();
+        ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
+        for(Enemy e : enemies) {
+            e.takeDamage(world.getPlayer().getATK() + 6);
+        }
+        if(isAtEdge()){
+            getWorld().removeObject(this);
+            return;
+        }
+        finishAnimation();
     }
 }

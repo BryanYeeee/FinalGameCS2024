@@ -13,7 +13,7 @@ public class BasicHorde extends Enemy
 
     private int targetX;
     private int targetY;
-    private boolean isAlive = true;
+    //private boolean isAlive = true;
     public BasicHorde(){
 
         super(50,1, 20);
@@ -133,5 +133,9 @@ public class BasicHorde extends Enemy
                 object.setLocation(objectX + (int)(pushAmount * unitX), objectY + (int)(pushAmount * unitY));
             }
         }
+    }
+    
+    public boolean getAlive() {
+        return isAlive;
     }
 }

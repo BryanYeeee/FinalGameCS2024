@@ -13,7 +13,7 @@ public class Enemy extends Entity
     protected int targetX;
     protected int targetY;
     protected int atkCooldown; // so character doesn't insta die when hit
-    
+    protected boolean isAlive = true;
     public Enemy(int hp, int speed, int atk){
         super(hp, speed, atk);
         
@@ -43,5 +43,9 @@ public class Enemy extends Entity
 
         setImage(currentImage);
         hp -= damage;
+    }
+    
+    public boolean getAlive() {
+        return isAlive;
     }
 }

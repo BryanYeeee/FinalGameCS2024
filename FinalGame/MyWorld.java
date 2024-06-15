@@ -43,7 +43,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 200;
+        hordeLimit = 30;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
@@ -51,7 +51,7 @@ public class MyWorld extends AllWorld
         map = new Map();
         vp = new Viewport(this);
         xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
-        addObject(xp, 200, 25);
+        addObject(xp, 225, 50);
         
         //Change values for actual game
         upgradeReq.put(0, 0);

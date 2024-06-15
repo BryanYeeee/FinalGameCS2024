@@ -18,7 +18,7 @@ public class SlashSpecial extends Attack
             animations[i] = new GreenfootImage("images/Attacks/SlashSpecial/SlashSpecial" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 5, height * 5);
+            animations[i].scale(width * 11/2, height * 11/2);
         }
         setImage(animations[0]);
         imageOne = animations[0];

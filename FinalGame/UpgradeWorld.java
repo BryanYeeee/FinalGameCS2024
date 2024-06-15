@@ -163,10 +163,10 @@ public class UpgradeWorld extends AllWorld
         tridents.put(2, new UpgradeBox("images/Attacks/WaterSplash/WaterSplash1.png", "TRIDENT2", new String[] {"Obtain water", " splash upgrade."}));
         tridents.put(3, new UpgradeBox("images/Attacks/SharkSpecial/SharkSpecial3.png", "TRIDENT3", new String[] {"Predator of", "the seas."}));
 
-        guns.put(0, new UpgradeBox("images/Attacks/BasicSlash/BasicSlash0.png", "GUN", new String[] {"Obtain a sword."}));
-        guns.put(1, new UpgradeBox("images/Attacks/Slash/Slash0.png", "GUN1", new String[] {"Obtain the double", "swords upgrade."}));
-        guns.put(2, new UpgradeBox("images/Attacks/FireSlash/FireSlash0.png", "GUN2", new String[] {"Obtain a flame", " sword upgrade."}));
-        guns.put(3, new UpgradeBox("images/Attacks/SlashSpecial/SlashSpecial1.png", "GUN3", new String[] {"Mastery of the", "blue flames."}));
+        guns.put(0, new UpgradeBox("images/BasicBullet.png", "GUN", new String[] {"Obtain a gun."}));
+        guns.put(1, new UpgradeBox("images/TripleBullets.png", "GUN1", new String[] {"Obtain the triple", "shot upgrade."}));
+        guns.put(2, new UpgradeBox("images/QuintupleBullets.png", "GUN2", new String[] {"Obtain a quintuple", " shot upgrade."}));
+        guns.put(3, new UpgradeBox("images/Attacks/ChargeShot/ChargeShot0.png", "GUN3", new String[] {"enlightenment of", "the true weapon"}));
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
