@@ -28,7 +28,7 @@ public class MyWorld extends AllWorld
     private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
 
     private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
-
+    
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -84,6 +84,10 @@ public class MyWorld extends AllWorld
      * The act method of the game world. Defeat enemies, add and display score, end the game.
      */
     public void act(){
+        actCount++;
+        if(actCount == 1) {
+            sm.playSound("GameBGM");
+        }
         if(gameState == 0){
             ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
             if(horde.size() < hordeLimit){
@@ -116,6 +120,8 @@ public class MyWorld extends AllWorld
             }
             removeObject(p);
             addObject(new TempBox(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, bgColor), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            sm.stopSoundLoop("GameBGM");
+            sm.playSound("Gameover");
             addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
             ScoreTracker.readScore();
             System.out.println(ScoreTracker.getScore());

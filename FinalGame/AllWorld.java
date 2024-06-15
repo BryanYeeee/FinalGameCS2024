@@ -18,7 +18,7 @@ public class AllWorld extends World
     protected Color transparentColor = new Color(0, 0, 0, 0);
     protected Color textColor = new Color(250, 249, 246);
     
-    protected SoundManager sm;
+    protected static SoundManager sm;
     
     /**
      * Constructor for AllWorld, simliar to a normal world constructor but without the boolean bounded. 
@@ -33,5 +33,28 @@ public class AllWorld extends World
     {    
         super(width, height, cellSize, bounded);
         SoundManager.initSounds();
+    }
+    
+    /**
+     * Play music using the sound manager.
+     */
+    public void started() {
+        sm.resumeSounds();
+    }
+    
+    /**
+     * Stop music using the sound manager.
+     */
+    public void stopped() {
+        sm.pauseSounds();
+    }
+    
+    /**
+     * Gets an instance of SoundManager.
+     * 
+     * @return SoundManager The instance of SoundManager.
+     */
+    public SoundManager getSM() {
+        return sm;
     }
 }

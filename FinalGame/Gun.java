@@ -48,6 +48,7 @@ public class Gun extends SuperSmoothMover
                         getWorld().addObject(new WaterSplash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "TRIDENT3":
+                        frequency = 80;
                         sm.playSound("SharkSpecial");
                         setImage("MaxTridentWeapon.png");
                         getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);

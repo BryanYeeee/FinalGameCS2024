@@ -136,8 +136,4 @@ public class BasicHorde extends Enemy
             }
         }
     }
-    
-    public boolean getAlive() {
-        return isAlive;
-    }
 }

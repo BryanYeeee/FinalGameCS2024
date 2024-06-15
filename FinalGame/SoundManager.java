@@ -30,7 +30,7 @@ public class SoundManager
         sounds.put("SharkBite", new Sound("SharkBite.mp3", 30, false));
         sounds.put("WaterSplash", new Sound("WaterSplash.mp3", 30, false));
         sounds.put("SharkSpecial", new Sound("SharkSpecial.mp3", 30, false));
-        //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
+        sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
         //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
         sounds.put("Gameover", new Sound("Gameover.mp3", 30, false));
         /*
@@ -49,7 +49,7 @@ public class SoundManager
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
         */
         // Looped
-        sounds.put("GameBGM", new Sound("GameBGM.mp3", 25, true));
+        sounds.put("GameBGM", new Sound("GameBGM.mp3", 15, true));
         /*
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
