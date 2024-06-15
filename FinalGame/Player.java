@@ -57,7 +57,10 @@ public class Player extends Entity
                 turnTowards(m.getX(), m.getY());
                 if(getX() != m.getX() || getY() != m.getY()){
                     double angle = Math.toRadians(getPreciseRotation());
-                    ((MyWorld)getWorld()).updateVP((int)Math.round(Math.cos(angle))*speed, (int)Math.round(Math.sin(angle))*speed);
+                    int xMove = (int)Math.round(Math.cos(angle))*speed;
+                    int yMove = (int)Math.round(Math.sin(angle))*speed;
+                    Wall w = (Wall)getOneObjectAtOffset(xMove,yMove,Wall.class);
+                    if(w == null) ((MyWorld)getWorld()).updateVP(xMove, yMove);
                 }
             }
         }

@@ -11,9 +11,10 @@ comment3.target=void\ act()
 comment4.params=
 comment4.target=Player\ getPlayer()
 comment5.params=
-comment5.target=void\ determineLevel()
+comment5.target=Gun\ getGun()
+comment5.text=\r\n\ \ \ \ //was\ private\ before\r\n\ \ \ \ public\ void\ determineLevel(){\r\n\ \ \ \ \ \ \ \ //\ if\ you\ want\ faster\ testing\ of\ the\ upgrade\ world,\ change\ first\ req.\ of\ the\ if\ statment\ to\ something\ lower\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 10\ &&\ p.getLevel()\ \=\=\ 0){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 25\ &&\ p.getLevel()\ \=\=\ 1){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 40\ &&\ p.getLevel()\ \=\=\ 2){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 70\ &&\ p.getLevel()\ \=\=\ 3){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n\ \ \ \ \r\n\ \ \ \ public\ void\ updateXPBar()\ {\r\n\ \ \ \ \ \ \ \ int\ maxXP\ \=\ p.getRequiredXPForNextLevel();\r\n\ \ \ \ \ \ \ \ xp.setMaxVal(maxXP);\r\n\ \ \ \ \ \ \ \ xp.update(p.getXP());\r\n\ \ \ \ }\r\n
 comment6.params=
-comment6.target=void\ updateXPBar()
+comment6.target=void\ determineLevel()
 comment7.params=
 comment7.target=void\ addHorde()
 comment8.params=

@@ -10,4 +10,6 @@ comment3.target=double\ getDistance(greenfoot.Actor)
 comment4.params=
 comment4.target=Enemy\ getNearestEnemy()
 comment4.text=\r\n\ Code\ from\ Gevater_Tod4711\ in\ forum\ page\:\r\n\ https\://www.greenfoot.org/topics/4911\r\n
-numComments=5
+comment5.params=attack
+comment5.target=void\ setAttack(java.lang.String)
+numComments=6
