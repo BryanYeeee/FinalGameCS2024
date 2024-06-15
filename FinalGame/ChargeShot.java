@@ -17,8 +17,6 @@ public class ChargeShot extends Attack
      */
     public ChargeShot(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[8];
         for(int i = 0; i < animations.length; i++) {
@@ -52,7 +50,7 @@ public class ChargeShot extends Attack
         for(Enemy e : enemies) {
             e.takeDamage(world.getPlayer().getATK() + 6);
         }
-        if(isAtEdge()){
+        if(isTouching(Wall.class)){
             getWorld().removeObject(this);
             return;
         }

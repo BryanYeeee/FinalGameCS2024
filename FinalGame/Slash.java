@@ -16,8 +16,6 @@ public class Slash extends Attack
      */
     public Slash(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[6];
         for(int i = 0; i < animations.length; i++) {

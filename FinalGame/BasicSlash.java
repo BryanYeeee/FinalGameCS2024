@@ -16,8 +16,6 @@ public class BasicSlash extends Attack
      */
     public BasicSlash(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[8];
         for(int i = 0; i < animations.length; i++) {

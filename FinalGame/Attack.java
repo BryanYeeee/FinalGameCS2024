@@ -45,15 +45,6 @@ public abstract class Attack extends SuperSmoothMover
         animate();
         
         if(cooldown >= 60) {
-            /*
-            Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
-            if(enemy != null){
-                enemy.takeDamage(world.getPlayer().getATK());
-                
-                cooldown = 0;
-            }
-            */
-            
             ArrayList<Enemy> enemies = (ArrayList<Enemy>)getIntersectingObjects(Enemy.class);
             for(Enemy e : enemies) {
                 if(this instanceof SlashSpecial || this instanceof Lightning || this instanceof SharkSpecial || this instanceof ChargeShot) {

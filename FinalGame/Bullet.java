@@ -53,7 +53,7 @@ public class Bullet extends SuperSmoothMover
             return;
         }
 
-        if(isAtEdge()){
+        if(isTouching(Wall.class)){
             getWorld().removeObject(this);
             return;
         }

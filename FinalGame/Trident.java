@@ -16,8 +16,6 @@ public class Trident extends Attack
      */
     public Trident(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[11];
         for(int i = 0; i < animations.length; i++) {

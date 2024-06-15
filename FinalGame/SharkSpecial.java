@@ -16,8 +16,6 @@ public class SharkSpecial extends Attack
      */
     public SharkSpecial(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[18];
         for(int i = 0; i < animations.length; i++) {

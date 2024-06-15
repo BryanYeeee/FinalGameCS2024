@@ -112,22 +112,6 @@ public class Player extends Entity
     }
     
     /**
-     * Return the XP needed for each level.
-     * 
-     * @return int  The XP needed.
-     */
-    public int getMaxXPForLevel() {
-        // Return the max XP required for the current level
-        switch(level) {
-            case 0: return 10;
-            case 1: return 25;
-            case 2: return 40;
-            case 3: return 70;
-            default: return 100; // Default value for higher levels
-        }
-    }
-    
-    /**
      * Increase my exp by a certain amount.
      * 
      * @param amount    The amount to increase.

@@ -16,8 +16,6 @@ public class WaterSplash extends Attack
      */
     public WaterSplash(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[7];
         for(int i = 0; i < animations.length; i++) {

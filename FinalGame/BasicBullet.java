@@ -18,10 +18,8 @@ public class BasicBullet extends Attack
      */
     public BasicBullet(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
-        image = new GreenfootImage("BasicBullet.png");
         
+        image = new GreenfootImage("BasicBullet.png");
         setImage(image);
     }
     
@@ -45,7 +43,7 @@ public class BasicBullet extends Attack
             return;
         }
 
-        if(isAtEdge()){
+        if(isTouching(Wall.class)){
             getWorld().removeObject(this);
             return;
         }

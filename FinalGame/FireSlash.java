@@ -16,8 +16,6 @@ public class FireSlash extends Attack
      */
     public FireSlash(int x, int y) {
         super(x, y);
-        //this.size = size;
-        //this.speed = speed;
         
         animations = new GreenfootImage[12];
         for(int i = 0; i < animations.length; i++) {
