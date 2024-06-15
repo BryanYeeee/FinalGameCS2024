@@ -2,15 +2,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TripleBullet here.
+ * BasicSlash is part of the gun weapon catagory.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 
 public class TripleBullet extends Attack
 {
-    
+    /**
+     * Constructor of BasicSlash.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public TripleBullet(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -26,14 +31,14 @@ public class TripleBullet extends Attack
         setImage(animations[0]);
         imageOne = animations[0];
     }
-    
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         
     }
-    
     /**
-     * Act - do whatever the TripleBullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method.
      */
     public void act()
     {

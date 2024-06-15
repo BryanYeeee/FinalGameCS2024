@@ -10,10 +10,8 @@ public class Tile extends SuperSmoothMover
 {
     public static final int TILE_LENGTH = 128;
     Label l;
-    boolean passable;
     
-    public Tile(String imgURL, boolean passable, int i) {
-        this.passable = passable;
+    public Tile(String imgURL, int i) {
         
         getImage().scale(TILE_LENGTH,TILE_LENGTH);
          GreenfootImage image = new GreenfootImage(imgURL);

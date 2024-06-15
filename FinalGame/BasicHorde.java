@@ -2,10 +2,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class BasicHorde here.
+ * BasicHorde is a low-tier enemy.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H, Jeff G, Bryan Y
  */
 public class BasicHorde extends Enemy
 {
@@ -24,6 +23,9 @@ public class BasicHorde extends Enemy
         //speed = Math.random() + 1.0; // varied speed
     }
 
+    /**
+     * The act method, get a target and move towards it.
+     */
     public void act(){
         if(isAlive){
             super.act();

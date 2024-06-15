@@ -1,14 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class FireSlash here.
+ * FireSlash is part of the sword weapon catagory.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class FireSlash extends Attack
 {
-    
+    /**
+     * Constructor of FireSlash.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public FireSlash(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -24,7 +29,9 @@ public class FireSlash extends Attack
         setImage(animations[0]);
         imageOne = animations[0];
     }
-    
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         if (actCount >= 3) { // Adjust timing as needed
             setImage(animations[imageIndex]);
@@ -34,8 +41,7 @@ public class FireSlash extends Attack
     }
     
     /**
-     * Act - do whatever the FireSlash wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method.
      */
     public void act()
     {

@@ -1,15 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BasicBullet here.
+ * BasicBullet is part of the gun weapon catagory.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class BasicBullet extends Attack
 {
     private GreenfootImage image;
     
+    /**
+     * Constructor of BasicBullet.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public BasicBullet(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -19,13 +25,15 @@ public class BasicBullet extends Attack
         setImage(image);
     }
     
+    /**
+     * The default animation is a basic bullet.
+     */
     public void animate() {
         
     }
     
     /**
-     * Act - do whatever the BasicBullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method, move a certain speed.
      */
     public void act()
     {

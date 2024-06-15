@@ -1,13 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Attack here.
+ * Slash is part of the sword weapon catagory.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class Slash extends Attack
 {
+    /**
+     * Constructor of Slash.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public Slash(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -23,7 +29,9 @@ public class Slash extends Attack
         setImage(animations[0]);
         imageOne = animations[0];
     }
-    
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         if (actCount >= 4) { // Adjust timing as needed
             setImage(animations[imageIndex]);
@@ -31,7 +39,9 @@ public class Slash extends Attack
             actCount = 0;
         }   
     }
-
+    /**
+     * The act method.
+     */
     public void act() {
         super.act();
     }

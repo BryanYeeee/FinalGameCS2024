@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 
 /**
- * Write a description of class Bullet here.
+ * Bullet is what gun-type weapons shoot.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z, Jamison H
+ * @version June 2024
  */
 public class Bullet extends SuperSmoothMover
 {
@@ -16,6 +16,12 @@ public class Bullet extends SuperSmoothMover
     
     MyWorld world;
 
+    /**
+     * Constructor of Bullet.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public Bullet(int x, int y){
         this.x = x;
         this.y = y;
@@ -23,11 +29,19 @@ public class Bullet extends SuperSmoothMover
         setImage(bullet);
     }
 
+    /**
+     * Once added to world, turn towards an enemy.
+     * 
+     * @param w The world I am added to.
+     */
     public void addedToWorld(World w){
         turnTowards(x,y);  
         world = (MyWorld)w;
     }
 
+    /**
+     * The act method, damage enemies hit.
+     */
     public void act()
     {
         move(4);
