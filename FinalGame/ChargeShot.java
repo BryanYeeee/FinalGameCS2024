@@ -1,14 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ChargeShot here.
+ * ChargeShot is a random upgrade obtained.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class ChargeShot extends Attack
 {
-    
+    /**
+     * Constructor of ChargeShot.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public ChargeShot(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -24,7 +29,9 @@ public class ChargeShot extends Attack
         setImage(animations[0]);
         imageOne = animations[0];
     }
-    
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         if (actCount >= 10) { // Adjust timing as needed
             setImage(animations[imageIndex]);
@@ -34,8 +41,7 @@ public class ChargeShot extends Attack
     }
     
     /**
-     * Act - do whatever the ChargeShot wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method, move a certain speed.
      */
     public void act()
     {

@@ -1,17 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Collectible here.
+ * Collectable is a class that holds the animation and properites of pickup-able items.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G, Jamison H
+ * @version June 2024
  */
 public abstract class Collectible extends SuperSmoothMover
 {
-    /**
-     * Act - do whatever the Collectible wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
 
     protected int actCount=0;
     
@@ -24,10 +20,19 @@ public abstract class Collectible extends SuperSmoothMover
     protected double pickupSpeed = -10;
     protected double deltaY;
     protected int myType; // 0=green, 1=yellow, 2=red
-    
+    /**
+     * Default constructor of Collectible. Sets no type.
+     */
     public Collectible() {
         this(20, -1, -1);
     }
+    /**
+     * Constructor of Collectible.
+     * 
+     * @param size              The size of the image.
+     * @param despawnSeconds    The time to despawn.
+     * @param type              The type of the collectible (colour).
+     */
     public Collectible(int size, int despawnSeconds, int type) {
         myType = type;
         if(myType == 0){
@@ -43,6 +48,9 @@ public abstract class Collectible extends SuperSmoothMover
         this.despawnSeconds = despawnSeconds;
         pickup = false;
     }
+    /**
+     * The act method, animate my pickup and add exp to the player.
+     */
     public void act()
     {
         actCount++;
@@ -80,6 +88,7 @@ public abstract class Collectible extends SuperSmoothMover
     
     /**
      * Set the size of the item image.
+     * 
      * @param size  The width and height of the image.
      */
     public void setSize(int size){
@@ -102,11 +111,20 @@ public abstract class Collectible extends SuperSmoothMover
             hoverSpeed=hoverSpeed*-1;
         }
     }
+    
+    /**
+     * Set the player picking me up, set myself to be picked up.
+     * 
+     * @param player    The player in the game world.
+     */
     public void pickup(Player player) {
         this.player = player;
         pickup = true;
     }
     
+    /**
+     * All subclasses must have a pickup effect.
+     */
     public abstract void pickupEffect();
     
     /**

@@ -2,9 +2,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
- * Write a description of class MyWorld here.
+ * MyWorld is the main game world.
  * 
- * @author (your name) 
+ * @author Bryan Y, Jamison H, Ainson Z 
  * @version (a version number or a date)
  */
 public class MyWorld extends AllWorld
@@ -31,7 +31,6 @@ public class MyWorld extends AllWorld
 
     /**
      * Constructor for objects of class MyWorld.
-     * 
      */
     public MyWorld()
     {    
@@ -53,27 +52,24 @@ public class MyWorld extends AllWorld
         //xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         //addObject(xp, 200, 25);
         
-        upgradeReq.put(0, 0);
-        upgradeReq.put(1, 5);
-        upgradeReq.put(2, 10);
-        upgradeReq.put(3, 15);
-        upgradeReq.put(4, 20);
-        upgradeReq.put(5, 30);
-        upgradeReq.put(6, 40);
-        upgradeReq.put(7, 50);
-        upgradeReq.put(8, 60);
-        upgradeReq.put(9, 70);
-        upgradeReq.put(10, 80);
-        
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
     }
+    
+    /**
+     * Updates the ViewPort (scrolling map) depending on the x and y direction required
+     * 
+     * @param xMove How far the map scrolls to the left.
+     * @param yMove How far the map scrolls to the right.
+     */
 
     public void updateVP(int xMove, int yMove) {
         vp.move(xMove, yMove);
-
     }
 
+    /**
+     * The act method of the game world. Defeat enemies, add and display score, end the game.
+     */
     public void act(){
         if(gameState == 0){
             ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
@@ -113,12 +109,16 @@ public class MyWorld extends AllWorld
             System.out.println(ScoreTracker.getHighScore());
             ScoreTracker.determineHigh();
             ScoreTracker.writeScore();
-            UpgradeWorld.resetUpgrades();
             gameState = 2;
             return;
         }
     }
     
+    /**
+     * Gets the player that resides in the game world
+     * 
+     * @return Player   The player in the game world.
+     */
     public Player getPlayer(){
         return p;
     }
@@ -147,7 +147,11 @@ public class MyWorld extends AllWorld
         xp.update(p.getXP());
     }
     */
-    
+    /**
+     * Gets the gun/weapon residing in the game world.
+     * 
+     * @return Gun  The gun/weapon in the game world.
+     */
     public Gun getGun(){
         return g;
     }
@@ -177,7 +181,11 @@ public class MyWorld extends AllWorld
             addObject(new BasicHorde(), randX, randY);
         }
     }
-
+    /**
+     * Gets the tiles used in the background map.
+     * 
+     * @return Tile[][] The tiles of the map.
+     */
     public Tile[][] getMap() {
         return map.getTileMap();
     }

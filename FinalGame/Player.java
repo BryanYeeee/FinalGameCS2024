@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Player here.
  * 
- * @author (your name) 
+ * @author Jamison H, Jeff G, Bryan Y, Ainson Z
  * @version (a version number or a date)
  */
 public class Player extends Entity
@@ -31,6 +31,9 @@ public class Player extends Entity
     protected String entityName = "player";
     protected char dirChar = 'L';
     
+    /**
+     * Constructor of Player
+     */
     public Player(){
         
         super(300000,2,45);
@@ -40,6 +43,9 @@ public class Player extends Entity
         speed = 2;
     }
 
+    /**
+     * The act method, update the map scrolling depending on the cursor location.
+     */
     public void act()
     {
         super.act();
@@ -57,6 +63,9 @@ public class Player extends Entity
         pickupItems();
     }
 
+    /**
+     * Calculate my animation times based on actions.
+     */
     public void calculateAnimationTimes(){
         if (action.equals("run")) {
             animationDelay = 7;
@@ -70,10 +79,19 @@ public class Player extends Entity
         } 
     }
     
+    /**
+     * Get my x-coordinate.
+     * 
+     * @return int  The x-coordinate.
+     */
     public int getPlayerX(){
         return getX();
     }
-
+    /**
+     * Get my y-coordinate.
+     * 
+     * @return int  The y-coordinate.
+     */
     public int getPlayerY(){
         return getY();
     }
@@ -88,6 +106,11 @@ public class Player extends Entity
         }
     }
     
+    /**
+     * Return the XP needed for each level.
+     * 
+     * @return int  The XP needed.
+     */
     public int getMaxXPForLevel() {
         // Return the max XP required for the current level
         switch(level) {
@@ -98,27 +121,41 @@ public class Player extends Entity
             default: return 100; // Default value for higher levels
         }
     }
-
     
+    /**
+     * Increase my exp by a certain amount.
+     * 
+     * @param amount    The amount to increase.
+     */
     public void increaseExp(int amount){
         myXP += amount;
         //world.updateXPBar();
         //world.determineLevel(); //was private before
     }
     
-    
+    /**
+     * Get my current amount of XP.
+     * 
+     * @return int  My XP.
+     */
     public int getXP(){
         return myXP;
     }
 
-    
+    /**
+     * Increase my level by one.
+     */
     public void increaseLevel(){
         level++;
         //myXP = 0;
         //world.updateXPBar();
     }
     
-    
+    /**
+     * Get the XP needed for the next level.
+     * 
+     * @return int  The XP needed.
+     */
     public int getRequiredXPForNextLevel() {
         if(level == 0){
             return 0;
@@ -127,34 +164,70 @@ public class Player extends Entity
         return 10 + level * 15;  // Example logic, modify as needed
     }
 
+    /**
+     * Get my current level.
+     * 
+     * @return int The current level.
+     */
     public int getLevel(){
         return level;
     }
     
+    /**
+     * Increase my pickup range of objects by a certain amount.
+     * 
+     * @param amount    The amount to increase.
+     */
     public void increasePickUpRange(int amount){
         pickupRange += amount;
     }
-    
+    /**
+     * Increase my rate of exp gains by a certain amount.
+     * 
+     * @param amount    The amount to increase.
+     */
     public void increaseEXPBuff(int amount){
         EXPBuff += amount;
     }
     
+    /**
+     * Get my rate of exp gains.
+     * 
+     * @return int    My exp gain rate.
+     */
     public int getEXPBuff(){
         return EXPBuff;
     }
     
+    /**
+     * Increase my weapon level by one.
+     */
     public void increaseWeaponLevel(){
         weaponLevel++;
     }
     
+    /**
+     * Get my weapon level.
+     * 
+     * @return int    My weapon level.
+     */
     public int getWeaponLevel(){
         return weaponLevel;
     }
-    
+    /**
+     * Set my weapon.
+     * 
+     * @param weapon    The weapon to be set to.
+     */
     public void setWeapon(String weapon){
         myWeapon = weapon;
     }
     
+    /**
+     * Get the current weapon.
+     * 
+     * @return String   The current weapon.
+     */
     public String getWeapon(){
         return myWeapon;
     }

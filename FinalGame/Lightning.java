@@ -1,14 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Lightning here.
+ * Lightning is a random obtainable upgrade.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class Lightning extends Attack
 {
-    
+    /**
+     * Constructor of Lightning.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public Lightning(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -24,7 +29,9 @@ public class Lightning extends Attack
         setImage(animations[0]);
         imageOne = animations[0];
     }
-    
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         if (actCount >= 5) { // Adjust timing as needed
             setImage(animations[imageIndex]);

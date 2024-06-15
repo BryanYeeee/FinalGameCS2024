@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class AllWorld here.
+ * AllWorld holds all constants and traits relating to all worlds in the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z, Jamison H
+ * @version June 2024
  */
 public class AllWorld extends World
 {
@@ -22,10 +22,10 @@ public class AllWorld extends World
      * Constructor for AllWorld, simliar to a normal world constructor but without the boolean bounded. 
      * This constructor will initalize sounds and values for fading between worlds.
      * 
-     * @param width     The width of the world
-     * @param height    The height of the world
-     * @param cellSize  The size of each cell of the world, typically 1
-     * @param bounded   Whether or not the world has boundaries or not
+     * @param width     The width of the world.
+     * @param height    The height of the world.
+     * @param cellSize  The size of each cell of the world, typically 1.
+     * @param bounded   Whether or not the world has boundaries or not.
      */
     public AllWorld(int width, int height, int cellSize, boolean bounded)
     {    

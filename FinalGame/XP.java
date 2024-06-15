@@ -1,17 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class XP here.
+ * XP is what the players uses to get upgrades.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version June 2024
  */
 public class XP extends Collectible
 {
+    /**
+     * Constructor of XP
+     * 
+     * @param type  The type of orb I am.
+     */
     public XP(int type){
         super(20,60,type);
     }
     
+    /**
+     * Effect is default to the main pickup effect.
+     */
     public void pickupEffect(){
         
     }

@@ -1,11 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A box to contain a panel for a character upgrade. <p>
- * Contains name, image, description
+ * A box to contain a panel for a character upgrade.
+ * Contains name, image, description.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H.
+ * @version June 2024
  */
 public class UpgradeBox extends Actor
 {
@@ -28,14 +28,12 @@ public class UpgradeBox extends Actor
     private int yCoord = 0;
     
     /**
-     * Constructor for Upgrade Box
-     * Gets a desired location to place texts and images
+     * Constructor for Upgrade Box.
+     * Gets a desired location to place texts and images.
      * 
      * @param imagePath     The file path of the upgrade's image
      * @param name          The name of the upgrade
      * @param description   The description of the upgrade
-     * @param x             The x-coordinate of the box
-     * @param y             The y-coordinate of the box
      */
     public UpgradeBox(String imagePath, String name, String[] description){
         upgradeImage = new GreenfootImage(imagePath);
@@ -46,11 +44,22 @@ public class UpgradeBox extends Actor
         setImage(background);
     }
     
+    /**
+     * Obtain given coords for my placement in the world.
+     * 
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     */
     public void giveCoords(int x, int y){
         xCoord = x;
         yCoord = y;
     }
     
+    /**
+     * Display the box in the given world.
+     * 
+     * @param w The world to be displayed in.
+     */
     public void addToWorld(UpgradeWorld w){
         // Add text to the world depending on my x and y coords
         w.addObject(upgradeNameBox, xCoord, yCoord-150);
@@ -59,6 +68,11 @@ public class UpgradeBox extends Actor
         w.addObject(new UpgradeImage(upgradeImage), xCoord, yCoord - 50);
     }
     
+    /**
+     * Get the name of my upgrade.
+     * 
+     * @return String   The name of my upgrade.
+     */
     public String getName(){
         return upgradeName;
     }

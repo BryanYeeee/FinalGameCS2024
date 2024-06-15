@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Attack here.
+ * Attack holds all the user's possible attacks and their animations.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public abstract class Attack extends SuperSmoothMover
 {
@@ -24,7 +24,12 @@ public abstract class Attack extends SuperSmoothMover
     protected int y;
     
     protected MyWorld world;
-    
+    /**
+     * Constructor of Attack. Reset act count and obtain the coordinates which I will look towards.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public Attack(int x, int y) {
         actCount = 0;
         this.x = x;
@@ -32,8 +37,7 @@ public abstract class Attack extends SuperSmoothMover
     }
 
     /**
-     * Act - do whatever the Attack wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method of Attack. Animate and deal damage to enemies.
      */
     public void act()
     {
@@ -64,13 +68,21 @@ public abstract class Attack extends SuperSmoothMover
         finishAnimation();
     }
     
+    /**
+     * Once added to World, turn towards the given coordinates.
+     * 
+     * @param w The world which I was added to.
+     */
     public void addedToWorld(World w){
         if((this instanceof Slash) || (this instanceof SlashSpecial) || (this instanceof Trident) || (this instanceof WaterSplash) || (this instanceof ChargeShot) || (this instanceof BasicSlash) || (this instanceof FireSlash) || (this instanceof BasicBullet)) {
             turnTowards(x, y);
         }
         world = (MyWorld)w;
     }
-   
+    
+    /**
+     * Each attack must implement their own animation.
+     */
     public abstract void animate();
     
     /**

@@ -11,7 +11,7 @@ import java.io.IOException;
  * Link: https://www.greenfoot.org/topics/65058/0
  * 
  * @author crissty21, and modified by Jeff G and Jamison H
- * @version April 2024
+ * @version June 2024
  */
 public class SimulationFont extends Actor
 {
@@ -35,6 +35,8 @@ public class SimulationFont extends Actor
     }
     /**
      * Utility method to initalize the font of a world.
+     * 
+     * @param path  The file path of the font.
      */
     public static void initalizeFont(String path){
         File f = new File(path);

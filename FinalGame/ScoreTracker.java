@@ -9,6 +9,9 @@ import java.io.IOException;
 /**
  * Keeps track of current score and decides whether to update the highscore.
  * The save file only tracks the high score.
+ * 
+ * @author Jamison H
+ * @version June 2024
  */
 public class ScoreTracker extends Actor
 {
@@ -17,6 +20,9 @@ public class ScoreTracker extends Actor
     private static int highScore;
     private static Scanner readScan;
 
+    /**
+     * Read the highscore in the save file.
+     */
     public static void readScore(){
         try{
             readScan = new Scanner (new File(saveFile));
@@ -25,7 +31,9 @@ public class ScoreTracker extends Actor
             System.out.println("File Not Found");
         }
     }
-    
+    /**
+     * Write a new highscore in the save file if higher than previous.
+     */
     public static void writeScore(){
         try{
             FileWriter out = new FileWriter(saveFile);
@@ -39,7 +47,7 @@ public class ScoreTracker extends Actor
     /**
      * Determines whether there is a new high score, sets the new high score if present.
      * 
-     * @return      True if new highscore, false otherwise.  
+     * @return boolean  True if new highscore, false otherwise.  
      */
     public static boolean determineHigh(){
         if(currScore > highScore){
@@ -49,22 +57,43 @@ public class ScoreTracker extends Actor
         return false;
     }
 
+    /**
+     * Add to the current score.
+     * 
+     * @param amount    The amount to add to the score.
+     */
     public static void increaseScore(int amount){
         currScore += amount;
     }
 
+    /**
+     * Resets the current score.
+     */
     public static void resetScore(){
         currScore = 0;
     }
 
+    /**
+     * Resets the high score.
+     */
     public static void resetHighScore(){
         highScore = 0;
     }
 
+    /**
+     * Get the current score.
+     * 
+     * @return int  The current score.
+     */
     public static int getScore(){
         return currScore;
     }
 
+    /**
+     * Get the high score.
+     * 
+     * @return int  The high score.
+     */
     public static int getHighScore(){
         return highScore;
     }

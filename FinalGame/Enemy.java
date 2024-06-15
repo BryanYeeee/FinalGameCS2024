@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Enemy is the player's main entity to kill and gain score, XP.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y, Jeff G
+ * @version June 2024
  */
 public class Enemy extends Entity
 {
@@ -14,11 +14,21 @@ public class Enemy extends Entity
     protected int targetY;
     protected int atkCooldown; // so character doesn't insta die when hit
     
+    /**
+     * Constructor of Enemy.
+     * 
+     * @param hp    My HP.
+     * @param speed My speed.
+     * @param atk   My ATK.
+     */
     public Enemy(int hp, int speed, int atk){
         super(hp, speed, atk);
         
     }
     
+    /**
+     * Calculate my animation time based on actions.
+     */
     public void calculateAnimationTimes(){
         if (action.equals("run")) {
             animationDelay = 12;

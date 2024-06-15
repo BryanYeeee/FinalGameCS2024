@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The sprite class is in charge of initializing the prisoner and guard sprites
+ * The sprite class is in charge of initializing the player sprite.
  * 
  * @author Jeff G
  * @version April 2024
@@ -17,11 +17,16 @@ public class Sprite
     private static int imageIndex = 0;
     private static Map<String, GreenfootImage> frames = new HashMap<>();
 
+    /**
+     * Constructor of Sprite.
+     */
     public Sprite()
     {
-
     }
 
+    /**
+     * Determine
+     */
     public static void init(){
         entityName = "player";
         for(int dirIndex = 0; dirIndex < 2; dirIndex++){ 
@@ -67,6 +72,9 @@ public class Sprite
         }
     }
 
+    /**
+     * 
+     */
     public static GreenfootImage getFrame(String key){
         if (frames.containsKey(key)) {
             return frames.get(key);

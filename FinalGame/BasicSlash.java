@@ -1,14 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BasicSlash here.
+ * BasicSlash is part of the sword weapon catagory.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version June 2024
  */
 public class BasicSlash extends Attack
 {
-    
+    /**
+     * Constructor of BasicSlash.
+     * 
+     * @param x The x-coordinate to look towards.
+     * @param y The y-coordinate to look towards.
+     */
     public BasicSlash(int x, int y) {
         super(x, y);
         //this.size = size;
@@ -25,6 +30,9 @@ public class BasicSlash extends Attack
         imageOne = animations[0];
     }
     
+    /**
+     * Animate my attack.
+     */
     public void animate() {
         if (actCount >= 4) { // Adjust timing as needed
             setImage(animations[imageIndex]);
@@ -34,8 +42,7 @@ public class BasicSlash extends Attack
     }
     
     /**
-     * Act - do whatever the BasicSlash wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method.
      */
     public void act()
     {

@@ -1,9 +1,9 @@
 import greenfoot.*;
 
 /**
- * Viewport class to generate the world for the player's screen
+ * Viewport class to generate the world for the player's screen.
  * 
- * @author 
+ * @author Modified by Bryan Y
  * @version January 2024
  */
 public class Viewport extends Actor
@@ -12,10 +12,10 @@ public class Viewport extends Actor
     private MyWorld w;
     
     /**
-     * Constructor for the ViewPort
+     * Constructor for the ViewPort.
      * 
-     * @param       width of the world
-     * @param       height of the world
+     * @param       width of the world.
+     * @param       height of the world.
      */
     public Viewport(MyWorld w){
         this.w = w;
@@ -27,10 +27,10 @@ public class Viewport extends Actor
     }
     
     /**
-     * Method to move the render of the world when the player moves
+     * Method to move the render of the world when the player moves.
      * 
-     * @param addX      total movement in x direction
-     * @param addY      total movement in y direction
+     * @param addX      total movement in x direction.
+     * @param addY      total movement in y direction.
      */
     public void move(int xMove, int yMove){
         lx+=xMove;
@@ -48,6 +48,9 @@ public class Viewport extends Actor
         renderMap();
     }
     
+    /**
+     * Add the map to the world.
+     */
     public void renderMap() {
         Tile[][] map = w.getMap();
         for(int i = 0; i < map.length; i++){

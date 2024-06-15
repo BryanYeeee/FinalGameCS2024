@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * Base code of copying prev. world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314
+ * The upgrade world that contains weapon, user, stat upgrades. <p>
+ * Base code of copying previous world's background taken from danpost's Pause World class - https://www.greenfoot.org/scenarios/7314 <p>
+ * 
+ * @author Jamison H.
+ * @version June 2024
  */
 public class UpgradeWorld extends AllWorld
 {
@@ -27,15 +31,16 @@ public class UpgradeWorld extends AllWorld
     // Upgrades
     private ArrayList<UpgradeBox> upgrades = new ArrayList<UpgradeBox>();
     private UpgradeBox[] currUpgrades = new UpgradeBox[3];
-    private static ArrayList<String> removedUpgrades = new ArrayList<String>();
     HashMap<Integer, UpgradeBox> swords = new HashMap<Integer, UpgradeBox>();
     HashMap<Integer, UpgradeBox> tridents = new HashMap<Integer, UpgradeBox>();
     HashMap<Integer, UpgradeBox> guns = new HashMap<Integer, UpgradeBox>();
 
     /**
-     * Creates a background image of the current visual state of the given world.
+     * Constructor for UpgradeWorld, copies the main world background, adds blur, adds upgrades.
      *
-     * @param world the given world whose visual state is to be duplicated in the background of this world
+     * @param world The main world whose visual state is to be duplicated in the background of this world.
+     * @param level The level of the player in the main world.
+     * @param p     The player in the main world.
      */
     public UpgradeWorld(MyWorld world, int level, Player p){    
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
@@ -65,6 +70,9 @@ public class UpgradeWorld extends AllWorld
         displayUpgrades();
     }
 
+    /**
+     * The act method of UpgradeWorld, swap worlds when user clicks on a box.
+     */
     public void act(){
         if(Greenfoot.mouseClicked(border0)){
             actLogic(currUpgrades[0]);
@@ -294,9 +302,5 @@ public class UpgradeWorld extends AllWorld
                 mainWorld.getGun().setAttack("GUN3");
                 break;
         }
-    }
-
-    public static void resetUpgrades(){
-        removedUpgrades = new ArrayList<String>();
     }
 }
