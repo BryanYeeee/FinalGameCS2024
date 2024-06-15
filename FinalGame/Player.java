@@ -90,30 +90,15 @@ public class Player extends Entity
         }
     }
     
-    /*
-    public int getMaxXPForLevel() {
-        // Return the max XP required for the current level
-        switch(level) {
-            case 0: return 10;
-            case 1: return 25;
-            case 2: return 40;
-            case 3: return 70;
-            default: return 100; // Default value for higher levels
-        }
-    }
-    */
-    
     public void increaseExp(int amount){
         myXP += amount;
         world.updateXPBar();
         world.determineLevel();
     }
     
-    
     public int getXP(){
         return myXP;
     }
-
     
     public void increaseLevel(){
         level++;
@@ -121,14 +106,11 @@ public class Player extends Entity
         world.updateXPBar();
     }
     
-    
     public int getRequiredXPForNextLevel() {
         if(level == 0){
             return 0;
         }
-        // Define the logic to calculate required XP for the next level
         return 5 + level * 10;
-        //return 5 + level * 15;  // Example logic, modify as needed
     }
 
     public int getLevel(){

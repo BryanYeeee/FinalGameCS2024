@@ -43,7 +43,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 20;
+        hordeLimit = 200;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
@@ -124,50 +124,22 @@ public class MyWorld extends AllWorld
         return p;
     }
     
-    /*
-    //was private before
-    public void determineLevel(){
-        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
-        if(p.getXP() == 10 && p.getLevel() == 0){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 25 && p.getLevel() == 1){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 40 && p.getLevel() == 2){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 70 && p.getLevel() == 3){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-    }
-    */
-    
     public void updateXPBar() {
         int maxXP = p.getRequiredXPForNextLevel();
         xp.setMaxVal(maxXP);
         xp.update(p.getXP());
     }
     
-    
     public Gun getGun(){
         return g;
     }
-
-
     
     public void determineLevel(){
         if(p.getXP() >= upgradeReq.get(p.getLevel())){
-
-/*
-    private void determineLevel(){
-        if(p.getXP() >= p.getRequiredXPForNextLevel()){
-*/
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
     
-
     private void addHorde(){
         if(Greenfoot.getRandomNumber(2) == 0){
             if(Greenfoot.getRandomNumber(2) == 0){
