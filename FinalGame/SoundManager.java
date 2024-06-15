@@ -25,6 +25,14 @@ public class SoundManager
         sounds = new HashMap<String, Sound>();
         
         // Non-looped
+        sounds.put("Click", new Sound("Click.mp3", 50, false));
+        sounds.put("TridentSlash", new Sound("TridentSlash.mp3", 30, false));
+        sounds.put("SharkBite", new Sound("SharkBite.mp3", 30, false));
+        sounds.put("WaterSplash", new Sound("WaterSplash.mp3", 30, false));
+        sounds.put("SharkSpecial", new Sound("SharkSpecial.mp3", 30, false));
+        //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
+        //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
+        sounds.put("Gameover", new Sound("Gameover.mp3", 30, false));
         /*
         sounds.put("click", new Sound("click.mp3", 35, false));
         sounds.put("bomb", new Sound("bomb.mp3", 55, false));
@@ -39,8 +47,10 @@ public class SoundManager
         sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
         sounds.put("CarStart", new Sound("CarStart.mp3", 50, false));
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
-        
+        */
         // Looped
+        sounds.put("GameBGM", new Sound("GameBGM.mp3", 25, true));
+        /*
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         sounds.put("MainEscape", new Sound("MainEscape.mp3", 25, true));

@@ -13,7 +13,7 @@ public class Gun extends SuperSmoothMover
     private GreenfootImage gun = new GreenfootImage("FirstWeapon.png");
     private int actCount;
     private int frequency; // this affects fire rate of the gun, a lower number = faster firing
-    
+    private SoundManager sm;
     
     private String myAttack = "";
     public Gun(){
@@ -35,16 +35,20 @@ public class Gun extends SuperSmoothMover
                 switch (myAttack){
                     case "TRIDENT":
                         setImage("TridentWeapon.png");
+                        sm.playSound("TridentSlash");
                         getWorld().addObject(new Trident(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "TRIDENT1":
+                        sm.playSound("SharkBite");
                         getWorld().addObject(new SharkBite(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "TRIDENT2":
+                        sm.playSound("WaterSplash");
                         setImage("WaterWeapon.png");
                         getWorld().addObject(new WaterSplash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "TRIDENT3":
+                        sm.playSound("SharkSpecial");
                         setImage("MaxTridentWeapon.png");
                         getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;

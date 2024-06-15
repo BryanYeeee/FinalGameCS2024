@@ -1,24 +1,28 @@
 #BlueJ class context
 comment0.target=MyWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ MyWorld\ is\ the\ main\ game\ world.\r\n\ \r\n\ @author\ Bryan\ Y,\ Jamison\ H,\ Ainson\ Z\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=MyWorld()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MyWorld.\r\n\ \r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MyWorld.\r\n
 comment2.params=xMove\ yMove
 comment2.target=void\ updateVP(int,\ int)
+comment2.text=\r\n\ Updates\ the\ ViewPort\ (scrolling\ map)\ depending\ on\ the\ x\ and\ y\ direction\ required\r\n\ \r\n\ @param\ xMove\ How\ far\ the\ map\ scrolls\ to\ the\ left.\r\n\ @param\ yMove\ How\ far\ the\ map\ scrolls\ to\ the\ right.\r\n
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ The\ act\ method\ of\ the\ game\ world.\ Defeat\ enemies,\ add\ and\ display\ score,\ end\ the\ game.\r\n
 comment4.params=
 comment4.target=Player\ getPlayer()
+comment4.text=\r\n\ Gets\ the\ player\ that\ resides\ in\ the\ game\ world\r\n\ \r\n\ @return\ Player\ \ \ The\ player\ in\ the\ game\ world.\r\n
 comment5.params=
-comment5.target=Gun\ getGun()
-comment5.text=\r\n\ \ \ \ //was\ private\ before\r\n\ \ \ \ public\ void\ determineLevel(){\r\n\ \ \ \ \ \ \ \ //\ if\ you\ want\ faster\ testing\ of\ the\ upgrade\ world,\ change\ first\ req.\ of\ the\ if\ statment\ to\ something\ lower\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 10\ &&\ p.getLevel()\ \=\=\ 0){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 25\ &&\ p.getLevel()\ \=\=\ 1){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 40\ &&\ p.getLevel()\ \=\=\ 2){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if(p.getXP()\ \=\=\ 70\ &&\ p.getLevel()\ \=\=\ 3){\r\n\ \ \ \ \ \ \ \ \ \ \ \ Greenfoot.setWorld(new\ UpgradeWorld(this,\ p.getLevel(),\ p));\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n\ \ \ \ \r\n\ \ \ \ public\ void\ updateXPBar()\ {\r\n\ \ \ \ \ \ \ \ int\ maxXP\ \=\ p.getRequiredXPForNextLevel();\r\n\ \ \ \ \ \ \ \ xp.setMaxVal(maxXP);\r\n\ \ \ \ \ \ \ \ xp.update(p.getXP());\r\n\ \ \ \ }\r\n
+comment5.target=void\ updateXPBar()
 comment6.params=
-comment6.target=void\ determineLevel()
+comment6.target=Gun\ getGun()
+comment6.text=\r\n\ Gets\ the\ gun/weapon\ residing\ in\ the\ game\ world.\r\n\ \r\n\ @return\ Gun\ \ The\ gun/weapon\ in\ the\ game\ world.\r\n
 comment7.params=
-comment7.target=void\ addHorde()
+comment7.target=void\ determineLevel()
 comment8.params=
-comment8.target=Tile[][]\ getMap()
+comment8.target=void\ addHorde()
 comment9.params=
-comment9.target=void\ debug()
+comment9.target=Tile[][]\ getMap()
+comment9.text=\r\n\ Gets\ the\ tiles\ used\ in\ the\ background\ map.\r\n\ \r\n\ @return\ Tile[][]\ The\ tiles\ of\ the\ map.\r\n
 numComments=10
