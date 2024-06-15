@@ -32,7 +32,7 @@ public class ChargeShot extends Attack
      * Animate my attack.
      */
     public void animate() {
-        if (actCount >= 10) { // Adjust timing as needed
+        if (actCount >= 6) { // Adjust timing as needed
             setImage(animations[imageIndex]);
             imageIndex = (imageIndex + 1) % animations.length;
             actCount = 0;

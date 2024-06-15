@@ -54,22 +54,27 @@ public class Gun extends SuperSmoothMover
                         getWorld().addObject(new SharkSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "SLASH":
+                        sm.playSound("BasicSlash");
                         setImage("BasicSword.png");
                         getWorld().addObject(new BasicSlash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "SLASH1":
+                        sm.playSound("TwinSlash");
                         setImage("TwinSwords.png");
                         getWorld().addObject(new Slash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "SLASH2":
+                        sm.playSound("FireSlash");
                         setImage("FireSword.png");
                         getWorld().addObject(new FireSlash(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "SLASH3":
+                        sm.playSound("SpecialSlash");
                         setImage("MaxTwinSwords.png");
                         getWorld().addObject(new SlashSpecial(closestEnemy.getX(), closestEnemy.getY()), getX() + (closestEnemy.getX() - getX()) / 2, getY() + (closestEnemy.getY() - getY()) / 2);
                         break;
                     case "GUN":
+                        sm.playSound("BulletFire");
                         setImage("BasicGun.png");
                         frequency = 20;
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
@@ -77,28 +82,30 @@ public class Gun extends SuperSmoothMover
                     case "GUN1":
                         setImage("gun.png");
                         frequency = 40;
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 25, getY());
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 50, getY());
                         break;
                     case "GUN2":
                         frequency = 55;
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
+                        sm.playSound("BulletFire");
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 25, getY());
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 25, getY() + 25);
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 25, getY() - 25);
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 15, getY() + 35);
                         getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX() + 15, getY() - 35);
-                        /*
-                        getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
-                        getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
-                        getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
-                        getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
-                        getWorld().addObject(new BasicBullet(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
-                        */
                         break;
                     case "GUN3":
                         setImage("MaxGun.png");
                         frequency = 90;
+                        sm.playSound("ChargeShot");
                         getWorld().addObject(new ChargeShot(closestEnemy.getX(), closestEnemy.getY()), getX(), getY());
                         break;
                 }
