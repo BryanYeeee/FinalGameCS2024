@@ -30,15 +30,17 @@ public class Player extends Entity
     private int imageIndex;
     protected String entityName = "player";
     protected char dirChar = 'L';
+    private MyWorld world;
     
     /**
      * Constructor of Player
      */
-    public Player(){
+    public Player(MyWorld world){
         
         super(300000,2,45);
         setEntityName("player");
         setAction("run");
+        this.world = world;
 
         speed = 2;
     }
@@ -129,8 +131,8 @@ public class Player extends Entity
      */
     public void increaseExp(int amount){
         myXP += amount;
-        //world.updateXPBar();
-        //world.determineLevel(); //was private before
+        world.updateXPBar();
+        world.determineLevel();
     }
     
     /**
@@ -145,10 +147,14 @@ public class Player extends Entity
     /**
      * Increase my level by one.
      */
+    public int getXP(){
+        return myXP;
+    }
+    
     public void increaseLevel(){
         level++;
-        //myXP = 0;
-        //world.updateXPBar();
+        myXP = 0;
+        world.updateXPBar();
     }
     
     /**
@@ -160,8 +166,7 @@ public class Player extends Entity
         if(level == 0){
             return 0;
         }
-        // Define the logic to calculate required XP for the next level
-        return 10 + level * 15;  // Example logic, modify as needed
+        return 5 + level * 10;
     }
 
     /**

@@ -38,7 +38,7 @@ public class MyWorld extends AllWorld
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,false);
         SimulationFont.initalizeFont("BigSpace.ttf");
         setPaintOrder(SuperTextBox.class,TempBox.class,SuperStatBar.class,Player.class,Attack.class,Enemy.class,Gun.class,Bullet.class,Collectible.class,Label.class,Tile.class);
-        p = new Player();
+        p = new Player(this);
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
@@ -49,9 +49,9 @@ public class MyWorld extends AllWorld
         Sprite.init();
         map = new Map();
         vp = new Viewport(this);
-        //xp = new SuperStatBar(p.getMaxXPForLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
-        //addObject(xp, 200, 25);
-        
+        xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
+        addObject(xp, 200, 25);
+
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
     }
@@ -123,30 +123,12 @@ public class MyWorld extends AllWorld
         return p;
     }
     
-    /*
-    //was private before
-    public void determineLevel(){
-        // if you want faster testing of the upgrade world, change first req. of the if statment to something lower
-        if(p.getXP() == 10 && p.getLevel() == 0){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 25 && p.getLevel() == 1){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 40 && p.getLevel() == 2){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-        if(p.getXP() == 70 && p.getLevel() == 3){
-            Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
-        }
-    }
-    
     public void updateXPBar() {
         int maxXP = p.getRequiredXPForNextLevel();
         xp.setMaxVal(maxXP);
         xp.update(p.getXP());
     }
-    */
+
     /**
      * Gets the gun/weapon residing in the game world.
      * 
@@ -155,13 +137,13 @@ public class MyWorld extends AllWorld
     public Gun getGun(){
         return g;
     }
-
-    private void determineLevel(){
-        if(p.getXP() >= p.getRequiredXPForNextLevel()){
+    
+    public void determineLevel(){
+        if(p.getXP() >= upgradeReq.get(p.getLevel())){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
         }
     }
-
+    
     private void addHorde(){
         if(Greenfoot.getRandomNumber(2) == 0){
             if(Greenfoot.getRandomNumber(2) == 0){
@@ -190,10 +172,12 @@ public class MyWorld extends AllWorld
         return map.getTileMap();
     }
 
+    /*
     public void debug() {
         System.out.println("lx: " + vp.lx());
         System.out.println("ly: " + vp.ly());
         System.out.println("rx: " + vp.rx());
         System.out.println("ry: " + vp.ry());
     }
+    */
 }

@@ -24,7 +24,7 @@ public class SharkBite extends Attack
             animations[i] = new GreenfootImage("images/Attacks/SharkBite/SharkBite" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 3, height * 3);
+            animations[i].scale(width * 7/2, height * 7/2);
         }
         setImage(animations[0]);
         imageOne = animations[0];

@@ -24,7 +24,7 @@ public class FireSlash extends Attack
             animations[i] = new GreenfootImage("images/Attacks/FireSlash/FireSlash" + i + ".png");
             int width = animations[i].getWidth();
             int height = animations[i].getHeight();  
-            animations[i].scale(width * 3/2, height * 3/2);
+            animations[i].scale(width * 3, height * 3);
         }
         setImage(animations[0]);
         imageOne = animations[0];
