@@ -147,9 +147,6 @@ public class Player extends Entity
     /**
      * Increase my level by one.
      */
-    public int getXP(){
-        return myXP;
-    }
     
     public void increaseLevel(){
         level++;
