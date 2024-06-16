@@ -174,7 +174,7 @@ public class UpgradeWorld extends AllWorld
         guns.put(0, new UpgradeBox("images/BasicBullet.png", "GUN", new String[] {"Obtain a gun."}));
         guns.put(1, new UpgradeBox("images/TripleBullets.png", "GUN1", new String[] {"Obtain the triple", "shot upgrade."}));
         guns.put(2, new UpgradeBox("images/QuintupleBullets.png", "GUN2", new String[] {"Obtain a quintuple", " shot upgrade."}));
-        guns.put(3, new UpgradeBox("images/Attacks/ChargeShot/ChargeShot0.png", "GUN3", new String[] {"enlightenment of", "the true weapon"}));
+        guns.put(3, new UpgradeBox("images/Attacks/ChargeShot/ChargeShot0.png", "GUN3", new String[] {"Enlightenment of", "the true blaster."}));
     }
     // logic will become more complex, say if user as this upgrade they only show this upgrade, for now simple filling
     private void determineUpgrades(){
