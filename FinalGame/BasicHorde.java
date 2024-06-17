@@ -12,6 +12,9 @@ public class BasicHorde extends Enemy
 
     private int targetX;
     private int targetY;
+    
+    private int actCount = 0;
+    private int orbType = 0;
     //private boolean isAlive = true;
     public BasicHorde(){
 
@@ -27,6 +30,17 @@ public class BasicHorde extends Enemy
      * The act method, get a target and move towards it.
      */
     public void act(){
+        actCount++;
+        if(actCount == 1200){
+            increaseMaxHP(150);
+            restoreToFull();
+            orbType = 1;
+        }
+        if(actCount == 2400){
+            increaseMaxHP(300);
+            restoreToFull();
+            orbType = 2;
+        }
         if(isAlive){
             super.act();
             repel();
@@ -41,6 +55,7 @@ public class BasicHorde extends Enemy
                 Player c = (Player)getOneIntersectingObject(Player.class);
                 if(c != null && c.getWorld() != null){
                     c.decreaseHP(atk);
+                    world.updateBar();
                     atkCooldown = 30;
                 }
             }
@@ -58,8 +73,8 @@ public class BasicHorde extends Enemy
             action="death";
             super.act();
             if(imageIndex==7){
-                world.addObject(new XP(0), getX(), getY());
-                ScoreTracker.increaseScore(10);
+                world.addObject(new XP(orbType), getX(), getY());
+                ScoreTracker.increaseScore(orbType * 20 + 10);
                 getWorld().removeObject(this);
                 return;
             }

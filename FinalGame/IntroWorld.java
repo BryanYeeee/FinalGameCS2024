@@ -19,7 +19,7 @@ public class IntroWorld extends AllWorld
         start = new SuperTextBox(guide, bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 45), true, 550, 10, Color.BLACK);
         addObject(start, AllWorld.WORLD_WIDTH/2, 690); 
     }
-    
+
     public void act(){
         if(play){
             sm.playSound("TitleMusic");

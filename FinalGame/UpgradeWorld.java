@@ -162,7 +162,7 @@ public class UpgradeWorld extends AllWorld
         // non-weapon
         upgrades.add(new UpgradeBox("magnet.png", "MAGNET", new String[] {"Increases EXP", "pickup range by 20."}));
         upgrades.add(new UpgradeBox("XPPotion.png", "EXP MASTERY", new String[] {"Increases EXP", "gain by 1."}));
-        upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", new String[] {"Increases HP by 20"}));
+        upgrades.add(new UpgradeBox("HPBoost.png", "HP BUFF", new String[] {"Increases HP by 20", "+ Full Heal."}));
         upgrades.add(new UpgradeBox("ATKBoost.png", "ATK BUFF", new String[] {"Increases ATK by 5"}));
         upgrades.add(new UpgradeBox("SPDBoost.png", "SPD BUFF", new String[] {"Increases SPD by 1"}));
 
@@ -263,7 +263,9 @@ public class UpgradeWorld extends AllWorld
                 mainWorld.getPlayer().increaseSPD(1);
                 break;
             case "HP BUFF":
-                mainWorld.getPlayer().increaseHP(20);
+                mainWorld.getPlayer().increaseMaxHP(20);
+                mainWorld.getPlayer().restoreToFull();
+                mainWorld.updateBar();
                 break;
             case "MAGNET":
                 mainWorld.getPlayer().increasePickUpRange(20);
