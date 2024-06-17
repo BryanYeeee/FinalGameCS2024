@@ -12,7 +12,7 @@ public abstract class Collectible extends SuperSmoothMover
     protected int actCount=0;
     
     protected double hoverSpeed=1;
-    protected int despawnSeconds = -1; // seconds it takes for collectible to despawn
+    protected int despawnSeconds = 60; // seconds it takes for collectible to despawn
                                   // -1 means collectible does not despawn
     
     protected boolean pickup;
@@ -20,6 +20,9 @@ public abstract class Collectible extends SuperSmoothMover
     protected double pickupSpeed = -10;
     protected double deltaY;
     protected int myType; // 0=green, 1=yellow, 2=red
+    
+    protected SoundManager sm;
+    
     /**
      * Default constructor of Collectible. Sets no type.
      */
@@ -126,6 +129,7 @@ public abstract class Collectible extends SuperSmoothMover
      * All subclasses must have a pickup effect.
      */
     public abstract void pickupEffect();
+    
     
     /**
      * Return the distance between myself and another (x,y) coordinate pair.

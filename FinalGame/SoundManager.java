@@ -34,6 +34,7 @@ public class SoundManager
         sounds.put("Click", new Sound("Click.mp3", 50, false));
         sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
         sounds.put("EnemyHit", new Sound("EnemyHit.mp3", 15, false));
+        sounds.put("Xp", new Sound("Xp.mp3", 15, false));
         sounds.put("Gameover", new Sound("Gameover.mp3", 30, false));
         
         //weapons

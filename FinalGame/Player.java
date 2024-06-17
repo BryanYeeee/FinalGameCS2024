@@ -18,7 +18,6 @@ public class Player extends Entity
     private int weaponLevel = 0;
     private int speed;
     
-
     private int actCount = 0;
 
     private String action = "run";
@@ -37,7 +36,7 @@ public class Player extends Entity
      */
     public Player(MyWorld world){
         
-        super(1000,2,45);
+        super(80000,2,45);
         setEntityName("player");
         setAction("run");
         this.world = world;

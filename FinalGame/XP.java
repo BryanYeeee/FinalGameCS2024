@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class XP extends Collectible
 {
+    
     /**
      * Constructor of XP
      * 
@@ -21,6 +22,6 @@ public class XP extends Collectible
      * Effect is default to the main pickup effect.
      */
     public void pickupEffect(){
-        
+        sm.playSound("Xp");
     }
 }
