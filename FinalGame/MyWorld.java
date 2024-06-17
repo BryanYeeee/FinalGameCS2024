@@ -51,7 +51,7 @@ public class MyWorld extends AllWorld
         vp = new Viewport(this);
         xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         addObject(xp, 225, 50);
-        playerBar = new SuperStatBar(p.getMaxHP(), p.getHP(), p, 50, 15, 40, Color.RED, Color.BLACK, false, Color.BLACK, 2);
+        playerBar = new SuperStatBar(p.getMaxHP(), p.getHP(), p, 50, 15, 40, Color.GREEN, Color.RED, false, Color.BLACK, 2);
         addObject(playerBar, p.getPlayerX(), p.getPlayerY());
         
         // addObject(new Tile("",false,10),-55,675);
@@ -143,6 +143,9 @@ public class MyWorld extends AllWorld
         return p;
     }
     
+    /**
+     * Updates the XP bar according to the player's level.
+     */
     public void updateXPBar() {
         int maxXP = p.getRequiredXPForNextLevel();
         xp.setMaxVal(maxXP);
@@ -158,6 +161,9 @@ public class MyWorld extends AllWorld
         return g;
     }
     
+    /**
+     * Determine if the player is qualified for an upgrade.
+     */
     public void determineLevel(){
         if(p.getXP() >= p.getRequiredXPForNextLevel()){
             Greenfoot.setWorld(new UpgradeWorld(this, p.getLevel(), p));
@@ -192,6 +198,9 @@ public class MyWorld extends AllWorld
         return map.getTileMap();
     }
     
+    /**
+     * Updates the player's HP bar.
+     */
     public void updateBar(){
         playerBar.setMaxVal(p.getMaxHP());
         playerBar.update(p.getHP());

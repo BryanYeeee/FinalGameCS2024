@@ -14,7 +14,9 @@ public class Enemy extends Entity
     protected int targetY;
     protected int atkCooldown; // so character doesn't insta die when hit
     protected boolean isAlive = true;
-    
+    /**
+     * Constructor of Enemy.
+     */
     public Enemy(int hp, int speed, int atk){
         super(hp, speed, atk);
         
@@ -33,7 +35,9 @@ public class Enemy extends Entity
         }
         
     }
-    
+    /**
+     * Animations and sounds for getting hit.
+     */
     protected void takeDamage(int damage){
         sm.playSound("EnemyHit");
         
@@ -50,7 +54,11 @@ public class Enemy extends Entity
         setImage(currentImage);
         hp -= damage;
     }
-    
+    /**
+     * Get if I am alive.
+     * 
+     * @return boolean  True if alive, false if not.
+     */
     public boolean getAlive() {
         return isAlive;
     }

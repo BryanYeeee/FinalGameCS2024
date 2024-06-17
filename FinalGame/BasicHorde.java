@@ -16,6 +16,9 @@ public class BasicHorde extends Enemy
     private int actCount = 0;
     private int orbType = 0;
     //private boolean isAlive = true;
+    /**
+     * Constructor of BasicHorde.
+     */
     public BasicHorde(){
 
         super(50,1, 20);

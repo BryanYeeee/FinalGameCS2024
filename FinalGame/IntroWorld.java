@@ -1,16 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class IntroWorld here.
+ * The Intro to the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version June 2024
  */
 public class IntroWorld extends AllWorld
 {
     private SuperTextBox start;
     private String[] guide = {"Use the cursor to move", "Click this to start"};
     private boolean play = true;
+    
+    /**
+     * Constructor of IntroWorld.
+     */
     public IntroWorld()
     {
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
@@ -20,6 +24,9 @@ public class IntroWorld extends AllWorld
         addObject(start, AllWorld.WORLD_WIDTH/2, 690); 
     }
 
+    /**
+     * The act method, play sound and swap worlds once user clicks on the button.
+     */
     public void act(){
         if(play){
             sm.playSound("TitleMusic");

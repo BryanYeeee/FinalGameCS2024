@@ -191,7 +191,9 @@ public abstract class Entity extends SuperSmoothMover
     public int getMaxHP(){
         return maxHP;
     }
-    
+    /**
+     * Restore my HP to full by setting to equal to my maxHP.
+     */
     public void restoreToFull(){
         hp = maxHP;
     }

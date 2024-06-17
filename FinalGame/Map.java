@@ -1,9 +1,9 @@
 import java.util.HashMap;
 /**
- * Write a description of class Map here.
+ * The background map of the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version June 2024
  */
 public class Map  
 {
@@ -13,7 +13,9 @@ public class Map
     
     private Tile[][] tileMap;
     private MyWorld w;
-    
+    /**
+     * Constructor of Map, generate the map using "-" for walls, "" for open space.
+     */
     public Map()
     {
         generateMap();
@@ -57,7 +59,11 @@ public class Map
             }
         }
     }
-    
+    /**
+     * Get the tiles used for the map.
+     * 
+     * @return Tile[][] The map tiles.
+     */
     public Tile[][] getTileMap() {
         return tileMap;
     }

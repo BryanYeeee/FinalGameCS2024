@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CharacterSprite here.
+ * EntitySprite is a class supporting left and right facing images.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version June 2024
  */
 
 public class EntitySprite extends SuperSmoothMover
@@ -14,6 +14,12 @@ public class EntitySprite extends SuperSmoothMover
     private GreenfootImage spriteR;
     private GreenfootImage spriteL;
     
+    /**
+     * Constructor of EntitySprite.
+     * 
+     * @param entity    The entity to have left and right images of.
+     * @param imgURL    The image path.
+     */
     public EntitySprite(Entity entity, String imgURL){
         this.entity = entity;
         
@@ -24,7 +30,9 @@ public class EntitySprite extends SuperSmoothMover
         
         setImage(spriteL);
     }
-    
+    /**
+     * The act method, depending on the entity's location in the world swap b/w L and R images.
+     */
     public void act()
     {
         if(entity.getWorld() == null) { 

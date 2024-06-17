@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Write a description of class Gun here.
+ * Gun is a class to hold all attacks.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H, Ainson Z
+ * @version June 2024
  */
 public class Gun extends SuperSmoothMover
 {
@@ -16,16 +16,20 @@ public class Gun extends SuperSmoothMover
     private SoundManager sm;
     
     private String myAttack = "";
+    /**
+     * Constructor of Gun. 
+     */
     public Gun(){
         gun.scale(40, 40);
-        gun.rotate(-45);
         gun.mirrorHorizontally();
         setImage(gun);
         //frequency = 40;
         frequency = 100;
         actCount = 0;
     }
-
+    /**
+     * The act method, attack the closest enemy with the attack I am set to use.
+     */
     public void act()
     {
         Enemy closestEnemy = getNearestEnemy();
@@ -119,7 +123,12 @@ public class Gun extends SuperSmoothMover
         actCount++;
     }
 
-    //add this code to your player class;
+    /**
+     * Return the distance between myself and another actor
+     * 
+     * @param actor     The actor away from me.
+     * @return double   The distance between myself and another actor.
+     */
     public double getDistance(Actor actor) {
         return Math.hypot(actor.getX() - getX(), actor.getY() - getY());
     }
@@ -143,10 +152,20 @@ public class Gun extends SuperSmoothMover
         return nearestEnemy;
     }
 
+    /**
+     * Set the attack I will use.
+     * 
+     * @param attack    The attack's name.
+     */
     public void setAttack(String attack){
         myAttack = attack;
     }
     
+    /**
+     * Set my image, scale and rotate accordingly.
+     * 
+     * @param image The image to be set to.
+     */
     public void setImage(String image) {
         GreenfootImage newImage = new GreenfootImage(image);
         newImage.scale(40, 40);

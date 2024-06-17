@@ -1,16 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tile here.
+ * Wall is a visual indicator of the edge of the map.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version June 2024
  */
 public class Wall extends Tile
 {
     // public static final int TILE_LENGTH = 128;
     // Label l;
     
+    /**
+     * Constructor for Wall(). Sets the image of wall.
+     */
     public Wall() {
         super("Wall.png",0);
         // getImage().scale(TILE_LENGTH,TILE_LENGTH);

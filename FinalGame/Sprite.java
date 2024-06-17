@@ -6,7 +6,7 @@ import java.util.Map;
  * The sprite class is in charge of initializing the player sprite.
  * 
  * @author Jeff G
- * @version April 2024
+ * @version June 2024
  */
 public class Sprite  
 {
@@ -25,7 +25,7 @@ public class Sprite
     }
 
     /**
-     * Determine
+     * Initalize various sprite images.
      */
     public static void init(){
         entityName = "player";
@@ -73,7 +73,10 @@ public class Sprite
     }
 
     /**
+     * Get a image using a key.
      * 
+     * @param key               The key to the hashmap.
+     * @return GreenfootImage   The image.
      */
     public static GreenfootImage getFrame(String key){
         if (frames.containsKey(key)) {

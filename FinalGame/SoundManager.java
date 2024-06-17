@@ -13,7 +13,9 @@ public class SoundManager
     public static HashMap<String, Sound> sounds;
     private static ArrayList<GreenfootSound> activeSounds;
     
-    
+    /**
+     * Constructor of SoundManager, initalize sounds.
+     */
     public SoundManager() {
         initSounds();
     }

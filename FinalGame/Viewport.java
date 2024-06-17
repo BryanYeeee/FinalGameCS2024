@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Viewport class to generate the world for the player's screen.
  * 
- * @author Modified by Bryan Y
+ * @author Bryan Y
  * @version January 2024
  */
 public class Viewport extends Actor
@@ -69,8 +69,28 @@ public class Viewport extends Actor
             }
         }
     }
+    /**
+     * Return top left's x position.
+     * 
+     * @return double   The top left x position.
+     */
     public double lx(){return lx;};
+    /**
+     * Return top left's y position.
+     * 
+     * @return double   The top left y position.
+     */
     public double ly(){return ly;};
+    /**
+     * Return top right's x position.
+     * 
+     * @return double   The top right x position.
+     */
     public double rx(){return rx;};
+    /**
+     * Return top right's y position.
+     * 
+     * @return double   The top right y position.
+     */
     public double ry(){return ry;};
 }
