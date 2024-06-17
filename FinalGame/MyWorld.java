@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * MyWorld is the main game world. <p>
  * This game is heavily based off of survivor.io and holocure, and mainly features a scrolling map, weapon tiers and upgrades. <p>
  * Assets:<p>
- * All attacks are from Holocure.<p>
+ * All attacks and sounds are from Holocure.<p>
  * Gun - https://survivorio.fandom.com/wiki/Shotgun <p>
  * Bullet - https://www.shutterstock.com/image-vector/cartoon-game-objects-2d-art-object-656359261 <p>
  * BasicHorde - https://gamerant.com/survivorio-codes/ <p>
