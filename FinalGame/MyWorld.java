@@ -24,7 +24,8 @@ public class MyWorld extends AllWorld
     private Viewport vp;
     private SuperStatBar xp;
     
-
+    private SuperStatBar playerBar;
+    
     private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
     private SuperTextBox restart = new SuperTextBox("RESTART", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 250, 5, Color.BLACK);
 
@@ -41,7 +42,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 300;
+        hordeLimit = 20;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
@@ -50,7 +51,8 @@ public class MyWorld extends AllWorld
         vp = new Viewport(this);
         xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         addObject(xp, 225, 50);
-        
+        playerBar = new SuperStatBar(p.getMaxHP(), p.getHP(), p, 50, 15, 40, Color.RED, Color.BLACK, false, Color.BLACK, 2);
+        addObject(playerBar, p.getPlayerX(), p.getPlayerY());
         
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
@@ -74,6 +76,9 @@ public class MyWorld extends AllWorld
         actCount++;
         if(actCount == 1) {
             sm.playSound("GameBGM");
+        }
+        if(actCount % 600 == 0 && hordeLimit < 250){ // raise limit every 10 seconds
+            hordeLimit += 10;
         }
         if(gameState == 0){
             ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
@@ -185,6 +190,14 @@ public class MyWorld extends AllWorld
      */
     public Tile[][] getMap() {
         return map.getTileMap();
+    }
+    
+    public void updateBar(){
+        System.out.println("upddate");
+        System.out.println(p.getMaxHP());
+        System.out.println(p.getMaxHP());
+        playerBar.setMaxVal(p.getMaxHP());
+        playerBar.update(p.getHP());
     }
 
     /*
