@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Entity holds all traits and behaviours of enemies and player objects.
  * 
- * @author Bryan Y, Jeff G
+ * @author Bryan Y, Jeff G, Jamison H
  * @version June 2024
  */
 public abstract class Entity extends SuperSmoothMover
@@ -11,6 +11,7 @@ public abstract class Entity extends SuperSmoothMover
     //protected EntitySprite sprite;
     protected int speed;
     protected int hp;
+    protected int maxHP;
     protected int atk;
     protected MyWorld world;
     private int actCount = 0;
@@ -35,6 +36,7 @@ public abstract class Entity extends SuperSmoothMover
      */
     public Entity(int hp, int speed, int atk){
         this.hp = hp;
+        maxHP = hp;
         this.speed = speed;
         this.atk = atk;
         enableStaticRotation();
@@ -180,13 +182,27 @@ public abstract class Entity extends SuperSmoothMover
     public int getHP(){
         return hp;
     }
+    
+    /**
+     * Get my max HP.
+     * 
+     * @return int  The max HP.
+     */
+    public int getMaxHP(){
+        return maxHP;
+    }
+    
+    public void restoreToFull(){
+        hp = maxHP;
+    }
+    
     /**
      * Increase my HP by a certain amount.
      * 
      * @param amount The amount to increase.
      */
-    public void increaseHP(int amount){
-        hp += amount;
+    public void increaseMaxHP(int amount){
+        maxHP += amount;
     }
     /**
      * Decrease my HP by a certain amount.

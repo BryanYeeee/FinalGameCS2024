@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-import java.util.HashMap;
+
 /**
  * MyWorld is the main game world.
  * 
@@ -23,12 +23,12 @@ public class MyWorld extends AllWorld
     private Map map;
     private Viewport vp;
     private SuperStatBar xp;
-
-    // key = level, returns upgrade req
-    private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
-
-    private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
     
+    private SuperStatBar playerBar;
+    
+    private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
+    private SuperTextBox restart = new SuperTextBox("RESTART", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 250, 5, Color.BLACK);
+
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -42,7 +42,7 @@ public class MyWorld extends AllWorld
         g = new Gun();
         addObject(p, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         addObject(g, AllWorld.WORLD_WIDTH/2+30, AllWorld.WORLD_HEIGHT/2);
-        hordeLimit = 300;
+        hordeLimit = 20;
         gameState = 0;
         speed = 2;
         ScoreTracker.resetScore();
@@ -51,19 +51,8 @@ public class MyWorld extends AllWorld
         vp = new Viewport(this);
         xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         addObject(xp, 225, 50);
-        
-        //Change values for actual game
-        upgradeReq.put(0, 0);
-        upgradeReq.put(1, 15);
-        upgradeReq.put(2, 25);
-        upgradeReq.put(3, 35);
-        upgradeReq.put(4, 45);
-        upgradeReq.put(5, 55);
-        upgradeReq.put(6, 65);
-        upgradeReq.put(7, 75);
-        upgradeReq.put(8, 85);
-        upgradeReq.put(9, 95);
-        upgradeReq.put(10, 105);
+        playerBar = new SuperStatBar(p.getMaxHP(), p.getHP(), p, 50, 15, 40, Color.RED, Color.BLACK, false, Color.BLACK, 2);
+        addObject(playerBar, p.getPlayerX(), p.getPlayerY());
         
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
@@ -87,6 +76,9 @@ public class MyWorld extends AllWorld
         actCount++;
         if(actCount == 1) {
             sm.playSound("GameBGM");
+        }
+        if(actCount % 600 == 0 && hordeLimit < 250){ // raise limit every 10 seconds
+            hordeLimit += 10;
         }
         if(gameState == 0){
             ArrayList<BasicHorde> horde = (ArrayList<BasicHorde>)getObjects(BasicHorde.class);
@@ -123,6 +115,7 @@ public class MyWorld extends AllWorld
             sm.stopSoundLoop("GameBGM");
             sm.playSound("Gameover");
             addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            addObject(restart, AllWorld.WORLD_WIDTH/2, 650);
             ScoreTracker.readScore();
             System.out.println(ScoreTracker.getScore());
             System.out.println(ScoreTracker.getHighScore());
@@ -130,6 +123,14 @@ public class MyWorld extends AllWorld
             ScoreTracker.writeScore();
             gameState = 2;
             return;
+        } else if (gameState == 2){
+            addObject(new SuperTextBox("Your score: " + ScoreTracker.getScore(), transparentColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 500, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2 + 100);
+            addObject(new SuperTextBox("High score: " + ScoreTracker.getHighScore(), transparentColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 500, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2 + 150);
+
+            if(Greenfoot.mouseClicked(restart)){
+                sm.playSound("Click");
+                Greenfoot.setWorld(new IntroWorld());
+            }
         }
     }
     
@@ -189,6 +190,14 @@ public class MyWorld extends AllWorld
      */
     public Tile[][] getMap() {
         return map.getTileMap();
+    }
+    
+    public void updateBar(){
+        System.out.println("upddate");
+        System.out.println(p.getMaxHP());
+        System.out.println(p.getMaxHP());
+        playerBar.setMaxVal(p.getMaxHP());
+        playerBar.update(p.getHP());
     }
 
     /*
