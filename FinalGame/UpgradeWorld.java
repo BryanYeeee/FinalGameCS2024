@@ -35,6 +35,8 @@ public class UpgradeWorld extends AllWorld
     HashMap<Integer, UpgradeBox> tridents = new HashMap<Integer, UpgradeBox>();
     HashMap<Integer, UpgradeBox> guns = new HashMap<Integer, UpgradeBox>();
 
+    private SoundManager sm;
+    
     /**
      * Constructor for UpgradeWorld, copies the main world background, adds blur, adds upgrades.
      *
@@ -68,6 +70,7 @@ public class UpgradeWorld extends AllWorld
         initalizeUpgrades();
         determineUpgrades();
         displayUpgrades();
+        sm.playSound("Upgrade");
     }
 
     /**
@@ -75,12 +78,15 @@ public class UpgradeWorld extends AllWorld
      */
     public void act(){
         if(Greenfoot.mouseClicked(border0)){
+            sm.playSound("Click");
             actLogic(currUpgrades[0]);
         }
         if(Greenfoot.mouseClicked(border1)){
+            sm.playSound("Click");
             actLogic(currUpgrades[1]);
         }
         if(Greenfoot.mouseClicked(border2)){
+            sm.playSound("Click");
             actLogic(currUpgrades[2]);
         }
     }

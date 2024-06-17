@@ -25,6 +25,27 @@ public class SoundManager
         sounds = new HashMap<String, Sound>();
         
         // Non-looped
+        sounds.put("Click", new Sound("Click.mp3", 50, false));
+        sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
+        sounds.put("EnemyHit", new Sound("EnemyHit.mp3", 30, false));
+        sounds.put("Gameover", new Sound("Gameover.mp3", 30, false));
+        
+        //weapons
+        sounds.put("TridentSlash", new Sound("TridentSlash.mp3", 30, false));
+        sounds.put("SharkBite", new Sound("SharkBite.mp3", 30, false));
+        sounds.put("WaterSplash", new Sound("WaterSplash.mp3", 30, false));
+        sounds.put("SharkSpecial", new Sound("SharkSpecial.mp3", 30, false));
+        
+        sounds.put("BasicSlash", new Sound("BasicSlash.mp3", 30, false));
+        sounds.put("TwinSlash", new Sound("TwinSlash.mp3", 30, false));
+        sounds.put("FireSlash", new Sound("FireSlash.mp3", 50, false));
+        sounds.put("SpecialSlash", new Sound("SpecialSlash.mp3", 30, false));
+        
+        sounds.put("BulletFire", new Sound("BulletFire.mp3", 30, false));
+        sounds.put("ChargeShot", new Sound("ChargeShot.mp3", 30, false));
+        
+        //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
+        //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
         /*
         sounds.put("click", new Sound("click.mp3", 35, false));
         sounds.put("bomb", new Sound("bomb.mp3", 55, false));
@@ -39,8 +60,10 @@ public class SoundManager
         sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
         sounds.put("CarStart", new Sound("CarStart.mp3", 50, false));
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
-        
+        */
         // Looped
+        sounds.put("GameBGM", new Sound("GameBGM.mp3", 15, true));
+        /*
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         sounds.put("MainEscape", new Sound("MainEscape.mp3", 25, true));
@@ -67,7 +90,7 @@ public class SoundManager
             // Retrieve a list of the sounds playing for the current sound type
             // Since the parameter in the following method is true, it will also pause the sounds for each one currently playing
             ArrayList<GreenfootSound> soundsPlaying = set.getValue().getListOfPlayingSounds(true);
-            
+            //System.out.println(soundsPlaying);
             // Store the paused sounds in the active sounds arraylist
             activeSounds.addAll(soundsPlaying);
         }
