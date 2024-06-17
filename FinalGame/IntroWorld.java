@@ -22,12 +22,12 @@ public class IntroWorld extends AllWorld
     
     public void act(){
         if(play){
-            sm.playSound("GameBGM");
+            sm.playSound("TitleMusic");
             play = false;
         }
         if(Greenfoot.mouseClicked(start)){
             sm.playSound("Click");
-            sm.stopSoundLoop("GameBGM");
+            sm.stopSoundLoop("TitleMusic");
             Greenfoot.setWorld(new MyWorld());
         }
     }
