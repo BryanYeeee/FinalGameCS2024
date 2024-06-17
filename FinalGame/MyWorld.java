@@ -2,10 +2,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * MyWorld is the main game world.
+ * MyWorld is the main game world. <p>
+ * This game is heavily based off of survivor.io and holocure, and mainly features a scrolling map, weapon tiers and upgrades. <p>
+ * Assets:<p>
+ * All attacks are from Holocure.<p>
+ * Gun - https://survivorio.fandom.com/wiki/Shotgun <p>
+ * Bullet - https://www.shutterstock.com/image-vector/cartoon-game-objects-2d-art-object-656359261 <p>
+ * BasicHorde - https://gamerant.com/survivorio-codes/ <p>
+ * Character - https://penzilla.itch.io/hooded-protagonist <p>
+ * Font - https://www.fontspace.com/big-space-font-f32275 <p>
+ * UpgradeBox Background - https://www.vecteezy.com/vector-art/2884046-abstract-futuristic-black-and-red-gaming-background-with-black-color-dynamic-overlap-on-metal-abstract-background-vector-illustration?autodl_token=f341dbd66ecbf4a98c5e5438aeed250c4ed30a0d4f43e1fd12a4a3387cdf8e57454a4c68bc9c56b6b0f679e4adbd574aaafc722e796be432c7accb3629bd123c <p>
+ * Yellow XP orb - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DCiGAiBIwJoc&psig=AOvVaw2nFllnWrdKzrfGJcHuYG1a&ust=1718196362810000&source=images&cd=vfe&opi=89978449&ved=0CBIQjhxqFwoTCOjyscbK04YDFQAAAAAdAAAAABAE <p>
+ * Red XP orb - https://minecraft.novaskin.me/skin/6315693033/Red-Experience-Orb <p>
+ * Magnet - https://www.vecteezy.com/vector-art/6563728-cartoon-magnet-vector-illustration <p>
+ * EXP Gain - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.planetminecraft.com%2Fblog%2Fwhy-do-we-smash-xp-bottles%2F&psig=AOvVaw1iudoeggKI56L8S5hio4M0&ust=1718368042939000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCW1JXK2IYDFQAAAAAdAAAAABAE  <p>
+ * Health Boost - https://minecraft.fandom.com/wiki/Health_Boost <p>
+ * ATK boost - https://stock.adobe.com/ca/images/crossed-swords-icon-combat-with-melee-weapons-flat-vector-illustration/523395253 <p>
+ * Spd boost -https://www.flaticon.com/free-icon/magic-boot_1643170 <p>
+ * 
  * 
  * @author Bryan Y, Jamison H, Ainson Z 
- * @version (a version number or a date)
+ * @version June 2024
  */
 public class MyWorld extends AllWorld
 {
