@@ -193,9 +193,6 @@ public class MyWorld extends AllWorld
     }
     
     public void updateBar(){
-        System.out.println("upddate");
-        System.out.println(p.getMaxHP());
-        System.out.println(p.getMaxHP());
         playerBar.setMaxVal(p.getMaxHP());
         playerBar.update(p.getHP());
     }

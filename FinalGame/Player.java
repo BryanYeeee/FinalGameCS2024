@@ -37,7 +37,7 @@ public class Player extends Entity
      */
     public Player(MyWorld world){
         
-        super(2000,2,45);
+        super(1000,2,45);
         setEntityName("player");
         setAction("run");
         this.world = world;
