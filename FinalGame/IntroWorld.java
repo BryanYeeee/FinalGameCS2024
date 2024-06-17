@@ -14,6 +14,7 @@ public class IntroWorld extends AllWorld
     public IntroWorld()
     {
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1,true);
+        SimulationFont.initalizeFont("BigSpace.ttf");
         setBackground(new GreenfootImage("TitleScreen.png"));
         start = new SuperTextBox(guide, bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 45), true, 550, 10, Color.BLACK);
         addObject(start, AllWorld.WORLD_WIDTH/2, 690); 

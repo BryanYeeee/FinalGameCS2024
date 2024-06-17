@@ -110,7 +110,7 @@ public class MyWorld extends AllWorld
             sm.stopSoundLoop("GameBGM");
             sm.playSound("Gameover");
             addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
-            addObject(restart, AllWorld.WORLD_WIDTH/2, 600);
+            addObject(restart, AllWorld.WORLD_WIDTH/2, 650);
             ScoreTracker.readScore();
             System.out.println(ScoreTracker.getScore());
             System.out.println(ScoreTracker.getHighScore());
@@ -119,9 +119,12 @@ public class MyWorld extends AllWorld
             gameState = 2;
             return;
         } else if (gameState == 2){
+            addObject(new SuperTextBox("Your score: " + ScoreTracker.getScore(), transparentColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 500, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2 + 100);
+            addObject(new SuperTextBox("High score: " + ScoreTracker.getHighScore(), transparentColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 500, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2 + 150);
+
             if(Greenfoot.mouseClicked(restart)){
                 sm.playSound("Click");
-                Greenfoot.setWorld(new MyWorld());
+                Greenfoot.setWorld(new IntroWorld());
             }
         }
     }
