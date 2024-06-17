@@ -35,7 +35,7 @@ public class UpgradeWorld extends AllWorld
     HashMap<Integer, UpgradeBox> tridents = new HashMap<Integer, UpgradeBox>();
     HashMap<Integer, UpgradeBox> guns = new HashMap<Integer, UpgradeBox>();
 
-    private SoundManager sm;
+    //private SoundManager sm;
     
     /**
      * Constructor for UpgradeWorld, copies the main world background, adds blur, adds upgrades.

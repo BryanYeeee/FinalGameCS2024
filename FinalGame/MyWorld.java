@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-import java.util.HashMap;
+
 /**
  * MyWorld is the main game world.
  * 
@@ -23,12 +23,11 @@ public class MyWorld extends AllWorld
     private Map map;
     private Viewport vp;
     private SuperStatBar xp;
-
-    // key = level, returns upgrade req
-    private HashMap<Integer, Integer> upgradeReq = new HashMap<Integer, Integer>();
+    
 
     private SuperTextBox score = new SuperTextBox("0", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 100, 5, Color.BLACK);
-    
+    private SuperTextBox restart = new SuperTextBox("RESTART", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 50), true, 250, 5, Color.BLACK);
+
     /**
      * Constructor for objects of class MyWorld.
      */
@@ -52,18 +51,6 @@ public class MyWorld extends AllWorld
         xp = new SuperStatBar(p.getRequiredXPForNextLevel(), p.getXP(), null, 400, 50, 0, Color.GREEN, Color.DARK_GRAY);
         addObject(xp, 225, 50);
         
-        //Change values for actual game
-        upgradeReq.put(0, 0);
-        upgradeReq.put(1, 15);
-        upgradeReq.put(2, 25);
-        upgradeReq.put(3, 35);
-        upgradeReq.put(4, 45);
-        upgradeReq.put(5, 55);
-        upgradeReq.put(6, 65);
-        upgradeReq.put(7, 75);
-        upgradeReq.put(8, 85);
-        upgradeReq.put(9, 95);
-        upgradeReq.put(10, 105);
         
         // addObject(new Tile("",false,10),-55,675);
         // addObject(new Tile("",false,10),0,500);
@@ -123,6 +110,7 @@ public class MyWorld extends AllWorld
             sm.stopSoundLoop("GameBGM");
             sm.playSound("Gameover");
             addObject(new SuperTextBox("GAME OVER", bgColor, Color.BLACK, SimulationFont.loadCustomFont("BigSpace.ttf", 150), true, 750, 0, Color.BLACK), AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
+            addObject(restart, AllWorld.WORLD_WIDTH/2, 600);
             ScoreTracker.readScore();
             System.out.println(ScoreTracker.getScore());
             System.out.println(ScoreTracker.getHighScore());
@@ -130,6 +118,11 @@ public class MyWorld extends AllWorld
             ScoreTracker.writeScore();
             gameState = 2;
             return;
+        } else if (gameState == 2){
+            if(Greenfoot.mouseClicked(restart)){
+                sm.playSound("Click");
+                Greenfoot.setWorld(new MyWorld());
+            }
         }
     }
     
