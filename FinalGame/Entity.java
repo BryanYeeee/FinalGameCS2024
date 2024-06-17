@@ -23,6 +23,9 @@ public abstract class Entity extends SuperSmoothMover
     protected int imageIndex;
     protected String entityName;
     protected char dirChar;
+    
+    protected SoundManager sm;
+    
     /**
      * Constructor of Entity.
      * 
