@@ -27,7 +27,7 @@ public class SoundManager
         // Non-looped
         sounds.put("Click", new Sound("Click.mp3", 50, false));
         sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
-        sounds.put("EnemyHit", new Sound("EnemyHit.mp3", 30, false));
+        sounds.put("EnemyHit", new Sound("EnemyHit.mp3", 15, false));
         sounds.put("Gameover", new Sound("Gameover.mp3", 30, false));
         
         //weapons
@@ -46,23 +46,11 @@ public class SoundManager
         
         //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
         //sounds.put("Upgrade", new Sound("Upgrade.mp3", 30, false));
-        /*
-        sounds.put("click", new Sound("click.mp3", 35, false));
-        sounds.put("bomb", new Sound("bomb.mp3", 55, false));
-        sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 35, false));
-        sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 25, false));
-        sounds.put("WallBreak", new Sound("WallBreak.mp3", 28, false));
-        sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 30, false));
-        sounds.put("MetalCraft", new Sound("MetalCraft.mp3", 24, false)); //could be looped
-        sounds.put("DoorOpen", new Sound("DoorOpen.mp3", 35, false));
-        sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 43, false)); // could be looped
-        sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
-        sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
-        sounds.put("CarStart", new Sound("CarStart.mp3", 50, false));
-        sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
-        */
+        
         // Looped
+        sounds.put("TitleMusic", new Sound("TitleMusic.mp3", 15, true));
         sounds.put("GameBGM", new Sound("GameBGM.mp3", 15, true));
+        
         /*
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
